@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  eventcharm-webapp:
+    container_name: eventcharm-webapp_${ENV}
+    image: localhost:5000/eventcharm-webapp_${ENV}
+    restart: unless-stopped
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT}:3000
