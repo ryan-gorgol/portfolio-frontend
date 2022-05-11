@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  rg-webapp:
+    container_name: rg-webapp_${ENV}
+    image: localhost:5000/rg-webapp_${ENV}
+    restart: unless-stopped
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT}:3000

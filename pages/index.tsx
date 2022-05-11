@@ -19,17 +19,16 @@ import { fetchAPI } from '../lib/api'
 
 interface Props {
   homepage: any,
-  eventCharm: any
 }
 
-const Home = ({ homepage, eventCharm }: Props) => {
+const Home = ({ homepage }: Props) => {
 
   const [ menuSelection, setMenuSelection ] = useState('home')
   const [ripple, setRipple] = useState(true)
   
   useEffect(() => {
-    console.log(eventCharm)
-  }, [eventCharm])
+    console.log(homepage)
+  }, [homepage])
 
   return (
     <>

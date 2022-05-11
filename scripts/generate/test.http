@@ -1,0 +1,222 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+Date: Thu, 24 Mar 2022 23:20:24 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{
+  "data": {
+    "ecEvent_List_ByPerson_Get": {
+      "data": [
+        {
+          "guid": "caa0bcfd-dc96-48ae-aa6f-846487fc97ff",
+          "name": {
+          },
+          "seriesGuid": "00000000-0000-0000-0000-000000000000",
+          "description": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isDeleted": false,
+          "ageRestriction": {
+            "age": 0,
+            "additional": "nothing"
+          },
+          "showExactLocation": "NO",
+          "thirdPartyTicketProvider": "NOT_LISTED",
+          "onlineEventProviderUrlVisibility": "NEVER",
+          "sellTickets": "NO",
+          "externalPrimaryUrl": null,
+          "primaryClassification": null,
+          "thirdPartyTicketUrl": null,
+          "onlineEventProviderUrl": null,
+          "enableActivities": false,
+          "enableAreas": false,
+          "useRSVP": true,
+          "occasion": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isLiveMusic": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "tags": [],
+          "isEventOnline": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isOnlineOnly": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isPublic": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "announcementDate": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "schedule": {
+            "isMultiDay": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            },
+            "timeZone": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            },
+            "eventDays": []
+          },
+          "onlineAttendanceLink": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "primaryHost": null,
+          "hosts": [],
+          "positions": [],
+          "tasks": [],
+          "musicGenres": [],
+          "owner": null,
+          "location": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "capacity": {
+            "minimumExpectedAttendees": {
+              "value": 5,
+              "answerStatus": "USER_ANSWERED"
+            },
+            "targetAttendees": {
+              "value": 10,
+              "answerStatus": "USER_ANSWERED"
+            },
+            "maximumExpectedAttendees": {
+              "value": 10,
+              "answerStatus": "USER_ANSWERED"
+            }
+          },
+          "hasPhysicalLocation": true,
+          "posterImageUrl": null
+        },
+        {
+          "guid": "d5328b84-3fec-4b9c-a95e-c16fb8240fef",
+          "name": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "seriesGuid": "00000000-0000-0000-0000-000000000000",
+          "description": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isDeleted": false,
+          "ageRestriction": {
+            "age": 0,
+            "additional": "nothing"
+          },
+          "showExactLocation": "NO",
+          "thirdPartyTicketProvider": "NOT_LISTED",
+          "onlineEventProviderUrlVisibility": "NEVER",
+          "sellTickets": "NO",
+          "externalPrimaryUrl": null,
+          "primaryClassification": null,
+          "thirdPartyTicketUrl": null,
+          "onlineEventProviderUrl": null,
+          "enableActivities": false,
+          "enableAreas": false,
+          "useRSVP": true,
+          "occasion": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isLiveMusic": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "tags": [],
+          "isEventOnline": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isOnlineOnly": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "isPublic": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "announcementDate": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "schedule": {
+            "isMultiDay": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            },
+            "timeZone": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            },
+            "eventDays": []
+          },
+          "onlineAttendanceLink": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "primaryHost": null,
+          "hosts": [],
+          "positions": [],
+          "tasks": [],
+          "musicGenres": [],
+          "owner": null,
+          "location": {
+            "value": null,
+            "answerStatus": "UNKNOWN"
+          },
+          "capacity": {
+            "minimumExpectedAttendees": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            },
+            "targetAttendees": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            },
+            "maximumExpectedAttendees": {
+              "value": null,
+              "answerStatus": "UNKNOWN"
+            }
+          },
+          "hasPhysicalLocation": true,
+          "posterImageUrl": null
+        }
+      ],
+      "nextCursor": "00000000-0000-0000-0000-000000000000",
+      "hasMore": true
+    }
+  },
+  "extensions": {
+    "tracing": {
+      "version": 1,
+      "startTime": "2022-03-24T23:20:25.0800558Z",
+      "endTime": "2022-03-24T23:20:25.1590558Z",
+      "duration": 78511900,
+      "parsing": {
+        "startOffset": 41210600,
+        "duration": 563900
+      },
+      "validation": {
+        "startOffset": 41776800,
+        "duration": 2611599
+      },
+      "execution": {
+        "resolvers": []
+      }
+    }
+  }
+}
