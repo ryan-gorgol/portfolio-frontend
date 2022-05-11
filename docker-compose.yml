@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  eventcharm-webapp:
-    container_name: eventcharm-webapp_${ENV}
-    image: localhost:5000/eventcharm-webapp_${ENV}
+  rg-webapp:
+    container_name: rg-webapp_${ENV}
+    image: localhost:5000/rg-webapp_${ENV}
     restart: unless-stopped
     build:
       context: . 

@@ -5,6 +5,6 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-docker build -t eventcharm-webapp_$1 . && 
-docker tag eventcharm-webapp_$1 localhost:5000/eventcharm-webapp_$1 &&
-docker push localhost:5000/eventcharm-webapp_$1
+docker build -t rg-portfolio_$1 . && 
+docker tag rg-portfolio_$1 localhost:5000/rg-portfolio_$1 &&
+docker push localhost:5000/rg-portfolio_$1

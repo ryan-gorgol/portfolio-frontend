@@ -10,9 +10,6 @@ WORKDIR /usr/app
 COPY ./package.json ./
 COPY ./yarn.lock ./
 
-# Copy .npmrc file that configures the @fortawesome scope to use the FontAwesome Pro NPM registry
-COPY ./.npmrc ./
-
 # Install dependencies
 RUN yarn
 

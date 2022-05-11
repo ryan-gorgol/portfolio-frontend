@@ -6,4 +6,4 @@ if [ $# -lt 1 ]; then
 fi
 
 scripts/create-env.sh $1 &
-docker-compose -p "eventcharm-webapp_$1" up -d
+docker-compose -p "rg-portfolio_$1" up -d
