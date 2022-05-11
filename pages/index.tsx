@@ -53,7 +53,7 @@ const Home = ({ homepage }: Props) => {
             animate={{ scale: 0.98 }}
             transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
           >
-            <b>Ryan Gorgol</b> <em> portfolio </em>
+            <b>{homepage.attributes.title}</b> <em> portfolio </em>
           </LoadingTitle>
         </LoadingTitleWrapper>
         <Loading
