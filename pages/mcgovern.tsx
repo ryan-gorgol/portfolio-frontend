@@ -26,6 +26,8 @@ const McGovern = ({ mcgovern }: Props) => {
         />
       </BlogHeader>
       <Scrim menuOpen={menuOpen}>
+
+      <ContentWrap>
         <StoryTitle
           title={mcgovern.attributes.title}
           subtitle={mcgovern.attributes.subtitle}
@@ -42,7 +44,8 @@ const McGovern = ({ mcgovern }: Props) => {
 
 
         </CopyWrap>
-        
+      </ContentWrap>
+      
       </Scrim>
       <BlogMenu menuOpen={menuOpen}/>
     </S_MG>
@@ -70,14 +73,19 @@ export async function getStaticProps() {
 
 const S_MG = styled.main`
   width: 100vw;
-  height: 200vh;
   background: white;
 `
 
-const CopyWrap = styled.div`
+const ContentWrap = styled.div`
+  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: right;
+  height: 100%
+`
+
+const CopyWrap = styled.div`
+  max-width: 800px;
+  margin: 2rem auto 0 auto;
+  padding-bottom: 4rem;
 `
 
 const MG_Copy = styled.div`

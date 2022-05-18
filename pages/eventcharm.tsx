@@ -40,7 +40,9 @@ const EventCharm = ({eventcharm}: Props) => {
         <CopyWrap>
           <EC_Copy>
             <ReactMarkdown>
+              
               {eventcharm.attributes.content}
+              
             </ReactMarkdown>
           </EC_Copy>
         </CopyWrap>
@@ -73,21 +75,20 @@ export async function getStaticProps() {
 
 
 const S_EC = styled.main`
-  width: 100vw;
-  height: 100%;
+  width: 100%;
   background: white;
 `
 
 const ContentWrap = styled.div`
   position: relative;
-  max-width: 900px;
+  width: 100%;
   height: 100%
 `
 
 const CopyWrap = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: right;
+  max-width: 800px;
+  margin: 2rem auto 0 auto;
+  padding-bottom: 4rem;
 `
 
 const EC_Copy = styled.div`
