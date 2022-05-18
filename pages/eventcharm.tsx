@@ -38,8 +38,7 @@ const EventCharm = ({eventcharm}: Props) => {
         />
         <CopyWrap>
           <EC_Copy>
-            <p>{eventcharm.attributes.p1}</p>
-            <p>{eventcharm.attributes.p2}</p>
+            <p>{eventcharm.attributes.content}</p>
           </EC_Copy>
         </CopyWrap>
       </ContentWrap>
