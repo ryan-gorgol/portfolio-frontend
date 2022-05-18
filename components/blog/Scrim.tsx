@@ -15,7 +15,6 @@ export default Scrim
 
 const S_Scrim = styled.div<Props>`
   width: 100vw;
-  height: 100vh;
   position: relative;
   display: block;
   opacity: ${props => props.menuOpen ? 0 : 1};

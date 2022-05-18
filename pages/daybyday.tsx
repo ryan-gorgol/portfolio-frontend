@@ -28,22 +28,25 @@ const DayByDay = ({daybyday}: Props) => {
         />
       </BlogHeader>
       <Scrim menuOpen={menuOpen}>
-        <StoryTitle
-          title={daybyday.attributes.title}
-          subtitle={daybyday.attributes.subtitle}
-          imgSrc={'/DBD_Design.jpg'}
-          imgAlt={'Design, the art of redesigning from a users perspective'}
-        />
-        <CopyWrap>
-          <DBD_Copy>
-            <ReactMarkdown>
-              
-              {daybyday.attributes.content}
-              
-            </ReactMarkdown>
-          </DBD_Copy>
-        </CopyWrap>
-        
+
+        <ContentWrap>
+          <StoryTitle
+            title={daybyday.attributes.title}
+            subtitle={daybyday.attributes.subtitle}
+            imgSrc={'/DBD_Design.jpg'}
+            imgAlt={'Design, the art of redesigning from a users perspective'}
+          />
+          <CopyWrap>
+            <DBD_Copy>
+              <ReactMarkdown>
+                
+                {daybyday.attributes.content}
+                
+              </ReactMarkdown>
+            </DBD_Copy>
+          </CopyWrap>
+        </ContentWrap>
+
       </Scrim>
       <BlogMenu menuOpen={menuOpen} />
     </S_DBD>
@@ -71,16 +74,19 @@ export async function getStaticProps() {
 
 const S_DBD = styled.main`
   width: 100vw;
-  height: 200vh;
   background: white;
 `
 
+const ContentWrap = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%
+`
+
 const CopyWrap = styled.div`
-  width: calc(100vw  - 2rem);
-  margin: 2rem auto;
-  background: #d1bee5a7;
-  display: flex;
-  justify-content: right;
+  max-width: 800px;
+  margin: 2rem auto 0 auto;
+  padding-bottom: 4rem;
 `
 
 const DBD_Copy = styled.div`
