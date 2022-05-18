@@ -6,10 +6,14 @@ import BlogMenuButton from '../components/blog/BlogMenuButton'
 import BlogMenu from '../components/blog/BlogMenu'
 import Scrim from '../components/blog/Scrim'
 import StoryTitle from '../components/blog/StoryTitle'
+import { fetchAPI } from '../lib/api'
+import ReactMarkdown from 'react-markdown'
 
+interface Props {
+  mcgovern: any
+}
 
-
-const McGovern = () => {
+const McGovern = ({ mcgovern }: Props) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -23,23 +27,20 @@ const McGovern = () => {
       </BlogHeader>
       <Scrim menuOpen={menuOpen}>
         <StoryTitle
-          title={'McGovern & Company'}
-          subtitle={'E-Commerce'}
+          title={mcgovern.attributes.title}
+          subtitle={mcgovern.attributes.subtitle}
           imgSrc={'/McGovern_Design.jpg'}
           imgAlt={'Design, the art of redesigning from a users perspective'}
         /> 
         <CopyWrap>
           <MG_Copy>
-            <p>
-              McGovern & Company needed help bringing their site back to life. After a single meeting it was obvious that the site had performance issues. After evaluating the Lighthouse scores, saying the performance was OK would have been generous. There was clearly opportunity to enliven the e-commerce brand by reinvigorating the site.
-            </p>
-            <p>
-              The overall problem reared its head quickly. The theme upon which this Shopify site depended on, was out of date. Oh and it was deprecated, that too. Shopify had just announced the introduction of Online Store 2.0, a large step forward in how Shopify enables themes to be built and maintained. But this announcement made the already out-dated theme a living dinosaur, just waiting to go extinct.
-            </p>
-            <p>
-              So we came up with a plan. Because of key business concerns, the site couldnt be redone or upgraded immediately. There simply wasnt enough bandwith for the business to handle a marketing/branding excercise in the midst of peak in-store retail season. So while we put the updated theme on hold, I went to work patching up the leaky ship. 
-            </p>
+            
+            <ReactMarkdown>
+              {mcgovern.attributes.content}
+            </ReactMarkdown>
           </MG_Copy>
+
+
         </CopyWrap>
         
       </Scrim>
@@ -50,6 +51,23 @@ const McGovern = () => {
 
 export default McGovern
 
+export async function getStaticProps() {
+  const [mcgovernRes] = await Promise.all([
+    fetchAPI("/mcgovern", {
+      populate: {
+        mcgovern: "*",
+      },
+    }),
+  ]);
+
+  return {
+    props: {
+      mcgovern: mcgovernRes.data,
+    },
+    revalidate: 1,
+  };
+}
+
 const S_MG = styled.main`
   width: 100vw;
   height: 200vh;
@@ -57,17 +75,14 @@ const S_MG = styled.main`
 `
 
 const CopyWrap = styled.div`
-  width: calc(100vw  - 2rem);
-  margin: 2rem auto;
-  background: #C0DDDD;
+  width: 100%;
   display: flex;
   justify-content: right;
 `
 
 const MG_Copy = styled.div`
-  width: 85%;
+  width: 100%;
   background: white;
-  padding-left: 1rem;
-
+  padding: 0 1rem;
 `
 

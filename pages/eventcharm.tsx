@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
+import ReactMarkdown from "react-markdown"
 
 import BlogMenuButton from '../components/blog/BlogMenuButton'
 import BlogHeader from '../components/blog/BlogHeader'
@@ -38,7 +39,9 @@ const EventCharm = ({eventcharm}: Props) => {
         />
         <CopyWrap>
           <EC_Copy>
-            <p>{eventcharm.attributes.content}</p>
+            <ReactMarkdown>
+              {eventcharm.attributes.content}
+            </ReactMarkdown>
           </EC_Copy>
         </CopyWrap>
       </ContentWrap>
@@ -71,27 +74,24 @@ export async function getStaticProps() {
 
 const S_EC = styled.main`
   width: 100vw;
-  height: 200vh;
+  height: 100%;
   background: white;
 `
 
 const ContentWrap = styled.div`
   position: relative;
   max-width: 900px;
+  height: 100%
 `
 
 const CopyWrap = styled.div`
-  width: calc(100vw  - 2rem);
-  margin: 2rem auto;
-  background: #66f2c37b;
-  
+  width: 100%;
   display: flex;
   justify-content: right;
 `
 
 const EC_Copy = styled.div`
-  width: 85%;
+  width: 100%;
   background: white;
-  padding-left: 1rem;
-
+  padding: 0 1rem;
 `
