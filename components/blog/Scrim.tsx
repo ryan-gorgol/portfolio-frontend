@@ -14,9 +14,9 @@ const Scrim = ({menuOpen, children}: Props) => {
 export default Scrim
 
 const S_Scrim = styled.div<Props>`
-  width: 100vw;
+  width: 100%;
   position: relative;
   display: block;
   opacity: ${props => props.menuOpen ? 0 : 1};
-  background: #cc2f2f0;
+  background: #a54141;
 `

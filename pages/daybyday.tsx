@@ -27,28 +27,24 @@ const DayByDay = ({daybyday}: Props) => {
           menuOpen={menuOpen}
         />
       </BlogHeader>
-      <Scrim menuOpen={menuOpen}>
 
-        <ContentWrap>
-          <StoryTitle
-            title={daybyday.attributes.title}
-            subtitle={daybyday.attributes.subtitle}
-            imgSrc={'/DBD_Design.jpg'}
-            imgAlt={'Design, the art of redesigning from a users perspective'}
-          />
-          <CopyWrap>
-            <DBD_Copy>
-              <ReactMarkdown>
-                
-                {daybyday.attributes.content}
-                
-              </ReactMarkdown>
-            </DBD_Copy>
-          </CopyWrap>
-        </ContentWrap>
+      <StoryTitle
+        title={daybyday.attributes.title}
+        subtitle={daybyday.attributes.subtitle}
+        imgSrc={'/DBD_Design.jpg'}
+        imgAlt={'Design, the art of redesigning from a users perspective'}
+      />
 
-      </Scrim>
+      <DBD_Copy>
+        <ReactMarkdown>
+          
+          {daybyday.attributes.content}
+          
+        </ReactMarkdown>
+      </DBD_Copy>
+
       <BlogMenu menuOpen={menuOpen} />
+      
     </S_DBD>
   )
 }
@@ -77,20 +73,8 @@ const S_DBD = styled.main`
   background: white;
 `
 
-const ContentWrap = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%
-`
-
-const CopyWrap = styled.div`
-  max-width: 800px;
-  margin: 2rem auto 0 auto;
-  padding-bottom: 4rem;
-`
-
 const DBD_Copy = styled.div`
-  width: 100%;
+  max-width: 800px;
   background: white;
-  padding: 0 1rem;
+  padding: 1rem 1rem 4rem 1rem;
 `

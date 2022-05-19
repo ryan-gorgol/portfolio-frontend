@@ -22,34 +22,31 @@ const EventCharm = ({eventcharm}: Props) => {
   useEffect(() => console.log(eventcharm))
   return (
     <S_EC>
+      
       <BlogHeader>
         <BlogMenuButton
           onClick={() => setMenuOpen(!menuOpen)}
           menuOpen={menuOpen}
         />
       </BlogHeader>
-      <Scrim menuOpen={menuOpen}>
 
-      <ContentWrap>
-        <StoryTitle
-            title={eventcharm.attributes.title}
-            subtitle={eventcharm.attributes.subtitle}
-            imgSrc={'/EC_Design.jpg'}
-            imgAlt={'Design, the art of redesigning from a users perspective'}
-        />
-        <CopyWrap>
-          <EC_Copy>
-            <ReactMarkdown>
-              
-              {eventcharm.attributes.content}
-              
-            </ReactMarkdown>
-          </EC_Copy>
-        </CopyWrap>
-      </ContentWrap>
-                  
-      </Scrim>
+      <StoryTitle
+          title={eventcharm.attributes.title}
+          subtitle={eventcharm.attributes.subtitle}
+          imgSrc={'/EC_Design.jpg'}
+          imgAlt={'Design, the art of redesigning from a users perspective'}
+      />
+
+      <EC_Copy>
+        <ReactMarkdown>
+          
+          {eventcharm.attributes.content}
+          
+        </ReactMarkdown>
+      </EC_Copy>
+
       <BlogMenu menuOpen={menuOpen} />
+
     </S_EC>
   )
 }
@@ -74,25 +71,13 @@ export async function getStaticProps() {
 }
 
 
-const S_EC = styled.main`
-  width: 100%;
+const S_EC = styled.div`
+  width: 100vw;
   background: white;
-`
-
-const ContentWrap = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%
-`
-
-const CopyWrap = styled.div`
-  max-width: 800px;
-  margin: 2rem auto 0 auto;
-  padding-bottom: 4rem;
 `
 
 const EC_Copy = styled.div`
-  width: 100%;
+  max-width: 800px;
   background: white;
-  padding: 0 1rem;
+  padding: 1rem 1rem 4rem 1rem;
 `
