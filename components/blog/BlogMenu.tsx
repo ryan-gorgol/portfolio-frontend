@@ -53,13 +53,16 @@ export default BlogMenu
 
 const S_BlogMenu = styled.div<Props>`
   width: 100%;
+  height: 100vh;
+  background: #fff;
   position: fixed;
-  top: 8rem;
+  top: 0;
   display: ${props => props.menuOpen ? 'block' : 'none'};
   opacity: ${props => props.menuOpen ? '1' : '0'};
   transition: 1.55s;
 
   ul {
+    margin-top: 6rem;
     padding: 1rem;
   }
 `

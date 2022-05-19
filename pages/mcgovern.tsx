@@ -19,35 +19,31 @@ const McGovern = ({ mcgovern }: Props) => {
 
   return (
     <S_MG>
+
       <BlogHeader>
         <BlogMenuButton
           onClick={() => setMenuOpen(!menuOpen)}
           menuOpen={menuOpen}
         />
       </BlogHeader>
-      <Scrim menuOpen={menuOpen}>
 
-      <ContentWrap>
-        <StoryTitle
-          title={mcgovern.attributes.title}
-          subtitle={mcgovern.attributes.subtitle}
-          imgSrc={'/McGovern_Design.jpg'}
-          imgAlt={'Design, the art of redesigning from a users perspective'}
-        /> 
-        <CopyWrap>
-          <MG_Copy>
-            
-            <ReactMarkdown>
-              {mcgovern.attributes.content}
-            </ReactMarkdown>
-          </MG_Copy>
+      <StoryTitle
+        title={mcgovern.attributes.title}
+        subtitle={mcgovern.attributes.subtitle}
+        imgSrc={'/McGovern_Design.jpg'}
+        imgAlt={'Design, the art of redesigning from a users perspective'}
+      /> 
 
+      <MG_Copy>
+        <ReactMarkdown>
 
-        </CopyWrap>
-      </ContentWrap>
+          {mcgovern.attributes.content}
+          
+        </ReactMarkdown>
+      </MG_Copy>
+
+      <BlogMenu menuOpen={menuOpen} />
       
-      </Scrim>
-      <BlogMenu menuOpen={menuOpen}/>
     </S_MG>
   )
 }
@@ -76,21 +72,9 @@ const S_MG = styled.main`
   background: white;
 `
 
-const ContentWrap = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%
-`
-
-const CopyWrap = styled.div`
-  max-width: 800px;
-  margin: 2rem auto 0 auto;
-  padding-bottom: 4rem;
-`
-
 const MG_Copy = styled.div`
-  width: 100%;
+  max-width: 800px;
   background: white;
-  padding: 0 1rem;
+  padding: 1rem 1rem 4rem 1rem;
 `
 
