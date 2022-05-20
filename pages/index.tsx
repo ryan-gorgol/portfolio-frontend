@@ -121,6 +121,7 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
+  height: calc(var(--vh) * 100);
   overflow-x: hidden; 
   overflow-y: auto;
   background: var(--black);
@@ -156,11 +157,10 @@ const LoadingTitle = styled(motion.div)`
 
 const S_Box = styled.div`
   width: calc(100vw - 2rem);
-  height: calc(100vh - 2rem);
+  height: calc(100% - 4rem);
   border: 1px solid var(--white);
   position: relative;
   overflow: hidden;
-  margin-top: 1rem;
 ` 
 
 const S_Content = styled.div`
