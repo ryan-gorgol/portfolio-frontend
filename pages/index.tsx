@@ -121,7 +121,7 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
-  height: calc(100vh - 4rem);
+  
   background: var(--black);
   color: var(--white);
   display: flex;
