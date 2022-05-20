@@ -160,7 +160,7 @@ const S_Box = styled.div`
   border: 1px solid var(--white);
   position: relative;
   overflow: hidden;
-  margin-top: 2rem;
+  margin-top: 1rem;
 ` 
 
 const S_Content = styled.div`
