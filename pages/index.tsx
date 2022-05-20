@@ -116,6 +116,7 @@ export async function getStaticProps() {
 const S_Main = styled.main`
   width: 100vw;
   height: 100vh;
+  max-height: -webkit-fill-available;
   background: var(--black);
   color: var(--white);
   display: flex;
