@@ -30,6 +30,7 @@ export default HomeSection
 
 const S_Home = styled(motion.section)`
   position: relative;
+  z-index: 10;
   padding-right: 1rem;
   margin-top: 8rem;
 `
