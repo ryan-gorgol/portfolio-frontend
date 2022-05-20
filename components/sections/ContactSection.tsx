@@ -23,9 +23,9 @@ const ContactSection = (props: Props) => {
 export default ContactSection
 
 const S_Contact = styled(motion.div)`
-  position: fixed;
-  bottom: 2rem;
-  left: 2.5rem;
+  position: relative;
+  margin-top: 50%;
+  margin-left: 50%;
 `
 
 const S_Line = styled(motion.a)`

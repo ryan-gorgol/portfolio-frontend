@@ -31,9 +31,11 @@ const InfoSection = (props: Props) => {
 export default InfoSection
 
 const S_Info = styled(motion.div)`
-  position: fixed;
-  bottom: 2.5rem;
+  position: relative;
+  bottom: 5.5rem;
   right: 2.5rem;
+  margin-top: calc(100% - 10rem);
+  margin-left: calc(100% - 10rem);
 
 `
 

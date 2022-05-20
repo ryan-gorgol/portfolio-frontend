@@ -25,10 +25,16 @@ const Home = ({ homepage }: Props) => {
 
   const [ menuSelection, setMenuSelection ] = useState('home')
   const [ripple, setRipple] = useState(true)
+
+  const height = () => {
+    return window.innerHeight 
+        || document.documentElement.clientHeight 
+        || document.body.clientHeight 
+        || 0;
+  }
   
-  useEffect(() => {
-    console.log(homepage)
-  }, [homepage])
+  useEffect(() => console.log(height()), [])
+
 
   return (
     <>
@@ -115,7 +121,9 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh) * 100);
+  overflow-x: hidden; 
+  overflow-y: auto;
   background: var(--black);
   color: var(--white);
   display: flex;
@@ -124,8 +132,8 @@ const S_Main = styled.main`
 `
 
 const LoadingTitleWrapper = styled(motion.div)`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -133,8 +141,8 @@ const LoadingTitleWrapper = styled(motion.div)`
 `
 
 const Loading = styled(motion.div)`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: var(--black);
   display: flex;
   justify-content: center;
@@ -148,24 +156,17 @@ const LoadingTitle = styled(motion.div)`
 `
 
 const S_Box = styled.div`
-  width: calc(100vw - 3rem);
-  height: calc(100vh - 3rem);
+  width: calc(100vw - 2rem);
+  height: calc(100% - 4rem);
   border: 1px solid var(--white);
   position: relative;
   overflow: hidden;
 ` 
 
-const Filter = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: black;
-
-`
-
 const S_Content = styled.div`
   position: relative;
   width: 100%;
-  height: 60%;
+  height: 55%;
   z-index: 100;
 `
 
