@@ -48,7 +48,7 @@ const Home = ({ homepage }: Props) => {
         
       </Head>
 
-      <S_Main >
+      <S_Main>
         <LoadingTitleWrapper
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
@@ -121,7 +121,8 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
-  
+  overflow-x: hidden; 
+  overflow-y: auto;
   background: var(--black);
   color: var(--white);
   display: flex;
@@ -130,8 +131,8 @@ const S_Main = styled.main`
 `
 
 const LoadingTitleWrapper = styled(motion.div)`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -139,8 +140,8 @@ const LoadingTitleWrapper = styled(motion.div)`
 `
 
 const Loading = styled(motion.div)`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: var(--black);
   display: flex;
   justify-content: center;
@@ -154,11 +155,12 @@ const LoadingTitle = styled(motion.div)`
 `
 
 const S_Box = styled.div`
-  width: 90%;
-  height: 85%;
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
   border: 1px solid var(--white);
   position: relative;
   overflow: hidden;
+  margin-top: 2rem;
 ` 
 
 const S_Content = styled.div`
