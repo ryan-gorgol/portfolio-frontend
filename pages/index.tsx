@@ -164,7 +164,6 @@ const S_Box = styled.div`
 ` 
 
 const S_Content = styled.div`
-  position: relative;
   width: 100%;
   height: 55%;
   z-index: 100;

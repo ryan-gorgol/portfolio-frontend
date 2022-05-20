@@ -12,9 +12,11 @@ const ContactSection = (props: Props) => {
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5, delay: 0.9 }}
     >
-      <S_Line href="mailto: ryangorgol@gmail.com">email</S_Line>
-      <S_Line href="https://www.linkedin.com/in/ryan-gorgol/">linkedIn</S_Line>
-      <S_Line href="https://github.com/ryan-gorgol">gitHub</S_Line>
+      <div>
+        <S_Line href="mailto: ryangorgol@gmail.com">email</S_Line>
+        <S_Line href="https://www.linkedin.com/in/ryan-gorgol/">linkedIn</S_Line>
+        <S_Line href="https://github.com/ryan-gorgol">gitHub</S_Line>
+      </div>
       
     </S_Contact>
   )
@@ -23,9 +25,16 @@ const ContactSection = (props: Props) => {
 export default ContactSection
 
 const S_Contact = styled(motion.div)`
+  height: 100%;
   position: relative;
-  margin-top: 50%;
-  margin-left: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: left; 
+  align-items: flex-end;
+
+  div {
+    padding-left: 1rem;
+  }
 `
 
 const S_Line = styled(motion.a)`

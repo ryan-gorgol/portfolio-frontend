@@ -31,12 +31,17 @@ const InfoSection = (props: Props) => {
 export default InfoSection
 
 const S_Info = styled(motion.div)`
+  width: 100%;
+  height: 100%;
   position: relative;
-  bottom: 5.5rem;
-  right: 2.5rem;
-  margin-top: calc(100% - 10rem);
-  margin-left: calc(100% - 10rem);
+  z-index: 10;
+  display: flex;
+  justify-content: right; 
+  align-items: flex-end;
 
+  div {
+    padding-right: 1rem;
+  }
 `
 
 const S_SpanTitle = styled.div`
