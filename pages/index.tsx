@@ -116,7 +116,6 @@ export async function getStaticProps() {
 const S_Main = styled.main`
   width: 100vw;
   height: 100vh;
-  min-height: -webkit-fill-available;
   background: var(--black);
   color: var(--white);
   display: flex;
@@ -149,24 +148,17 @@ const LoadingTitle = styled(motion.div)`
 `
 
 const S_Box = styled.div`
-  width: calc(100vw - 3rem);
-  height: calc(100vh - 3rem);
+  width: 90%;
+  height: 85%;
   border: 1px solid var(--white);
   position: relative;
   overflow: hidden;
 ` 
 
-const Filter = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: black;
-
-`
-
 const S_Content = styled.div`
   position: relative;
   width: 100%;
-  height: 60%;
+  height: 55%;
   z-index: 100;
 `
 

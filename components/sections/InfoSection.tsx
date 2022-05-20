@@ -32,7 +32,7 @@ export default InfoSection
 
 const S_Info = styled(motion.div)`
   position: fixed;
-  bottom: 2.5rem;
+  bottom: 5.5rem;
   right: 2.5rem;
 
 `

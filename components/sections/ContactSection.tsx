@@ -24,7 +24,7 @@ export default ContactSection
 
 const S_Contact = styled(motion.div)`
   position: fixed;
-  bottom: 2rem;
+  bottom: 5.5rem;
   left: 2.5rem;
 `
 

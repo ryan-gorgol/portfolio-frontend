@@ -29,12 +29,9 @@ const HomeSection = ({onClick}: Props) => {
 export default HomeSection
 
 const S_Home = styled(motion.section)`
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  padding-left: calc( 100vw * 0.3 );
+  position: relative;
   padding-right: 1rem;
-  padding-bottom: 1rem;
+  margin-top: 8rem;
 `
 
 const S_Line = styled.div`
