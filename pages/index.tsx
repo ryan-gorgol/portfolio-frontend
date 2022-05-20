@@ -25,10 +25,16 @@ const Home = ({ homepage }: Props) => {
 
   const [ menuSelection, setMenuSelection ] = useState('home')
   const [ripple, setRipple] = useState(true)
+
+  const height = () => {
+    return window.innerHeight 
+        || document.documentElement.clientHeight 
+        || document.body.clientHeight 
+        || 0;
+  }
   
-  useEffect(() => {
-    console.log(homepage)
-  }, [homepage])
+  useEffect(() => console.log(height()), [])
+
 
   return (
     <>
@@ -42,7 +48,7 @@ const Home = ({ homepage }: Props) => {
         
       </Head>
 
-      <S_Main>
+      <S_Main >
         <LoadingTitleWrapper
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
@@ -115,7 +121,7 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   background: var(--black);
   color: var(--white);
   display: flex;
