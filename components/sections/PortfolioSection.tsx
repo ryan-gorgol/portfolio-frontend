@@ -59,6 +59,7 @@ export default PortfolioSection
 const S_Portfolio = styled(motion.section)`
   display: block;
   position: relative;
+  z-index: 10;
   display: flex;
   justify-content: end;
   text-align: right;

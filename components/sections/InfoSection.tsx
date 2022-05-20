@@ -32,7 +32,6 @@ export default InfoSection
 
 const S_Info = styled(motion.div)`
   width: 100%;
-  height: 100%;
   position: relative;
   z-index: 10;
   display: flex;
