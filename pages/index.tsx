@@ -33,7 +33,7 @@ const Home = ({ homepage }: Props) => {
         || 0;
   }
   
-  useEffect(() => console.log(height()), [])
+  useEffect(() => { console.log(homepage)}, [homepage])
 
 
   return (
@@ -102,18 +102,16 @@ const Home = ({ homepage }: Props) => {
 export default Home
 
 export async function getStaticProps() {
-  // Run API calls in parallel
+
   const [homepageRes] = await Promise.all([
     fetchAPI("/homepage", {
-      populate: {
-        homepage: "*",
-      },
+      populate: "*"
     }),
   ]);
 
   return {
     props: {
-      homepage: homepageRes.data,
+      homepage: homepageRes.data
     },
     revalidate: 1,
   };

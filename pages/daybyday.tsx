@@ -38,7 +38,7 @@ const DayByDay = ({daybyday}: Props) => {
       <DBD_Copy>
         <ReactMarkdown>
           
-          {daybyday.attributes.content}
+          {daybyday.attributes.body}
           
         </ReactMarkdown>
       </DBD_Copy>
@@ -53,10 +53,8 @@ export default DayByDay
 
 export async function getStaticProps() {
   const [daybydayRes] = await Promise.all([
-    fetchAPI("/daybyday", {
-      populate: {
-        daybyday: "*",
-      },
+    fetchAPI("/dbd", {
+      populate: "*",
     }),
   ]);
 

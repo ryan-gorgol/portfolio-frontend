@@ -37,7 +37,7 @@ const McGovern = ({ mcgovern }: Props) => {
       <MG_Copy>
         <ReactMarkdown>
 
-          {mcgovern.attributes.content}
+          {mcgovern.attributes.body}
           
         </ReactMarkdown>
       </MG_Copy>
