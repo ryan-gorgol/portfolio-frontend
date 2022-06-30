@@ -40,7 +40,7 @@ const EventCharm = ({eventcharm}: Props) => {
       <EC_Copy>
         <ReactMarkdown>
           
-          {eventcharm.attributes.content}
+          {eventcharm.attributes.body}
           
         </ReactMarkdown>
       </EC_Copy>
@@ -56,9 +56,7 @@ export default EventCharm
 export async function getStaticProps() {
   const [eventcharmRes] = await Promise.all([
     fetchAPI("/eventcharm", {
-      populate: {
-        eventcharm: "*",
-      },
+      populate: "*"
     }),
   ]);
 
