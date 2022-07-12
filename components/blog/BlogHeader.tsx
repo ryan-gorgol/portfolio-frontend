@@ -1,17 +1,24 @@
 import styled from 'styled-components'
 
+import BlogMenuButton from '../blog/BlogMenuButton'
+
 interface Props {
-  children?: any,
+  onClick: Function,
+  menuOpen: boolean
 }
 
-function BlogHeader({ children }: Props) {
+function BlogHeader({ onClick, menuOpen }: Props) {
   return (
     <Header>
       <Wrap>
         <span>RG</span>
         <span>portfolio</span>
       </Wrap>
-      {children}
+      <BlogMenuButton
+          onClick={onClick}
+          menuOpen={menuOpen}
+        />
+      
     </Header>
   )
 }

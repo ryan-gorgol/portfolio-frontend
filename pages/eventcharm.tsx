@@ -23,13 +23,10 @@ const EventCharm = ({eventcharm}: Props) => {
   useEffect(() => console.log(eventcharm))
   return (
     <S_EC>
-      
-      <BlogHeader>
-        <BlogMenuButton
-          onClick={() => setMenuOpen(!menuOpen)}
-          menuOpen={menuOpen}
-        />
-      </BlogHeader>
+      <BlogHeader
+        onClick={() => setMenuOpen(!menuOpen)}
+        menuOpen={menuOpen}
+      />
 
       <Article
         title={eventcharm.attributes.title}
