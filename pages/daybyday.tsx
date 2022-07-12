@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 import BlogHeader from '../components/blog/BlogHeader'
 import BlogMenuButton from '../components/blog/BlogMenuButton'
-import Scrim from '../components/blog/Scrim'
 import StoryTitle from '../components/blog/StoryTitle'
 import BlogMenu from '../components/blog/BlogMenu'
 import ReactMarkdown from 'react-markdown'

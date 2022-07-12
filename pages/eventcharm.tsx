@@ -9,6 +9,7 @@ import StoryTitle from '../components/blog/StoryTitle'
 import BlogMenu from '../components/blog/BlogMenu'
 
 import { fetchAPI } from '../lib/api'
+import Article from '../components/blog/Article'
 
 interface Props {
   menuOpen: boolean,
@@ -30,20 +31,11 @@ const EventCharm = ({eventcharm}: Props) => {
         />
       </BlogHeader>
 
-      <StoryTitle
-          title={eventcharm.attributes.title}
-          subtitle={eventcharm.attributes.subtitle}
-          imgSrc={'/EC_Design.jpg'}
-          imgAlt={'Design, the art of redesigning from a users perspective'}
+      <Article
+        title={eventcharm.attributes.title}
+        subtitle={eventcharm.attributes.subtitle}
+        body={eventcharm.attributes.body}
       />
-
-      <EC_Copy>
-        <ReactMarkdown>
-          
-          {eventcharm.attributes.body}
-          
-        </ReactMarkdown>
-      </EC_Copy>
 
       <BlogMenu menuOpen={menuOpen} />
 
@@ -72,10 +64,4 @@ export async function getStaticProps() {
 const S_EC = styled.div`
   width: 100vw;
   background: white;
-`
-
-const EC_Copy = styled.div`
-  max-width: 800px;
-  background: white;
-  padding: 1rem 1rem 4rem 1rem;
 `
