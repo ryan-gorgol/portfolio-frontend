@@ -13,7 +13,9 @@ interface Props {
   imgAlt: string
 }
 
-function Article({title, subtitle, body, imgSrc, imgAlt}: Props) {
+function Article({ title, subtitle, body, imgSrc, imgAlt }: Props) {
+  
+
   return (
     <S_Article>
       <StoryImage
@@ -26,7 +28,14 @@ function Article({title, subtitle, body, imgSrc, imgAlt}: Props) {
       <Copy>
         <S_Title>{title}</S_Title>
         <S_Subtitle>{subtitle}</S_Subtitle>
-        <ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            p: ({ node, ...props }) => <p style={{
+              lineHeight: '1.6rem',
+              fontSize: '1rem',
+            }} {...props} />
+          }}
+        >
           
           {body}
           
