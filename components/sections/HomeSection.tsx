@@ -29,10 +29,10 @@ const HomeSection = ({onClick}: Props) => {
 export default HomeSection
 
 const S_Home = styled(motion.section)`
+  display: block;
   position: relative;
   z-index: 10;
   padding-right: 1rem;
-  margin-top: 8rem;
 `
 
 const S_Line = styled.div`
@@ -41,4 +41,5 @@ const S_Line = styled.div`
   font-weight: 300;
   letter-spacing: 0.15px;
   text-align: right;
+  padding-bottom: 0.5rem;
 `

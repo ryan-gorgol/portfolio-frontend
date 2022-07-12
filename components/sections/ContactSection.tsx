@@ -25,15 +25,14 @@ const ContactSection = (props: Props) => {
 export default ContactSection
 
 const S_Contact = styled(motion.div)`
-  height: 100%;
   position: relative;
   z-index: 10;
   display: flex;
-  justify-content: left; 
+  justify-content: right; 
   align-items: flex-end;
 
   div {
-    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `
 
