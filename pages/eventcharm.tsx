@@ -1,15 +1,12 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import ReactMarkdown from "react-markdown"
 
-import BlogMenuButton from '../components/blog/BlogMenuButton'
 import BlogHeader from '../components/blog/BlogHeader'
-import Scrim from '../components/blog/Scrim'
-import StoryTitle from '../components/blog/StoryTitle'
 import BlogMenu from '../components/blog/BlogMenu'
+import Article from '../components/blog/Article'
+import Page from '../components/blog/Page'
 
 import { fetchAPI } from '../lib/api'
-import Article from '../components/blog/Article'
 
 interface Props {
   menuOpen: boolean,
@@ -22,21 +19,22 @@ const EventCharm = ({eventcharm}: Props) => {
 
   useEffect(() => console.log(eventcharm))
   return (
-    <S_EC>
-      <BlogHeader
-        onClick={() => setMenuOpen(!menuOpen)}
-        menuOpen={menuOpen}
-      />
-
-      <Article
-        title={eventcharm.attributes.title}
-        subtitle={eventcharm.attributes.subtitle}
-        body={eventcharm.attributes.body}
-      />
-
-      <BlogMenu menuOpen={menuOpen} />
-
-    </S_EC>
+    <Page>
+      <>
+        <BlogHeader
+          onClick={() => setMenuOpen(!menuOpen)}
+          menuOpen={menuOpen}
+        />
+        <Article
+          title={eventcharm.attributes.title}
+          subtitle={eventcharm.attributes.subtitle}
+          body={eventcharm.attributes.body}
+          imgSrc={'/EC_Design.jpg'}
+          imgAlt={'Design, the art of redesigning from a users perspective'}
+        />
+        <BlogMenu menuOpen={menuOpen} />
+      </>
+    </Page>
   )
 }
 
@@ -56,9 +54,3 @@ export async function getStaticProps() {
     revalidate: 1,
   };
 }
-
-
-const S_EC = styled.div`
-  width: 100vw;
-  background: white;
-`

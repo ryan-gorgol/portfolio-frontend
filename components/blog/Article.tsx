@@ -2,26 +2,30 @@
 import styled from 'styled-components'
 
 // COMPONENTS
-import StoryTitle from '../blog/StoryTitle'
+import StoryImage from './StoryImage'
 import ReactMarkdown from 'react-markdown'
 
 interface Props {
   title: string,
   subtitle: string,
-  body: string
+  body: string,
+  imgSrc: string,
+  imgAlt: string
 }
 
-function Article({title, subtitle, body}: Props) {
+function Article({title, subtitle, body, imgSrc, imgAlt}: Props) {
   return (
     <S_Article>
-      <StoryTitle
+      <StoryImage
           title={title}
           subtitle={subtitle}
-          imgSrc={'/EC_Design.jpg'}
-          imgAlt={'Design, the art of redesigning from a users perspective'}
+          imgSrc={imgSrc}
+          imgAlt={imgAlt}
       />
 
       <Copy>
+        <S_Title>{title}</S_Title>
+        <S_Subtitle>{subtitle}</S_Subtitle>
         <ReactMarkdown>
           
           {body}
@@ -35,11 +39,26 @@ function Article({title, subtitle, body}: Props) {
 export default Article
 
 const S_Article = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Copy = styled.div`
   max-width: 800px;
   background: white;
   padding: 1rem 1rem 4rem 1rem;
+`
+
+const S_Title = styled.div`
+  margin-top: 1rem;
+  padding: 1rem 0;
+  font-size: var(--font_size_blog_title);
+  font-weight: 500;
+`
+
+const S_Subtitle = styled.div`
+  padding-bottom: 2rem;
+  font-size: var(--font_size_blog_subtitle);
+  font-weight: 200;
 `
