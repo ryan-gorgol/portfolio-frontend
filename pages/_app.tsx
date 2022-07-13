@@ -6,7 +6,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
 // calculate view height and set --vh css custom property with result
   if (typeof window !== "undefined") {
-    let vh = document.documentElement.clientHeight * 0.01;
+    let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     console.log(vh, 'vh')
   }
