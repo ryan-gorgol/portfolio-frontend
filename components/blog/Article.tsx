@@ -31,8 +31,8 @@ function Article({ title, subtitle, body, imgSrc, imgAlt }: Props) {
         <ReactMarkdown
           components={{
             p: ({ node, ...props }) => <p style={{
-              lineHeight: '1.6rem',
-              fontSize: '1rem',
+              lineHeight: 'calc(1.6rem + 0.25vw)',
+              fontSize: 'calc(1rem + 0.25vw)',
             }} {...props} />
           }}
         >

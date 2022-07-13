@@ -59,7 +59,8 @@ const Home = ({ homepage }: Props) => {
         >
           <S_Box onClick={() => setRipple(!ripple)}>
             <Header title={homepage.attributes.title}/>
-              <Circle ripple={ripple}/>
+            <Circle ripple={ripple} />
+            <S_ContentWrap>
               <Menu 
                 clickHome={() => setMenuSelection('home')}
                 clickPortfolio={() => setMenuSelection('portfolio')}
@@ -81,8 +82,8 @@ const Home = ({ homepage }: Props) => {
                   })()
                 }
               </S_Content>
-            
-            </S_Box>
+            </S_ContentWrap>
+          </S_Box>
         </Loading >
       </S_Main>
     </>
@@ -150,6 +151,14 @@ const S_Box = styled.div`
   position: relative;
   overflow: hidden;
 ` 
+
+const S_ContentWrap = styled.div`
+  display: flex;
+
+  @media only screen and (max-width: 750px){
+	display: block;
+  }
+`
 
 const S_Content = styled.div`
   width: 100%;

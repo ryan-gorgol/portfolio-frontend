@@ -12,13 +12,19 @@
 
   /* FONTS */
 
+  --line-height: calc(1.6rem + 0.25vw);
+  --font_size: calc(1rem + 0.25vw);
+  --vw_25: 0.25vw;
+  --vw_50: 0.5vw; 
+  --vw_100: 1vw; 
+
   --font_size_home_section: 1.4rem;
   --font_size_info_section: 0.8rem;
-  --font_size_portfolio_section_title: 1.75rem;
+  --font_size_portfolio_section_title: 2.5rem;
   --font_size_portfolio_section_subtitle: 0.8rem;
 
   --font_size_header_title: 3.5rem;
-  --font_size_header_subtitle: 1rem;
+  --font_size_header_subtitle: 1.5rem;
 
   --font_size_blog_menu: 1.5rem;
   --font_size_blog_title: 2.25rem;

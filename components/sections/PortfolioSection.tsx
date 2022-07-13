@@ -67,7 +67,7 @@ const S_Portfolio = styled(motion.section)`
 `
 
 const S_Card = styled.div`
-  max-width: 20rem;
+  max-width: 35rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
 
@@ -78,14 +78,14 @@ const S_Card = styled.div`
 `
 
 const S_Title = styled.div`
-  font-size: var(--font_size_portfolio_section_title);
+  font-size: calc(var(--font_size_portfolio_section_title) + (var(--vw_100) * 2));
   font-weight: 100;
   text-align: right;
   color: inherit;
 `
 
 const S_SubTitle = styled.div`
-  font-size: var(--font_size_portfolio_section_subtitle);
+  font-size: calc(var(--font_size_portfolio_section_subtitle) + var(--vw_25));
   font-weight: 600;
   text-align: right;
 `
