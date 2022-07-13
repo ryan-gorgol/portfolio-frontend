@@ -25,14 +25,14 @@ const S_Header = styled.div`
   h1 {
     color: var(--white);
     margin: 0;
-    font-size: var(--font_size_header_title);
-    font-weight: 100;
+    font-size: calc(var(--font_size_header_title) + var(--vw_50));
+    font-weight: 200;
     letter-spacing: -1.5px;
   }
 
   h3 {
-    font-size: var(--font_size_header_subtitle);
-    font-weight: 200;
+    font-size: calc(var(--font_size_header_subtitle) + var(--vw_50));
+    font-weight: 100;
     margin: 0;
     margin-top: 0.5rem;
     padding-left: 2px;

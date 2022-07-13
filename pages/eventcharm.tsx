@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import ReactMarkdown from "react-markdown"
 
-import BlogMenuButton from '../components/blog/BlogMenuButton'
 import BlogHeader from '../components/blog/BlogHeader'
-import Scrim from '../components/blog/Scrim'
-import StoryTitle from '../components/blog/StoryTitle'
 import BlogMenu from '../components/blog/BlogMenu'
+import Article from '../components/blog/Article'
+import Page from '../components/blog/Page'
 
 import { fetchAPI } from '../lib/api'
 
@@ -21,33 +19,22 @@ const EventCharm = ({eventcharm}: Props) => {
 
   useEffect(() => console.log(eventcharm))
   return (
-    <S_EC>
-      
-      <BlogHeader>
-        <BlogMenuButton
+    <Page>
+      <>
+        <BlogHeader
           onClick={() => setMenuOpen(!menuOpen)}
           menuOpen={menuOpen}
         />
-      </BlogHeader>
-
-      <StoryTitle
+        <Article
           title={eventcharm.attributes.title}
           subtitle={eventcharm.attributes.subtitle}
+          body={eventcharm.attributes.body}
           imgSrc={'/EC_Design.jpg'}
           imgAlt={'Design, the art of redesigning from a users perspective'}
-      />
-
-      <EC_Copy>
-        <ReactMarkdown>
-          
-          {eventcharm.attributes.body}
-          
-        </ReactMarkdown>
-      </EC_Copy>
-
-      <BlogMenu menuOpen={menuOpen} />
-
-    </S_EC>
+        />
+        <BlogMenu menuOpen={menuOpen} />
+      </>
+    </Page>
   )
 }
 
@@ -67,15 +54,3 @@ export async function getStaticProps() {
     revalidate: 1,
   };
 }
-
-
-const S_EC = styled.div`
-  width: 100vw;
-  background: white;
-`
-
-const EC_Copy = styled.div`
-  max-width: 800px;
-  background: white;
-  padding: 1rem 1rem 4rem 1rem;
-`

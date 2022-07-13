@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+import Line from '../Line'
+
 interface Props {
 
 }
@@ -14,13 +16,12 @@ const InfoSection = (props: Props) => {
     >
       <div>
         <S_SpanTitle>What I Do</S_SpanTitle>
-        <S_Span> User Interface </S_Span>
-        <S_Span> User Experience </S_Span>
-        <S_Span> Wireframing </S_Span>
-        <S_Span>Rapid Prototyping</S_Span>
-        <S_Span>CI/CD</S_Span>
-        <S_Span>Headless CMS</S_Span>
-        <S_Span>E-Commerce</S_Span>
+        <Line content='USER EXPERIENCE'/>
+        <Line content='USER INTERFACE'/>
+        <Line content='WIREFRAMING'/>
+        <Line content='RAPID PROTOTYPING'/>
+        <Line content='CI/CD'/>
+        <Line content='HEADLESS CMS'/>
       </div>
       
       
@@ -40,22 +41,19 @@ const S_Info = styled(motion.div)`
 
   div {
     padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: right; 
+    align-items: flex-end;
   }
 `
 
 const S_SpanTitle = styled.div`
   display: block;
   position: relative;
-  padding-top: .25rem;
+  padding: 0 0 .5rem 0;
+  line-height: calc(65px + var(--vw_50));
   text-transform: uppercase;
-  font-size: var(--font_size_portfolio_section_title);
-  font-weight: 600;
-`
-
-const S_Span = styled.div`
-  display: block;
-  position: relative;
-  padding-top: .25rem;
-  text-transform: uppercase;
-  font-size: var(--font_size_info_section);
+  font-size: calc(1.6rem + var(--vw_25));
+  font-weight: 400;
 `

@@ -36,15 +36,16 @@ const S_Menu = styled.div`
 `
 
 const S_MenuItem = styled.a`
-  line-height: 33px;
-  font-weight: 300;
+  line-height: calc(33px + var(--vw_50));
+  font-weight: 400;
   letter-spacing: 1.75px;
-  font-size: 1.2rem;
+  font-size: calc(1.2rem + var(--vw_50));
   cursor: pointer;
   z-index: 20;
   text-transform: uppercase;
 
   &:hover {
     color: var(--red);
+    font-weight: 500;
   }
 `

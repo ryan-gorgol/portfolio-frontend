@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+import Line from '../Line'
+
 interface Props {
 
 }
@@ -13,9 +15,9 @@ const ContactSection = (props: Props) => {
     transition={{ duration: 0.5, delay: 0.9 }}
     >
       <div>
-        <S_Line href="mailto: ryangorgol@gmail.com">email</S_Line>
-        <S_Line href="https://www.linkedin.com/in/ryan-gorgol/">linkedIn</S_Line>
-        <S_Line href="https://github.com/ryan-gorgol">gitHub</S_Line>
+        <S_Link href="mailto: ryangorgol@gmail.com">EMAIL</S_Link>
+        <S_Link href="https://www.linkedin.com/in/ryan-gorgol/">LINKEDIN</S_Link>
+        <S_Link href="https://github.com/ryan-gorgol">GITHUB</S_Link>
       </div>
       
     </S_Contact>
@@ -25,22 +27,25 @@ const ContactSection = (props: Props) => {
 export default ContactSection
 
 const S_Contact = styled(motion.div)`
-  height: 100%;
   position: relative;
   z-index: 10;
   display: flex;
-  justify-content: left; 
+  justify-content: right; 
   align-items: flex-end;
 
   div {
-    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
   }
 `
 
-const S_Line = styled(motion.a)`
-  display: block;
-  font-size: 1.2rem;
-  line-height: 2rem;
+const S_Link = styled(motion.a)`
+  // consistent with Line component styling
+  font-size: calc(1.2rem + var(--vw_50));
+  line-height: auto;
   font-weight: 300;
   letter-spacing: 0.15px;
+  text-align: right;
+  padding-bottom: 0.5rem;
 `

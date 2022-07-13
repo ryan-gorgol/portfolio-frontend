@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
+import Line from '../Line'
+
 interface Props {
   onClick?: any
 }
@@ -16,10 +18,10 @@ const HomeSection = ({onClick}: Props) => {
       transition={{ duration: 0.5, delay: 0.9 }}
       onClick={onClick}
     >
-      <S_Line>I enjoy</S_Line>
-      <S_Line>DESIGNING experiences</S_Line>
-      <S_Line>DEVELOPING ideas</S_Line>
-      <S_Line>DEPLOYING products</S_Line>
+      <Line content='I enjoy'></Line>
+      <Line content='DESIGNING experiences'></Line>
+      <Line content='DEVELOPING ideas'></Line>
+      <Line content='DEPLOYING products'></Line>
          
       
     </S_Home>
@@ -29,16 +31,8 @@ const HomeSection = ({onClick}: Props) => {
 export default HomeSection
 
 const S_Home = styled(motion.section)`
+  display: block;
   position: relative;
   z-index: 10;
   padding-right: 1rem;
-  margin-top: 8rem;
-`
-
-const S_Line = styled.div`
-  font-size: 1.2rem;
-  line-height: auto;
-  font-weight: 300;
-  letter-spacing: 0.15px;
-  text-align: right;
 `
