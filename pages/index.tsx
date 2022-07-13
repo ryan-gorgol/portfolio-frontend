@@ -23,8 +23,8 @@ interface Props {
 
 const Home = ({ homepage }: Props) => {
 
-  const [ menuSelection, setMenuSelection ] = useState('home')
-  const [ripple, setRipple] = useState(true)
+  const [menuSelection, setMenuSelection] = useState<string>('home');
+  const [ripple, setRipple] = useState<boolean>(true);
 
   return (
     <>

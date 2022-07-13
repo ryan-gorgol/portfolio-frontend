@@ -13,10 +13,13 @@ const variants = {
   }
 }
 
-const Circle = ({ripple}) => {
+interface Props {
+  ripple: boolean
+}
+
+const Circle = ({ripple}: Props) => {
   return (
       <S_Circle
-        ripple={ripple}
         variants={variants}
         initial='down'
         animate={ripple ? 'up' : 'down'}
