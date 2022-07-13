@@ -26,16 +26,6 @@ const Home = ({ homepage }: Props) => {
   const [ menuSelection, setMenuSelection ] = useState('home')
   const [ripple, setRipple] = useState(true)
 
-  const height = () => {
-    return window.innerHeight 
-        || document.documentElement.clientHeight 
-        || document.body.clientHeight 
-        || 0;
-  }
-  
-  useEffect(() => { console.log(homepage)}, [homepage])
-
-
   return (
     <>
       <Head>
@@ -155,7 +145,7 @@ const LoadingTitle = styled(motion.div)`
 
 const S_Box = styled.div`
   width: calc(100vw - 2rem);
-  height: calc(100% - 4rem);
+  height: calc(100vh - 2rem);
   border: 1px solid var(--white);
   position: relative;
   overflow: hidden;
