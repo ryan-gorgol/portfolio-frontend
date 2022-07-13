@@ -111,8 +111,8 @@ export async function getStaticProps() {
 const S_Main = styled.main`
   width: 90vw;
   height: 90vh;
-  padding: 1rem 1rem;
-  margin: auto;
+  padding: 1vh 1vw;
+  margin: 3vh auto auto auto;
   overflow-x: hidden; 
   overflow-y: hidden;
   background: var(--black);
@@ -120,6 +120,12 @@ const S_Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media only screen and (max-width: 450px){
+	  width: 82vw;
+    height: 82vh;
+    margin-top: 1rem;
+  }
 `
 
 const S_Box = styled.div`
@@ -158,7 +164,7 @@ const S_ContentWrap = styled.div`
   display: flex;
 
   @media only screen and (max-width: 750px){
-	display: block;
+	  display: block;
   }
 `
 

@@ -8,9 +8,6 @@ class MyDocument extends Document {
       <Html style={{
         height: '100vh',
         width: '100vw',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
       }}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -30,4 +27,8 @@ export default MyDocument
 
 const S_Body = styled.body`
   width: 100vw;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
