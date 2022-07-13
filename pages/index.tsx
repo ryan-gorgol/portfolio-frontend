@@ -109,7 +109,7 @@ export async function getStaticProps() {
 }
 
 const S_Main = styled.main`
-  width: 90vw;
+  width: 94vw;
   height: 90vh;
   padding: 1vh 1vw;
   margin: 3vh auto auto auto;
@@ -122,8 +122,8 @@ const S_Main = styled.main`
   align-items: center;
 
   @media only screen and (max-width: 450px){
-	  width: 82vw;
-    height: 82vh;
+	  width: 88vw;
+    height: 80vh;
     margin-top: 1rem;
   }
 `
