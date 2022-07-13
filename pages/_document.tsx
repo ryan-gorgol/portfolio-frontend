@@ -6,8 +6,8 @@ class MyDocument extends Document {
   render() {
     return (
       <Html style={{
-        height: 'calc(100 * var(--vh))',
-        width: 'calc(100 * var(--vw))'
+        height: '100vh',
+        width: '100vw'
       }}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -26,6 +26,6 @@ class MyDocument extends Document {
 export default MyDocument
 
 const S_Body = styled.body`
-  height: calc(100 * var(--vh));
-  width: calc(100 * var(--vw));
+  height: 100%;
+  width: 100%;
 `
