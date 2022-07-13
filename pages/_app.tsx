@@ -5,9 +5,11 @@ import type { AppProps } from 'next/app'
 const MyApp = ({ Component, pageProps }: AppProps) => {
 
   if (typeof window !== "undefined") {
-    let vh = document.body.clientHeight * 0.01;
+    let vh = document.documentElement.clientHeight * 0.01;
+    let vw = document.body.clientWidth * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
-    console.log(vh, 'vh')
+    document.documentElement.style.setProperty('--vw', `${vw}px`);
+    console.log(vh, 'vh', vw, 'vw')
   }
   
   return (
