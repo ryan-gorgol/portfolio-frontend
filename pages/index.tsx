@@ -110,7 +110,7 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
-  height: 70vh;
+  height: 100vh;
   overflow-x: hidden; 
   overflow-y: auto;
   background: var(--black);
