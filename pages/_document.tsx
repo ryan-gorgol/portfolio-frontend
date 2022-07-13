@@ -5,7 +5,10 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html style={{
+        height: 'calc(100 * var(--vh))',
+        width: 'calc(100 * var(--vw))'
+      }}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
