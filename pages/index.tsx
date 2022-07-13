@@ -110,7 +110,8 @@ export async function getStaticProps() {
 
 const S_Main = styled.main`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
+  padding: 1rem 1rem;
   overflow-x: hidden; 
   overflow-y: hidden;
   background: var(--black);
@@ -119,6 +120,14 @@ const S_Main = styled.main`
   justify-content: center;
   align-items: center;
 `
+
+const S_Box = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--white);
+  position: relative;
+  overflow: hidden;
+` 
 
 const LoadingTitleWrapper = styled(motion.div)`
   width: 100%;
@@ -143,14 +152,6 @@ const LoadingTitle = styled(motion.div)`
   position: absolute;
   z-index: 1000;
 `
-
-const S_Box = styled.div`
-  width: calc(100vw - 2rem);
-  height: calc(100vh - 2rem);
-  border: 1px solid var(--white);
-  position: relative;
-  overflow: hidden;
-` 
 
 const S_ContentWrap = styled.div`
   display: flex;
