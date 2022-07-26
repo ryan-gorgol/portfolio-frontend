@@ -8,7 +8,7 @@ interface Props {
   menuOpen: boolean
 }
 
-function BlogHeader({ onClick, menuOpen }: Props) {
+const BlogHeader = ({ onClick, menuOpen }: Props) => {
   return (
     <Header>
       <Wrap>

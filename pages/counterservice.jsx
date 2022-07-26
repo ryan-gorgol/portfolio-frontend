@@ -2,19 +2,18 @@
 import { useState } from 'react'
 import { fetchAPI } from '../lib/api'
 
-//components
-import BlogHeader from '../components/blog/BlogHeader'
+//components 
+import BlogHeader from '../components/blog/BlogMenu'
 import BlogMenu from '../components/blog/BlogMenu'
 import Article from '../components/blog/Article'
 import Page from '../components/blog/Page'
 
-interface Props {
-  eventcharm: any
-}
+// FOR SOME REASON: BlogHeader only expects menuOpen: Props, onClick is not a part of this type ON THIS PAGE... WHY?
 
-const EventCharm = ({eventcharm}: Props) => {
+const CounterService = ({counterservice}) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
+  
 
   return (
     <Page>
@@ -24,9 +23,9 @@ const EventCharm = ({eventcharm}: Props) => {
           menuOpen={menuOpen}
         />
         <Article
-          title={eventcharm.attributes.title}
-          subtitle={eventcharm.attributes.subtitle}
-          body={eventcharm.attributes.body}
+          title={`counterservice.attributes.title`}
+          subtitle={`counterservice.attributes.subtitle`}
+          body={`counterservice.attributes.body`}
           imgSrc={'/EC_Design.jpg'}
           imgAlt={'Design, the art of redesigning from a users perspective'}
         />
@@ -36,18 +35,18 @@ const EventCharm = ({eventcharm}: Props) => {
   )
 }
 
-export default EventCharm
+export default CounterService
 
 export async function getStaticProps() {
-  const [eventcharmRes] = await Promise.all([
-    fetchAPI("/eventcharm", {
+  const [counterserviceRes] = await Promise.all([
+    fetchAPI("/counterservice", {
       populate: "*"
     }),
   ]);
 
   return {
     props: {
-      eventcharm: eventcharmRes.data,
+      counterservice: counterserviceRes.data,
     },
     revalidate: 1,
   };
