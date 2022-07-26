@@ -37,7 +37,7 @@ const PortfolioSection = (props: Props) => {
           links.map((link, index) => (
             <S_Card key={index}>
               <Link href={link.href} >
-                <a target="_blank" rel="noopener noreferrer">
+                <a>
                   <S_Title>
                     {link.title}
                   </S_Title>
