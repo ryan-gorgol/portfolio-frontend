@@ -1,15 +1,14 @@
-import styled from 'styled-components'
-import { useEffect, useState } from 'react'
+// libs
+import { useState } from 'react'
+import { fetchAPI } from '../lib/api'
 
+//components
 import BlogHeader from '../components/blog/BlogHeader'
 import BlogMenu from '../components/blog/BlogMenu'
 import Article from '../components/blog/Article'
 import Page from '../components/blog/Page'
 
-import { fetchAPI } from '../lib/api'
-
 interface Props {
-  menuOpen: boolean,
   eventcharm: any
 }
 
@@ -17,7 +16,6 @@ const EventCharm = ({eventcharm}: Props) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => console.log(eventcharm))
   return (
     <Page>
       <>

@@ -16,12 +16,12 @@ const InfoSection = (props: Props) => {
     >
       <div>
         <S_SpanTitle>What I Do</S_SpanTitle>
-        <Line content='USER EXPERIENCE'/>
-        <Line content='USER INTERFACE'/>
-        <Line content='WIREFRAMING'/>
-        <Line content='RAPID PROTOTYPING'/>
+        <Line content='User Experience'/>
+        <Line content='User Interface'/>
+        <Line content='Wireframing'/>
+        <Line content='Rapid Prototyping'/>
         <Line content='CI/CD'/>
-        <Line content='HEADLESS CMS'/>
+        <Line content='Full Stack Development'/>
       </div>
       
       

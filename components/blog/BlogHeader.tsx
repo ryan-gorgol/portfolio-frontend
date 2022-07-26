@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 
 import BlogMenuButton from '../blog/BlogMenuButton'
@@ -7,12 +8,16 @@ interface Props {
   menuOpen: boolean
 }
 
-function BlogHeader({ onClick, menuOpen }: Props) {
+const BlogHeader = ({ onClick, menuOpen }: Props) => {
   return (
     <Header>
       <Wrap>
-        <span>RG</span>
-        <span>portfolio</span>
+        <Link href={'/'}>
+          <a>
+            <span>RG</span>
+            <span>portfolio</span>
+          </a>
+          </Link>
       </Wrap>
       <BlogMenuButton
           onClick={onClick}
@@ -45,4 +50,10 @@ const Header = styled.div`
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+
+
+  a {
+    display: flex;
+    flex-direction: column;
+  }
 `

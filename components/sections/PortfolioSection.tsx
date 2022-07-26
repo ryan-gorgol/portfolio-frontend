@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import Card from '../Card'
 
 interface Props {
 
@@ -15,12 +15,12 @@ const links = [
   {
     href: '/daybyday',
     title: 'Day By Day',
-    subtitle: 'Full Stack Develop'
+    subtitle: 'Full Stack Website'
   },
   {
-    href: '/mcgovern',
-    title: 'McGovern & Co',
-    subtitle: 'e-commerce'
+    href: '/counterservice',
+    title: 'CounterService',
+    subtitle: 'Full Stack Web App'
   }
 
 ]
@@ -35,18 +35,13 @@ const PortfolioSection = (props: Props) => {
       <ul>
         {
           links.map((link, index) => (
-            <S_Card key={index}>
-              <Link href={link.href} >
-                <a target="_blank" rel="noopener noreferrer">
-                  <S_Title>
-                    {link.title}
-                  </S_Title>
-                  <S_SubTitle>
-                    {link.subtitle}
-                  </S_SubTitle>
-                </a>
-              </Link>
-            </S_Card>
+            <Card
+              key={index}
+              href={link.href}
+              title={link.title}
+              subtitle={link.subtitle}
+              index={index}
+            />
           ))}
       </ul>
       

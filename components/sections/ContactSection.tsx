@@ -48,4 +48,9 @@ const S_Link = styled(motion.a)`
   letter-spacing: 0.15px;
   text-align: right;
   padding-bottom: 0.5rem;
+
+  &:hover {
+    transition: 0.25s;
+    color: var(--red);
+  }
 `
