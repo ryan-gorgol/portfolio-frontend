@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import Card from '../Card'
 
 interface Props {
 
@@ -35,18 +35,13 @@ const PortfolioSection = (props: Props) => {
       <ul>
         {
           links.map((link, index) => (
-            <S_Card key={index}>
-              <Link href={link.href} >
-                <a>
-                  <S_Title>
-                    {link.title}
-                  </S_Title>
-                  <S_SubTitle>
-                    {link.subtitle}
-                  </S_SubTitle>
-                </a>
-              </Link>
-            </S_Card>
+            <Card
+              key={index}
+              href={link.href}
+              title={link.title}
+              subtitle={link.subtitle}
+              index={index}
+            />
           ))}
       </ul>
       
