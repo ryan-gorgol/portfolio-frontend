@@ -34,7 +34,7 @@ const CounterService = ({counterservice}: Props) => {
           title={counterservice.attributes.title}
           subtitle={counterservice.attributes.subtitle}
           body={counterservice.attributes.body}
-          imgSrc={'/counterservice_medium.jpg'}
+          imgSrc={'/counterservice_large.jpg'}
           imgAlt={'Design, the art of redesigning from a users perspective'}
         />
         <LinkButton
