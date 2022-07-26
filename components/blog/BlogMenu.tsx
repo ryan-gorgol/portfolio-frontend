@@ -15,12 +15,12 @@ const links = [
   {
     href: '/daybyday',
     title: 'Day By Day',
-    subtitle: 'Full Stack Develop'
+    subtitle: 'Full Stack Website'
   },
   {
-    href: '/mcgovern',
-    title: 'McGovern & Co',
-    subtitle: 'e-commerce'
+    href: '/counterservice',
+    title: 'CounterService',
+    subtitle: 'Full Stack Web App'
   }
 ]
 
