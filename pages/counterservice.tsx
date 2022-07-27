@@ -38,8 +38,8 @@ const CounterService = ({counterservice}: Props) => {
           imgAlt={'Design, the art of redesigning from a users perspective'}
         />
         <LinkButton
-          href={'https://counterservice-grgl.netlify.app'} content={'Visit CounterService'}
-
+          href={'https://counterservice-grgl.netlify.app'}
+          content={'Visit CounterService'}
         />
         <BlogMenu menuOpen={menuOpen} />
       </>
