@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const rockpaperscissors = () => {
+
   return (
     <S_Section>
       <S_H1>Rock Paper Scissors</S_H1>
@@ -31,6 +32,7 @@ const S_Section = styled.section`
 const S_H1 = styled.h1`
   color: white;
   font-size: 4rem;
+  margin-top: 0;
 `
 
 const S_H2 = styled.h2`
