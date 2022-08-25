@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 
+import Scoreboard from '../../components/rockpaperscissors/Scoreboard'
+
+
 const Rockpaperscissors = () => {
 
   const [humanScore, setHumanScore] = useState(0)
@@ -50,8 +53,12 @@ const Rockpaperscissors = () => {
   return (
     <S_Section>
       <S_H1>Rock Paper Scissors</S_H1>
+      <Scoreboard
+        humanScore={humanScore}
+        computerScore={computerScore}
+        feedback={feedback}
+      />
         <S_Choices>
-        <S_H2>{`You: ${humanScore} ||| Computer: ${computerScore}`}</S_H2>
           <S_Button
           id='rock'
           onClick={onClick}
@@ -70,7 +77,7 @@ const Rockpaperscissors = () => {
           >
             Scissors✌️
         </S_Button>
-        { feedback }
+        <h4>{ feedback }</h4>
       </S_Choices>
     </S_Section>
   )
@@ -80,6 +87,11 @@ export default Rockpaperscissors
 
 const S_Section = styled.section`
   padding: 1rem;
+
+  h4 {
+    padding-top: 4rem;
+    color: white;
+  }
 `
 
 const S_H1 = styled.h1`
