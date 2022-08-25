@@ -1,29 +1,82 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 
-const rockpaperscissors = () => {
+const Rockpaperscissors = () => {
+
+  const [humanScore, setHumanScore] = useState(0)
+  const [computerScore, setComputerScore] = useState(0)
+  const [feedback, setFeedback] = useState('')
+
+  const computerSelection = () => {
+    const options=['rock','paper','scissors']
+    const computerGuess = options[Math.floor(Math.random() * options.length)]
+
+    return computerGuess
+  }
+
+  const evaluateChoices = (humanGuess: string, computerGuess: string) => {
+    if (computerGuess === humanGuess) {
+      setFeedback(`TIE! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    } else if (humanGuess === 'rock' && computerGuess === 'scissors') {
+      setHumanScore(humanScore + 1)
+      setFeedback(`You win! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    } else if (humanGuess === 'rock' && computerGuess === 'paper') {
+      setComputerScore(computerScore + 1)
+      setFeedback(`Computer wins! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    } else if (humanGuess === 'paper' && computerGuess === 'rock') {
+      setHumanScore(humanScore + 1)
+      setFeedback(`You win! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    } else if (humanGuess === 'paper' && computerGuess === 'scissors') {
+      setComputerScore(computerScore + 1)
+      setFeedback(`Computer wins! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    } else if (humanGuess === 'scissors' && computerGuess === 'rock') {
+      setComputerScore(computerScore + 1)
+      setFeedback(`Computer wins! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    } else if (humanGuess === 'scissors' && computerGuess === 'paper') {
+      setHumanScore(humanScore + 1)
+      setFeedback(`You win! Computer guessed ${computerGuess} while you guessed ${humanGuess}.`)
+    }
+  }
+
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    let humanGuess = e.currentTarget.id
+
+    const computerGuess = computerSelection()
+
+    evaluateChoices(humanGuess, computerGuess)
+  }
 
   return (
     <S_Section>
       <S_H1>Rock Paper Scissors</S_H1>
-      <S_PlayingBoard>
         <S_Choices>
-          <S_H2>Human</S_H2>
-          <S_Button>👊</S_Button>
-          <S_Button>✋</S_Button>
-          <S_Button>✌️</S_Button>
-        </S_Choices>
-        <S_Choices>
-          <S_H2>Computer</S_H2>
-          <S_Button>👊</S_Button>
-          <S_Button>✋</S_Button>
-          <S_Button>✌️</S_Button>
-        </S_Choices>
-      </S_PlayingBoard>
+        <S_H2>{`You: ${humanScore} ||| Computer: ${computerScore}`}</S_H2>
+          <S_Button
+          id='rock'
+          onClick={onClick}
+          >
+            Rock 👊
+          </S_Button>
+          <S_Button
+            id='paper'
+            onClick={onClick}
+          >
+            Paper ✋
+          </S_Button>
+          <S_Button
+            id='scissors'
+            onClick={onClick}
+          >
+            Scissors✌️
+        </S_Button>
+        { feedback }
+      </S_Choices>
     </S_Section>
   )
 } 
 
-export default rockpaperscissors
+export default Rockpaperscissors
 
 const S_Section = styled.section`
   padding: 1rem;
@@ -41,13 +94,8 @@ const S_H2 = styled.h2`
   font-size: 2rem;
 `
 
-const S_PlayingBoard = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
 const S_Choices = styled.div`
-  width: 150px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,6 +104,6 @@ const S_Choices = styled.div`
 
 const S_Button = styled.button`
   height: 4rem;
-  width: 4rem;
+  width: 20rem;
   font-size: 3rem;
 `
