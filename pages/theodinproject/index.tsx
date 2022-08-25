@@ -1,4 +1,7 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import styled from 'styled-components'
+
+import Head from 'next/head'
 import Card from '../../components/Card'
 
 const links = [
@@ -12,28 +15,30 @@ const links = [
 
 const index = () => {
   return (
-    <S_Section>
-      <S_Heading>
-        <S_H1>The Odin Project</S_H1>
-        <S_H2>
-          The Odin Project is one of those &quot;What I wish I had when I was learning&quot; resources. Not everyone has access to a computer science education or the funds to attend an intensive coding school and neither of those is right for everyone anyway. This project is designed to fill in the gap for people who are trying to hack it on their own but still want a high quality education.
-        </S_H2>
-      </S_Heading>
-      <S_Space />
-      <S_LinkContainer>
-          {
-          links.map((link, index) => (
-              
-              <Card
-                key={index}
-                href={link.href}
-                title={link.title}
-                subtitle={link.subtitle}
-                index={index}
-              />
-            ))}
-      </S_LinkContainer>
-    </S_Section>
+    <>
+      <S_Section>
+        <S_Heading>
+          <S_H1>The Odin Project</S_H1>
+          <S_H2>
+            The Odin Project is one of those &quot;What I wish I had when I was learning&quot; resources. Not everyone has access to a computer science education or the funds to attend an intensive coding school and neither of those is right for everyone anyway. This project is designed to fill in the gap for people who are trying to hack it on their own but still want a high quality education.
+          </S_H2>
+        </S_Heading>
+        <S_Space />
+        <S_LinkContainer>
+            {
+            links.map((link, index) => (
+                
+                <Card
+                  key={index}
+                  href={link.href}
+                  title={link.title}
+                  subtitle={link.subtitle}
+                  index={index}
+                />
+              ))}
+        </S_LinkContainer>
+      </S_Section>
+    </>
   )
 }
 
@@ -41,6 +46,7 @@ export default index
 
 const S_Section = styled.section`
   padding: 1rem;
+  font-family: 'Silkscreen', cursive;
 `
 
 const S_Heading = styled.div`

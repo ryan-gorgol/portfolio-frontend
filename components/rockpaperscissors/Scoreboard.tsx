@@ -4,27 +4,27 @@ import styled from 'styled-components'
 interface Props {
   humanScore: number,
   computerScore: number,
-  feedback: string
+  resultFeedback: string
 }
 
 const Scoreboard = (
   {humanScore,
   computerScore,
-  feedback }: Props
+  resultFeedback }: Props
 ) => {
 
-  useEffect(() => console.log(humanScore, 'human', computerScore, 'computer', feedback))
+  useEffect(() => console.log(humanScore, 'human', computerScore, 'computer', resultFeedback))
   return (
     <S_Scoreboard>
-      <h1>Scoreboard</h1>
+      <S_H1>Scoreboard</S_H1>
       <S_ScoreWrap>
         <S_PlayerWrap>
-          <h2>Human</h2>
-          <h3>{ humanScore }</h3>
+          <S_H2>Human</S_H2>
+          <S_H3>{ humanScore }</S_H3>
         </S_PlayerWrap>
         <S_PlayerWrap>
-          <h2>Computer</h2>
-          <h3>{ computerScore }</h3>
+          <S_H2>Computer</S_H2>
+          <S_H3>{ computerScore }</S_H3>
         </S_PlayerWrap>
       </S_ScoreWrap>
     </S_Scoreboard>
@@ -38,8 +38,8 @@ const S_Scoreboard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
-  border: 2px solid white;
+  color: var(--white);
+  border: 2px solid var(--white);
   margin-bottom: 2rem;
 `
 
@@ -55,3 +55,22 @@ const S_PlayerWrap = styled.div`
   align-items: center;
   width: 40%;
 `
+
+const S_H1 = styled.h1`
+  margin: 0;
+`
+
+const S_H2 = styled.h2`
+  color: red;
+  font-size: 1.2rem;
+`
+
+const S_H3 = styled.h3`
+  margin: 0;
+  color: green;
+  font-size: 3.8rem;
+  font-weight: 400;
+`
+
+
+
