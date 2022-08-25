@@ -96,14 +96,8 @@ const S_Section = styled.section`
 
 const S_H1 = styled.h1`
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   margin-top: 0;
-`
-
-const S_H2 = styled.h2`
-  color: white;
-  font-weight: 300;
-  font-size: 2rem;
 `
 
 const S_Choices = styled.div`

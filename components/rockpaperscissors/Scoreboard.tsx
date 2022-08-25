@@ -39,16 +39,19 @@ const S_Scoreboard = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-
+  border: 2px solid white;
+  margin-bottom: 2rem;
 `
 
 const S_ScoreWrap = styled.div`
   display: flex;
-
+  width: 100%;
+  justify-content:center;
 `
 
 const S_PlayerWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 40%;
 `
