@@ -15,20 +15,31 @@ const Rockpaperscissors = () => {
   const [previosRoundFeedback, setPreviousRoundFeedback] = useState('')
   const [gameover, setGameover] = useState(false)
 
+  // evaluate status of the game
   const evaluateGameStatus = (humanScore: number, computerScore: number) => {
-    if (humanScore === 2) setGameover(true)
-    else if (computerScore === 2) setGameover(true)
+    if (humanScore === 5) setGameover(true)
+    else if (computerScore === 5) setGameover(true)
   }
 
+  //evaluate game status triggered by resultFeedback
   useEffect(() => {
     evaluateGameStatus(humanScore, computerScore), [resultFeedback]
   })
 
+  // when gameover is true, trigger actions
   useEffect(() => {
-    setComputerScore(0)
-    setHumanScore(0)
+    
   }, [gameover])
 
+  // whenever 'play again' button is selected, reset scoreboard
+  const resetClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setComputerScore(0)
+    setHumanScore(0)
+    setGameover(false)
+  }
+
+  // function which returns a 'randomly' selected guess
   const computerSelection = () => {
     const options=['rock','paper','scissors']
     const computerGuess = options[Math.floor(Math.random() * options.length)]
@@ -36,6 +47,7 @@ const Rockpaperscissors = () => {
     return computerGuess
   }
 
+  // Evaluate outcome and trigger response
   const evaluateChoices = (humanGuess: string, computerGuess: string) => {
 
     console.log('evaluateChoices - pre-if statement', humanScore)
@@ -70,6 +82,7 @@ const Rockpaperscissors = () => {
     console.log('evaluateChoices - post-if statement', humanScore)
   }
 
+  // click triggers a game cycle
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let humanGuess = e.currentTarget.id
@@ -89,7 +102,19 @@ const Rockpaperscissors = () => {
         <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" /> 
       </Head>
         {
-          gameover ? <S_Modal onClick={() => setGameover(false)}>WINNER</S_Modal> : ''
+        gameover ? <S_Modal onClick={() => setGameover(false)}>
+                    {
+            <S_ModalDisplay>
+               <h4>Winner!!!</h4>
+              <div>
+                       
+                        <h5>{`Human: ${humanScore}`}</h5>
+                        <h5>{`Computer: ${computerScore}`}</h5>
+                        </div>  
+                        <button onClick={resetClick}>Play Again</button>
+                      </S_ModalDisplay>
+                    }
+                   </S_Modal> : ''
         }
       <S_Section>
         <S_Header>
@@ -171,7 +196,30 @@ const S_Modal = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #413939cf;
+`
+
+const S_ModalDisplay = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 94%;
+  background: white;
+   
+  div {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h5 {
+    padding: 1rem;
+  }
 `
 
 const S_Choices = styled.div`
