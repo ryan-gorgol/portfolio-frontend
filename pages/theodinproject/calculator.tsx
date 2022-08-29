@@ -8,19 +8,9 @@ const Calculator = () => {
 
   const numberRegEx = /^\d+$/;
   const decimalRegEx = /[\.]/;
-  const operatorRegEx = /[x+-]/;
+  const operatorRegEx = /[x+-/]/;
   const equalsRegEx = /[=]/;
 
-  // inputCount --> 
-  //0: no entry
-  //1: numerical input
-  //2: decimal
-  //3: numerical input
-  //4: operator (x,-,+)
-  //5: numerical input
-  //6: decimal
-  //7: numerical input
-  //8: operator (=)
   const [inputCount, setInputCount] = useState<number>(0);
 
   const [firstNumber, setFirstNumber] = useState('');
@@ -33,21 +23,23 @@ const Calculator = () => {
   useEffect(() => console.log(secondNumber, 'secondNumber'))
   useEffect(() => console.log(inputCount, 'inputCount'))
 
-  const add = (a: string, b: string): number => {
-    return Number(a) + Number(b)
-  }
+  const add = (a: string, b: string): number => Number(a) + Number(b)
+  const subtract = (a: string, b: string): number => Number(a) - Number(b)
+  const multiply = (a: string, b: string) => Number(a) * Number(b)
+  const divide = (a: string, b: string) => Number(a) / Number(b)
 
-  const subtract = (a: string, b: string): number => {
-    return Number(a) - Number(b)
-  }
 
-  const multiply = (a: string, b: string) => {
-    return Number(a) * Number(b)
-  }
 
-  const divide = (a: string, b: string) => {
-    return Number(a) / Number(b)
-  }
+  //   inputCount --> 
+  //0: no entry
+  //1: numerical input
+  //2: decimal
+  //3: numerical input
+  //4: operator (x,-,+)
+  //5: numerical input
+  //6: decimal
+  //7: numerical input
+  //8: operator (=)
 
   const handleFirstInput = (value: string) => {
     setFirstNumber(value)
@@ -56,30 +48,49 @@ const Calculator = () => {
 
   const handleSecondInput = (value: string) => {
     setSecondNumber(secondNumber + value)
-    setInputCount(2)
+
+    switch (inputCount) {
+      case 5:
+        setInputCount(6)
+    }
   }
 
   const handleMultiDigit = (value: string) => {
-    if (inputCount === 1) {
-      setFirstNumber(firstNumber + value)
-      } else if (inputCount === 2) { 
-        handleSecondInput(value)
-        setInputCount(3)
-      } else if (inputCount === 3) {
+    switch (inputCount) {
+      case 1:
+        setFirstNumber(firstNumber + value)
+        break;
+      case 2:
+        setFirstNumber(firstNumber + value)
+        break;
+      case 6:
         setSecondNumber(secondNumber + value)
-      }
+      case 7:
+        setSecondNumber(secondNumber + value)
+
+    }
   }
 
   const handleDecimal = (value: string) => {
-   
-    inputCount === 1 
-      ? setFirstNumber(firstNumber + value)
-      : setSecondNumber(secondNumber + value)
+    switch (inputCount) {
+      case 1:
+        setFirstNumber(firstNumber + value)
+        setInputCount(2)
+        break;
+      case 5:
+        setSecondNumber(value)
+        setInputCount(7)
+        break;
+      case 6:
+        setSecondNumber(secondNumber + value)
+        setInputCount(7)
+        break;
+    }
   }
 
   const handleOperator = (value: string) => {
     setOperator(value)
-    setInputCount(2)
+    setInputCount(5)
   }
 
   const handleClear = () => {
@@ -92,7 +103,30 @@ const Calculator = () => {
   }
 
   const handleDelete = () => {
-    return
+    switch (inputCount) {
+      case 1:
+        setFirstNumber('')
+        setInputCount(0)
+        break;
+      case 2:
+        setFirstNumber(firstNumber.slice(0, -1))
+        setInputCount(1)
+        break;
+      case 3:
+        setFirstNumber(firstNumber.slice(0, -1))
+        setInputCount(2)
+        break;
+      case 5:
+        setOperator('a')
+        setInputCount(3)
+        break;
+      case 6:
+        setSecondNumber(secondNumber.slice(0, -1))
+        setInputCount(5)
+      case 7:
+        setSecondNumber(secondNumber.slice(0, -1))
+        setInputCount(6)
+    }
   }
 
   const computeResult = () => {
@@ -114,41 +148,75 @@ const Calculator = () => {
   }
 
   const handleSubmit = () => {
-    computeResult()
+    switch (inputCount) {
+      case 6:
+        computeResult()
+        break;
+      case 7:
+        computeResult()
+        break;
+    }
   }
 
   const handleInput = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLInputElement;
 
-    if (inputCount === 0) {
-      numberRegEx.test(target.value)
-        ? handleFirstInput(target.value)
-        : null
-    } else if (inputCount === 1) {
-      numberRegEx.test(target.value)
-        ? handleMultiDigit(target.value)
-        : decimalRegEx.test(target.value)
-          ? handleDecimal(target.value)
+    switch (inputCount) {
+      case 0:
+        numberRegEx.test(target.value)
+          ? handleFirstInput(target.value)
+          : null
+        break;
+      case 1:
+        numberRegEx.test(target.value)
+          ? handleMultiDigit(target.value)
+          : decimalRegEx.test(target.value)
+            ? handleDecimal(target.value)
+            : operatorRegEx.test(target.value)
+              ? handleOperator(target.value)
+              : null
+        break;
+      case 2:
+        numberRegEx.test(target.value)
+          ? handleMultiDigit(target.value)
           : operatorRegEx.test(target.value)
             ? handleOperator(target.value)
             : null
-            
-    } else if (inputCount === 2) {
-      numberRegEx.test(target.value)
-        ? handleSecondInput(target.value)
-        : operatorRegEx.test(target.value)
-          ? handleOperator(target.value)
+          
+        break;
+      case 3:
+        numberRegEx.test(target.value)
+          ? handleMultiDigit(target.value)
+          : operatorRegEx.test(target.value)
+            ? handleOperator(target.value)
+            : null
+        break;
+      case 4:
+        break;
+      case 5:
+        numberRegEx.test(target.value)
+          ? handleSecondInput(target.value)
+          : null 
+        // there is an opportunity to extend case 5: to create the string '0.' upon the decimal button being selected
+      case 6:
+        numberRegEx.test(target.value)
+          ? handleMultiDigit(target.value)
           : decimalRegEx.test(target.value)
-            ?  handleDecimal(target.value)
-            :  null
-    } else if (inputCount === 3) {
-      setInputCount(0)
-      setFirstNumber('')
-      setSecondNumber('')
-      setOperator('a')
-      setHideResult(true)
+            ? handleDecimal(target.value)
+            : null
+        break;
+      case 7:
+        numberRegEx.test(target.value)
+          ? handleMultiDigit(target.value)
+          : null
     } 
   }
+
+  // setInputCount(0)
+  //     setFirstNumber('')
+  //     setSecondNumber('')
+  //     setOperator('a')
+  //     setHideResult(true)
 
   return (
     <S_Page>
@@ -183,7 +251,11 @@ const Calculator = () => {
               {
                 hideResult
                   ? <h6></h6>
-                  : <div>{ result }</div>
+                  : <div>
+                    {
+                      result.toFixed(8)
+                    }
+                    </div>
               }
             </>
           </S_View>
@@ -195,7 +267,7 @@ const Calculator = () => {
               CLEAR
             </button>
             <button
-              onClick={() => null}
+              onClick={() => handleDelete()}
             >
               DELETE
             </button>
