@@ -1,32 +1,91 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react';
 import { equal } from 'assert';
+import { setTarget } from 'framer-motion/types/render/utils/setters';
 
 
 const Calculator = () => {
 
+  const numberRegEx = /^\d+$/;
+  const decimalRegEx = /[\.]/;
+  const operatorRegEx = /[x+-]/;
+  const equalsRegEx = /[=]/;
+
+  // inputCount --> 
+  //0: no entry
+  //1: numerical input
+  //2: decimal
+  //3: numerical input
+  //4: operator (x,-,+)
+  //5: numerical input
+  //6: decimal
+  //7: numerical input
+  //8: operator (=)
   const [inputCount, setInputCount] = useState<number>(0);
-  const [firstNumber, setFirstNumber] = useState<number>(-1);
-  const [secondNumber, setSecondNumber] = useState<number>(-1)
+
+  const [firstNumber, setFirstNumber] = useState('');
+  const [secondNumber, setSecondNumber] = useState('')
   const [operator, setOperator] = useState('a')
   const [result, setResult] = useState<Number>(0)
   const [hideResult, setHideResult] = useState(true)
 
-  function add(a: number, b: number): number {
-    const first = Number(a)
-    const second = Number(b)
+  useEffect(() => console.log(firstNumber, 'firstNumber'))
+  useEffect(() => console.log(secondNumber, 'secondNumber'))
+  useEffect(() => console.log(inputCount, 'inputCount'))
 
-    let result = first + second
-    return result
+  const add = (a: string, b: string): number => {
+    return Number(a) + Number(b)
   }
-  const subtract = (a: number, b: number) => a - b
-  const multiply = (a: number, b: number) => a * b
-  const divide = (a: number, b: number) => a / b
 
-  const clearCalculator = () => {
+  const subtract = (a: string, b: string): number => {
+    return Number(a) - Number(b)
+  }
+
+  const multiply = (a: string, b: string) => {
+    return Number(a) * Number(b)
+  }
+
+  const divide = (a: string, b: string) => {
+    return Number(a) / Number(b)
+  }
+
+  const handleFirstInput = (value: string) => {
+    setFirstNumber(value)
+    setInputCount(1)
+  }
+
+  const handleSecondInput = (value: string) => {
+    setSecondNumber(secondNumber + value)
+    setInputCount(2)
+  }
+
+  const handleMultiDigit = (value: string) => {
+    if (inputCount === 1) {
+      setFirstNumber(firstNumber + value)
+      } else if (inputCount === 2) { 
+        handleSecondInput(value)
+        setInputCount(3)
+      } else if (inputCount === 3) {
+        setSecondNumber(secondNumber + value)
+      }
+  }
+
+  const handleDecimal = (value: string) => {
+   
+    inputCount === 1 
+      ? setFirstNumber(firstNumber + value)
+      : setSecondNumber(secondNumber + value)
+  }
+
+  const handleOperator = (value: string) => {
+    setOperator(value)
+    setInputCount(2)
+  }
+
+  const handleClear = () => {
     setInputCount(0)
-    setFirstNumber(-1)
-    setSecondNumber(-1)
+    setFirstNumber('')
+    setSecondNumber('')
     setOperator('a')
     setResult(0)
     setHideResult(true)
@@ -51,7 +110,6 @@ const Calculator = () => {
          setResult(divide(firstNumber, secondNumber))
         break;
     } 
-
     setHideResult(false)
   }
 
@@ -60,35 +118,33 @@ const Calculator = () => {
   }
 
   const handleInput = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const numberRegEx = /^\d+$/;
-    const operatorRegEx = /[^=]/;
-    const equalsRegEx = /[=]/;
     const target = e.target as HTMLInputElement;
-    
+
     if (inputCount === 0) {
-      setInputCount(inputCount + 1)
-
       numberRegEx.test(target.value)
-         ? setFirstNumber(target.value)
-         : setInputCount(0)
-
+        ? handleFirstInput(target.value)
+        : null
     } else if (inputCount === 1) {
-      setInputCount(inputCount + 1)
-
-      operatorRegEx.test(target.value)
-         ? setOperator(target.value)
-         : setInputCount(1)
-
-    } else if (inputCount === 2) {
-      setInputCount(inputCount + 1)
-
       numberRegEx.test(target.value)
-         ? setSecondNumber(target.value)
-         : setInputCount(2)
+        ? handleMultiDigit(target.value)
+        : decimalRegEx.test(target.value)
+          ? handleDecimal(target.value)
+          : operatorRegEx.test(target.value)
+            ? handleOperator(target.value)
+            : null
+            
+    } else if (inputCount === 2) {
+      numberRegEx.test(target.value)
+        ? handleSecondInput(target.value)
+        : operatorRegEx.test(target.value)
+          ? handleOperator(target.value)
+          : decimalRegEx.test(target.value)
+            ?  handleDecimal(target.value)
+            :  null
     } else if (inputCount === 3) {
       setInputCount(0)
-      setFirstNumber(-1)
-      setSecondNumber(-1)
+      setFirstNumber('')
+      setSecondNumber('')
       setOperator('a')
       setHideResult(true)
     } 
@@ -102,7 +158,7 @@ const Calculator = () => {
           <S_View>
             <>
               {
-                firstNumber === -1
+                firstNumber === ''
                   ? <h6></h6>
                   : <h6>{ firstNumber }</h6>
               }
@@ -116,7 +172,7 @@ const Calculator = () => {
             </>
             <>
               {
-                secondNumber === -1
+                secondNumber === ''
                   ? <h6></h6>
                   : <h6>{ secondNumber }</h6>
               }
@@ -134,7 +190,7 @@ const Calculator = () => {
           <S_TopRow>
             <button
                 id="clearBtn"
-                onClick={() => clearCalculator()}
+                onClick={() => handleClear()}
             >
               CLEAR
             </button>
