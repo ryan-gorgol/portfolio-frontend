@@ -10,7 +10,6 @@ const Etchasketch = () => {
   const [grid, setGrid] = useState(Array(64).fill(''))
 
   const changeBackground = (e: React.MouseEvent<HTMLElement>) => {
-
     let target = e.target as HTMLInputElement;
     target.style.background = 'red';
   }
@@ -41,8 +40,9 @@ const Etchasketch = () => {
           }
         </S_GridContainer>
         <S_ButtonContainer>
-          <button onClick={() => handleEightbyEight()}>8x8</button>
-          <button onClick={() => handleSixteenBySixteen()}>16x16</button>
+          <S_FirstButton onClick={() => handleEightbyEight()} grid={grid.length}>8x8</S_FirstButton>
+          <S_SecondButton onClick={() => handleSixteenBySixteen()} grid={grid.length}>16x16</S_SecondButton>
+          <S_ClearButton onClick={() => resetBackgrounds()}>CLEAR</S_ClearButton>
         </S_ButtonContainer>
       </S_Section>
     </S_Page>
@@ -73,10 +73,9 @@ const S_GridContainer = styled.div`
   margin: 0 auto 2rem auto;
 
   div {
-    width: ${(p: Props) => p.grid === 64 ? '30px' : p.grid === 256 ? '14px' : null};
-    height: ${(p: Props) => p.grid === 64 ? '30px' : p.grid === 256 ? '14px' : null};
+    width: ${(p: Props) => p.grid === 64 ? '32px' : p.grid === 256 ? '16px' : null};
+    height: ${(p: Props) => p.grid === 64 ? '32px' : p.grid === 256 ? '16px' : null};
     background: #777777;
-    border: 1px solid #7b1919;
   }
 `
 
@@ -84,12 +83,27 @@ const S_ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+`
 
-  button {
-    padding: 1rem;
-    margin-right: 1rem;
-    border-radius: 1rem;
-    border: none;
-    
-  }
+const S_FirstButton = styled.button`
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background: ${(p: Props) => p.grid === 64 ? 'red' : 'white'};
+`
+
+const S_SecondButton = styled.button`
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background: ${(p: Props) => p.grid === 256 ? 'red' : 'white'};
+`
+
+const S_ClearButton = styled.button`
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  border: none;
 `
