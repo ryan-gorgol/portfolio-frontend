@@ -212,88 +212,75 @@ const Calculator = () => {
     } 
   }
 
-  // setInputCount(0)
-  //     setFirstNumber('')
-  //     setSecondNumber('')
-  //     setOperator('a')
-  //     setHideResult(true)
-
   return (
     <S_Page>
-      <h2>calculator</h2>
-      <S_Calculator >
-        <div>
-          <S_View>
-            <>
-              {
-                firstNumber === ''
-                  ? <h6></h6>
-                  : <h6>{ firstNumber }</h6>
-              }
-            </>
-            <>
-              {
-                operator === 'a'
-                  ? <h6></h6>
-                  : <h6>{ operator }</h6>
-              }
-            </>
-            <>
-              {
-                secondNumber === ''
-                  ? <h6></h6>
-                  : <h6>{ secondNumber }</h6>
-              }
-            </>
-          </S_View>
-          <S_View>
-            <>
-              {
-                hideResult
-                  ? <h6></h6>
-                  : <div>
-                    {
-                      result.toFixed(8)
-                    }
-                    </div>
-              }
-            </>
-          </S_View>
+      <S_Calculator>
+        <S_ResultsContainer>
+          <S_ResultsContainerTwo>
+            <S_TopView>
+              <>
+                {
+                  firstNumber === ''
+                    ? <h6></h6>
+                    : <h6>{ firstNumber }</h6>
+                }
+              </>
+              <>
+                {
+                  operator === 'a'
+                    ? <h6></h6>
+                    : <h6>{ operator }</h6>
+                }
+              </>
+              <>
+                {
+                  secondNumber === ''
+                    ? <h6></h6>
+                    : <h6>{ secondNumber }</h6>
+                }
+              </>
+            </S_TopView>
+            <S_BtmView>
+              <>
+                {
+                  hideResult
+                    ? <h6></h6>
+                    : <div>
+                      {
+                        result.toFixed(2)
+                      }
+                      </div>
+                }
+              </>
+            </S_BtmView>
+          </S_ResultsContainerTwo>
+        </S_ResultsContainer>
           <S_TopRow>
-            <button
-                id="clearBtn"
-                onClick={() => handleClear()}
-            >
-              CLEAR
-            </button>
-            <button
-              onClick={() => handleDelete()}
-            >
-              DELETE
-            </button>
+            <button onClick={() => handleClear()}><span>CLEAR</span></button>
+            <button onClick={() => handleDelete()}><span>DELETE</span></button>
           </S_TopRow>
           <S_BottomQuadrant>
             <button onClick={(e) => handleInput(e)} value={7}>7</button>
-            <button onClick={(e) => handleInput(e)} value={8}>8</button>
+            <button onClick={(e) => handleInput(e)} value={8}>9</button>
             <button onClick={(e) => handleInput(e)} value={9}>9</button>
             <button onClick={(e) => handleInput(e)} value={'/'}>÷</button>
 
             <button onClick={(e) => handleInput(e)} value={4}>4</button>
             <button onClick={(e) => handleInput(e)} value={5}>5</button>
             <button onClick={(e) => handleInput(e)} value={6}>6</button>
-            <button onClick={(e) => handleInput(e)} value={'x'}>×</button>
+            <button onClick={(e) => handleInput(e)} value={'x'}>x</button>
 
             <button onClick={(e) => handleInput(e)} value={1}>1</button>
             <button onClick={(e) => handleInput(e)} value={2}>2</button>
             <button onClick={(e) => handleInput(e)} value={3}>3</button>
-            <button onClick={(e) => handleInput(e)} value={'-'}>−</button>
+            <button onClick={(e) => handleInput(e)} value={'-'}>-</button>
 
             <button onClick={(e) => handleInput(e)} value={'.'}>.</button>
             <button onClick={(e) => handleInput(e)} value={0}>0</button>
             <button onClick={(e) => handleSubmit()} value={'='}>=</button>
             <button onClick={(e) => handleInput(e)} value={'+'}>+</button>
           </S_BottomQuadrant>
-        </div>
+        
       </S_Calculator>
     </S_Page>
   )
@@ -304,27 +291,77 @@ export default Calculator
 const S_Page = styled.main`
   width: 100vw;
   height: 100vh;
-  background: var(--white);
-
-  h2 {
-    margin: 0;
-    padding: 2rem;
-    font-weight: 200;
-    font-size: 2rem;
-  }
+  background: #a7c6ff;
+  display: flex;
+  flex-direction: column;
+  jusityf-content: center;
+  align-items: center;
 `
 
 const S_Calculator = styled.div`
   width: 100%;
+  max-width: 400px;
   height: 100%;
 `
 
-const S_View = styled.div`
-  height: 3rem;
+const S_ResultsContainer = styled.div`
+  border-radius: 0.5rem;
+  box-shadow: 18px 18px 36px #8ea8d9 inset; 
+  margin: 1rem 1rem 0 1rem;
+`
+
+const S_ResultsContainerTwo = styled.div`
+  height: 100px;
+  border-radius: 0.5rem;
+  border: 1px solid #c0e4ff90;
   padding: 1rem;
+  
+  background: #a7c6ff0;
+  box-shadow: -18px -18px 36px #c0e4ff69 inset; 
+`
+
+
+const S_TopView = styled.div`
+  height: 2rem;
   display: flex;
   justify-content: flex-end;
-  color: var(--black);
+  color: #12487169;
+  padding: 0 0 1.5rem 0;
+
+  @media (max-width: 400px) {
+    height: calc(1.5rem + var(--vh_50));
+  }
+  
+
+  h6 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.5rem;
+  }
+
+  h5 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  div {
+    font-size: 2.8rem;
+    padding-bottom: 0;
+    margin-bottom: 1rem;
+  }
+`
+
+const S_BtmView = styled.div`
+  height: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  color: #12487169;
+
+  @media (max-width: 400px) {
+    height: calc(1.5rem + var(--vh_50));
+  }
+  
 
   h6 {
     margin: 0;
@@ -346,14 +383,38 @@ const S_View = styled.div`
 `
 
 const S_TopRow = styled.div`
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 1.5rem;
 
   button {
+    font-size: 2rem;
+    font-weight: 800;    
     margin: 0;
     flex-basis: 1;
     width: 100%;
+    margin: 0 1rem 1rem 1rem;
+    padding: 1.75rem 0;
+    border: none;
+    border-radius: 0.5rem;
+    background:#a7c6ff;
+    box-shadow: 6px 6px 13px #8ea8d9,
+               -6px -6px 13px #c0e4ff69;
+
+    &:hover {
+      box-shadow: 8px 8px 16px #8ea8d9,
+                 -8px -8px 16px #c0e4ff69;
+    }
+
+    span {
+      background-color: #0000002f;
+      color: transparent;
+      text-shadow: 2px 2px 3px #c0e4ff69;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+    }
   }
 `
 
@@ -362,9 +423,33 @@ const S_BottomQuadrant = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.25rem 0.25rem;
+  gap: 1rem 1rem;
 
   button {
-    width: 22.99%;
+    margin: 0.5rem;
+    padding-top: 0.25rem;
+    border: none;
+    width: calc(3.5rem + var(--vw_50));
+    height:calc(3.5rem + var(--vw_50));
+    border-radius: 50%;
+    border: 1px solid #c0e4ff17;
+    background:#a7c6ff;
+    box-shadow: 6px 6px 13px #8ea8d9,
+               -6px -6px 13px #c0e4ff53;
+
+    background-color: #0000002f;
+    color: transparent;
+    text-shadow: 2px 2px 3px #c0e4ff69;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 12px;
+
+    &:hover {
+      box-shadow: 8px 8px 16px #8ea8d9,
+                 -8px -8px 16px #c0e4ff69;
+    }
   }
 `
