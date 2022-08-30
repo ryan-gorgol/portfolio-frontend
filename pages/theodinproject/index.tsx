@@ -8,8 +8,13 @@ const links = [
   {
     href: '/theodinproject/rockpaperscissors',
     title: 'Rock, Paper, Scissors',
-    subtitle: 'Brutalist Design'
+    subtitle: '8-bit Design'
   },
+  {
+    href: '/theodinproject/calculator',
+    title: 'Calculator',
+    subtitle: 'Neumorphic Design'
+  }
   
 ]
 
@@ -46,7 +51,6 @@ export default index
 
 const S_Section = styled.section`
   padding: 1rem;
-  font-family: 'Silkscreen', cursive;
 `
 
 const S_Heading = styled.div`
@@ -55,19 +59,23 @@ const S_Heading = styled.div`
 
 const S_H1 = styled.h1`
   color: white;
-  font-size: 4rem;
+  font-size: 2.25rem;
 `
 
 const S_H2 = styled.h2`
   color: white;
   font-weight: 200;
+  font-size: 1rem;
 `
 
 const S_Space = styled.div`
-  height: 8rem;
+  height: 4rem;
 `
 
 const S_LinkContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+
 `
