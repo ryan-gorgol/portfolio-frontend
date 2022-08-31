@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 interface Props {
   grid: number
@@ -30,9 +31,14 @@ const Etchasketch = () => {
     resetBackgrounds()
   }
 
+  const backText = `<-`
+
   return (
     <S_Page>
-      <h1>sketch-a-mouse</h1>
+      <S_Header>
+        <h1>sketch-a-mouse</h1>
+        <Link href='/theodinproject'><a>{backText}</a></Link>
+      </S_Header>
       <S_Section>
         <S_Border>
           <S_GridContainer grid={grid.length}>
@@ -57,12 +63,22 @@ const S_Page = styled.main`
   width: 100%;
   height: 100vh;
   background: #FFF7D2;
+`
+
+const S_Header = styled.div`
+  display: flex;
+  background: #fad7d7;
+  align-items: center;
+  justify-content: space-between;
+  color: #EF270D;
 
   h1 {
     margin: 0;
     padding: 2rem;
-    color: #EF270D;
-    background: #fad7d7;
+  }
+
+  a {
+    padding-right: 2rem;
   }
 `
 

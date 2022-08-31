@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react';
 import { equal } from 'assert';
 import { setTarget } from 'framer-motion/types/render/utils/setters';
+import Link from 'next/link';
 
 
 const Calculator = () => {
@@ -212,8 +213,13 @@ const Calculator = () => {
     } 
   }
 
+  const backText = `<-`
+
   return (
     <S_Page>
+      <S_Header>
+        <Link href='/theodinproject'><a>{ backText }</a></Link>
+      </S_Header>
       <S_Calculator>
         <S_ResultsContainer>
           <S_ResultsContainerTwo>
@@ -261,7 +267,7 @@ const Calculator = () => {
           </S_TopRow>
           <S_BottomQuadrant>
             <button onClick={(e) => handleInput(e)} value={7}>7</button>
-            <button onClick={(e) => handleInput(e)} value={8}>9</button>
+            <button onClick={(e) => handleInput(e)} value={8}>8</button>
             <button onClick={(e) => handleInput(e)} value={9}>9</button>
             <button onClick={(e) => handleInput(e)} value={'/'}>÷</button>
 
@@ -289,13 +295,34 @@ const Calculator = () => {
 export default Calculator
 
 const S_Page = styled.main`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: #a7c6ff;
   display: flex;
   flex-direction: column;
   jusityf-content: center;
   align-items: center;
+`
+
+const S_Header = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 1rem;
+
+  a {
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    background-color: #0000002f;
+    color: transparent;
+    text-shadow: 2px 2px 3px #c0e4ff69;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+  }
 `
 
 const S_Calculator = styled.div`

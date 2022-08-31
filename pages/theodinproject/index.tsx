@@ -14,6 +14,11 @@ const links = [
     href: '/theodinproject/calculator',
     title: 'Calculator',
     subtitle: 'Neumorphic Design'
+  },
+  {
+    href: '/theodinproject/etchasketch',
+    title: 'Mouse-A-Sketch',
+    subtitle: 'Retro Design'
   }
   
 ]

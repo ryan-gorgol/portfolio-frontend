@@ -21,6 +21,11 @@ const links = [
     href: '/counterservice',
     title: 'CounterService',
     subtitle: 'Full Stack Web App'
+  },
+  {
+    href: '/theodinproject',
+    title: 'The Odin Project',
+    subtitle: 'Full Stack Education'
   }
 ]
 
