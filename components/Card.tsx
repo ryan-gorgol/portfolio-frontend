@@ -31,6 +31,7 @@ const S_Card = styled.div`
   max-width: 35rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
+  color: var(--white);
 
   &:hover {
     transition: 0.25s;
