@@ -8,21 +8,20 @@ interface Props {
 
 const links = [
   {
-    href: '/eventcharm',
+    href: '/',
     title: 'EventCharm',
     subtitle: 'UX Design / UI Develop'
   },
   {
-    href: '/daybyday',
+    href: '/',
     title: 'Day By Day',
     subtitle: 'Full Stack Website'
   },
   {
-    href: '/counterservice',
+    href: '/',
     title: 'CounterService',
     subtitle: 'Full Stack Web App'
   }
-
 ]
 
 const PortfolioSection = (props: Props) => {
