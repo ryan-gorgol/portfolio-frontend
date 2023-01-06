@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import Line from '../Line'
-
 interface Props {
 
 }
@@ -16,12 +14,6 @@ const InfoSection = (props: Props) => {
     >
       <div>
         <S_SpanTitle>What I Do</S_SpanTitle>
-        <Line content='User Experience'/>
-        <Line content='User Interface'/>
-        <Line content='Wireframing'/>
-        <Line content='Rapid Prototyping'/>
-        <Line content='CI/CD'/>
-        <Line content='Full Stack Development'/>
       </div>
       
       

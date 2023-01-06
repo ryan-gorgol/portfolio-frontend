@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import Line from '../Line'
-
 interface Props {
 
 }
@@ -10,9 +8,9 @@ interface Props {
 const ContactSection = (props: Props) => {
   return (
     <S_Contact
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5, delay: 0.9 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.9 }}
     >
       <div>
         <S_Link href="mailto: ryangorgol@gmail.com">EMAIL</S_Link>
@@ -41,7 +39,6 @@ const S_Contact = styled(motion.div)`
 `
 
 const S_Link = styled(motion.a)`
-  // consistent with Line component styling
   font-size: calc(1.2rem + var(--vw_50));
   line-height: auto;
   font-weight: 300;

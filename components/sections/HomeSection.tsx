@@ -1,15 +1,11 @@
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-import Line from '../Line'
-
 interface Props {
   onClick?: any
 }
 
 const HomeSection = ({onClick}: Props) => {
-
-
 
   return (
     <S_Home
@@ -18,10 +14,10 @@ const HomeSection = ({onClick}: Props) => {
       transition={{ duration: 0.5, delay: 0.9 }}
       onClick={onClick}
     >
-      <Line content='I enjoy'></Line>
-      <Line content='DESIGNING experiences'></Line>
-      <Line content='DEVELOPING ideas'></Line>
-      <Line content='DEPLOYING products'></Line>
+      <div>I enjoy</div>
+      <div>DESIGNING experiences</div>
+      <div>DEVELOPING ideas</div>
+      <div>DEPLOYING products</div>
          
       
     </S_Home>
