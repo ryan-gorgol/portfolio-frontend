@@ -1,24 +1,19 @@
 import styled from "styled-components"
-import { useRef } from 'react'
+import { menuItems } from "../pages"
 
 interface Props {
-  onClick?: any,
-  clickHome?: any,
-  clickPortfolio?: any,
-  clickInfo?: any,
-  clickContact?: any
+  menuItems?: menuItems
 }
 
-const Menu = ({ clickHome, clickPortfolio, clickInfo, clickContact}: Props) => {
-
-  
+const Menu = ({menuItems}: Props) => {
  
   return (
     <S_Menu >
-      <S_MenuItem onClick={clickHome}>Home</S_MenuItem>
-      <S_MenuItem onClick={clickPortfolio}>Portfolio</S_MenuItem>
-      <S_MenuItem onClick={clickInfo}>Info</S_MenuItem>
-      <S_MenuItem onClick={clickContact}>Contact</S_MenuItem>
+      {
+        menuItems !== undefined
+          ? menuItems.map(({title, href}, index) => <S_MenuItem key={index} href={href}>{title}</S_MenuItem>)
+          : <></>
+      } 
     </S_Menu>
   ) 
 }

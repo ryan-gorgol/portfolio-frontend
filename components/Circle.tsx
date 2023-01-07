@@ -36,7 +36,8 @@ const S_Circle = styled(motion.div)`
   border-radius: 50%;
   background: radial-gradient(circle, var(--red), #ec6c6c88, #ec6c6c25);
   position: absolute;
-  right: -10vmax;
+  right: -20vmax;
+  bottom: -20vmax;
   z-index: 1;
 `
 

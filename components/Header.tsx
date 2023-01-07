@@ -8,7 +8,7 @@ function Header({title}: Props) {
   return (
     <S_Header>
       <h1>{title}</h1>
-      <h3>design &rarr; develop</h3>
+      {/* <h3>design &rarr; develop</h3> */}
     </S_Header>
   )
 }
