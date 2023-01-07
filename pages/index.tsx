@@ -11,6 +11,7 @@ import Circle from '../components/Circle'
 
 type menuItem = {
   title: string,
+  caption: string,
   href: string,
 }
 
@@ -23,15 +24,18 @@ const Home = () => {
 
   const menuItems: menuItems = [
     {
-      title: 'CounterService - WebApp',
+      title: 'CounterService',
+      caption: 'WebApp',
       href: '/counterservice'
     },
     {
-      title: 'Formation - OpenSource',
+      title: 'Formation',
+      caption: 'Open Source',
       href: '/formation'
     },
     {
       title: 'GitHub',
+      caption: 'ryan-gorgol',
       href: '/github'
     }
   ]
@@ -58,7 +62,7 @@ const Home = () => {
             animate={{ scale: 0.98 }}
             transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
           >
-            <b>{'Hey Everybody'}</b> <em> portfolio </em>
+            <b>{'Ryan Gorgol'}</b> <em> portfolio </em>
           </LoadingTitle>
         </LoadingTitleWrapper>
 
@@ -68,7 +72,7 @@ const Home = () => {
           transition={{ duration: 3.5, ease: 'easeInOut' }}
         >
           <S_Box onClick={() => setRipple(!ripple)}>
-            <Header title={'Hey Everybody'}/>
+            <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} />
             <Circle ripple={ripple} />
             <S_ContentWrap>
               <Menu menuItems={menuItems} />

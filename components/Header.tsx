@@ -1,14 +1,15 @@
 import styled from "styled-components"
 
 interface Props {
-  title: string
+  title: string,
+  subtitle: string,
 }
 
-function Header({title}: Props) {
+function Header({title, subtitle}: Props) {
   return (
     <S_Header>
       <h1>{title}</h1>
-      {/* <h3>design &rarr; develop</h3> */}
+      <h3>{subtitle}</h3>
     </S_Header>
   )
 }
