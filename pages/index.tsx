@@ -54,7 +54,9 @@ const Home = () => {
             transition={{ duration: 2.5, ease: 'easeInOut' }}
           >
             <S_Box onClick={() => setRipple(!ripple)}>
-              <HomeContent ripple={ripple} renderButton={false} />
+              <S_Content>
+                <HomeContent ripple={ripple} renderButton={false} />
+              </S_Content>
             </S_Box>
           </Loading >
         </>
@@ -84,7 +86,6 @@ const LoadingTitleWrapper = styled(motion.div)`
 
 const Loading = styled(motion.div)`
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,13 +97,8 @@ const LoadingTitle = styled(motion.div)`
   z-index: 1000;
 `
 
-
 const S_Content = styled.div`
   width: 100%;
   height: 45%;
   z-index: 100;
 `
-
-
-
-

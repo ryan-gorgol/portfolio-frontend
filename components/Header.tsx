@@ -23,15 +23,15 @@ export default Header
 const S_Header = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
 `
 
 const S_Title = styled.div`
-  width: calc(100% - 5rem);
+  width: calc(100% - 3rem);
   position: relative;
   color: var(--white);
   z-index: 100;
   font-family: 'IBM Plex Sans', sans-serif;
-  padding: 1rem;
   padding-bottom: max(4rem, 4vmin);
 
   h1 {
@@ -55,6 +55,7 @@ const S_Button = styled.a<{
   renderButton?: boolean
 }>`
   display: ${props => props.renderButton ? 'flex' : 'none'};
+  box-sizing: border-box;
   width: 2rem;
   height: 2rem;
   align-items: center;
@@ -64,5 +65,4 @@ const S_Button = styled.a<{
   color: var(--white);
   border-radius: 0.5rem;
   position: relative;
-  top: 1rem;
 `

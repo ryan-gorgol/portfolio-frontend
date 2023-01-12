@@ -14,7 +14,9 @@ interface Props {
 const HomeContent = ({ripple, renderButton}: Props) => {
   return (
     <>
-      <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} renderButton={renderButton} />
+      <S_HeaderContainer>
+        <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} renderButton={renderButton} />
+      </S_HeaderContainer>
       <Circle ripple={ripple} />
       <S_ContentWrap>
         <Menu menuItems={menuItems} />
@@ -32,4 +34,9 @@ const S_ContentWrap = styled.div`
   @media only screen and (max-width: 750px){
 	  flex-wrap: wrap;
   }
+`
+
+const S_HeaderContainer = styled.div`
+  width: 100%;
+  padding: 1rem;
 `
