@@ -20,6 +20,8 @@ const S_Page = styled.div`
   display: flex;
   background: #303030;
   margin: 1rem;
+  color: var(--white);
+  background: var(--black);
   
 `
 

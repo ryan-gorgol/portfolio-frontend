@@ -13,9 +13,3 @@ const counterservice = () => {
 }
 
 export default counterservice
-
-const S_Background = styled.div`
-  width: 100%;
-  height: calc(100vh - 2rem);
-  background: #d79c9c;
-`

@@ -11,6 +11,7 @@ import Header from '../components/Header'
 import Menu from '../components/Menu'
 import Circle from '../components/Circle'
 import HomeContent from '../components/HomeContent'
+import Page from '../components/Page'
 
 
 
@@ -31,56 +32,38 @@ const Home = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <S_Main>
-        <LoadingTitleWrapper
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <LoadingTitle
-            initial={{ scale: 1.0 }}
-            animate={{ scale: 0.98 }}
-            transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
+      <Page>
+        <>
+          <LoadingTitleWrapper
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ duration: 2 }}
           >
-            <b>Ryan Gorgol</b> <em> portfolio </em>
-          </LoadingTitle>
-        </LoadingTitleWrapper>
+            <LoadingTitle
+              initial={{ scale: 1.0 }}
+              animate={{ scale: 0.98 }}
+              transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
+            >
+              <b>Ryan Gorgol</b> <em> portfolio </em>
+            </LoadingTitle>
+          </LoadingTitleWrapper>
 
-        <Loading
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0,0,1] }}
-          transition={{ duration: 2.5, ease: 'easeInOut' }}
-        >
-          <S_Box onClick={() => setRipple(!ripple)}>
-            <HomeContent ripple={ripple} renderButton={false} />
-          </S_Box>
-        </Loading >
-      </S_Main>
+          <Loading
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0,0,1] }}
+            transition={{ duration: 2.5, ease: 'easeInOut' }}
+          >
+            <S_Box onClick={() => setRipple(!ripple)}>
+              <HomeContent ripple={ripple} renderButton={false} />
+            </S_Box>
+          </Loading >
+        </>
+      </Page>
     </>
   )
 }
 
 export default Home
-
-const S_Main = styled.main`
-  width: 94vw;
-  height: 90vh;
-  padding: 1vh 1vw;
-  margin: 3vh auto auto auto;
-  overflow-x: hidden; 
-  overflow-y: hidden;
-  background: var(--black);
-  color: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media only screen and (max-width: 450px){
-	  width: 88vw;
-    height: 80vh;
-    margin-top: 1rem;
-  }
-`
 
 const S_Box = styled.div`
   width: 100%;
