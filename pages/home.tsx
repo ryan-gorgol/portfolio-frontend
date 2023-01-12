@@ -5,18 +5,7 @@ import { motion } from 'framer-motion'
 // components
 
 import Head from 'next/head'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import Circle from '../components/Circle'
 import HomeContent from '../components/HomeContent'
-
-type menuItem = {
-  title: string,
-  caption: string,
-  href: string,
-}
-
-export type menuItems = menuItem[]
 
 
 const Home = () => {
