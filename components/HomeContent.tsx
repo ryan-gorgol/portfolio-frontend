@@ -7,13 +7,14 @@ import Header from './Header'
 import Menu from './Menu'
 
 interface Props {
-  ripple: boolean
+  ripple: boolean,
+  renderButton: boolean
 }
 
-const HomeContent = ({ripple}: Props) => {
+const HomeContent = ({ripple, renderButton}: Props) => {
   return (
     <>
-     <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} />
+      <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} renderButton={renderButton} />
       <Circle ripple={ripple} />
       <S_ContentWrap>
         <Menu menuItems={menuItems} />

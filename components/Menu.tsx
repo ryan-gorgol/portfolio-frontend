@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { menuItems } from "../pages"
+import { menuItems } from "../data/data"
 
 interface Props {
-  menuItems?: menuItems
+  menuItems?: menuItems 
 }
 
 

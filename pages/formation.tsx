@@ -4,15 +4,15 @@ import Header from '../components/Header'
 import Page from '../components/Page'
 
 
-const github = () => {
+const formation = () => {
   return (
     <Page>
-      <Header title={'github'} subtitle={'non-rcc projects'} renderButton/>
+      <Header title={'formation'} subtitle={'open-source component library'} renderButton/>
     </Page>
   )
 }
 
-export default github
+export default formation
 
 const S_Background = styled.div`
   width: 100%;

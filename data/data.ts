@@ -10,7 +10,7 @@ export const menuItems: menuItems = [
   {
     title: 'CounterService',
     caption: 'WebApp',
-    href: '/home'
+    href: '/counterservice'
   },
   {
     title: 'Formation',

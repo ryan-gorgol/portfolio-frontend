@@ -4,15 +4,15 @@ import Header from '../components/Header'
 import Page from '../components/Page'
 
 
-const github = () => {
+const counterservice = () => {
   return (
     <Page>
-      <Header title={'github'} subtitle={'non-rcc projects'} renderButton/>
+      <Header title={'counterservice'} subtitle={'webapp'} renderButton/>
     </Page>
   )
 }
 
-export default github
+export default counterservice
 
 const S_Background = styled.div`
   width: 100%;

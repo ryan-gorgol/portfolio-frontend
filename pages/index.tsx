@@ -52,7 +52,7 @@ const Home = () => {
           transition={{ duration: 2.5, ease: 'easeInOut' }}
         >
           <S_Box onClick={() => setRipple(!ripple)}>
-            <HomeContent ripple={ripple} />
+            <HomeContent ripple={ripple} renderButton={false} />
           </S_Box>
         </Loading >
       </S_Main>

@@ -31,7 +31,7 @@ const Home = () => {
         >
           <S_Box onClick={() => setRipple(!ripple)}>
             <S_Content>
-              <HomeContent ripple={ripple} />
+              <HomeContent ripple={ripple} renderButton={false} />
             </S_Content>
           </S_Box>
         </Loading >
