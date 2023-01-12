@@ -16,6 +16,6 @@ export default github
 const S_Background = styled.div`
   position: relative;
   width: 100%;
-  height: 120vh;
+  height: calc(100vh - 2rem);
   background: #d79c9c;
 `

@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-import { menuItems } from '../data/data'
-
 // components
 
 import Head from 'next/head'
@@ -12,13 +10,18 @@ import Menu from '../components/Menu'
 import Circle from '../components/Circle'
 import HomeContent from '../components/HomeContent'
 
+type menuItem = {
+  title: string,
+  caption: string,
+  href: string,
+}
+
+export type menuItems = menuItem[]
 
 
 const Home = () => {
 
   const [ripple, setRipple] = useState<boolean>(true);
-
-  
 
   return (
     <>
@@ -32,27 +35,15 @@ const Home = () => {
       </Head>
 
       <S_Main>
-        <LoadingTitleWrapper
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 2 }}
-        >
-          <LoadingTitle
-            initial={{ scale: 1.0 }}
-            animate={{ scale: 0.98 }}
-            transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
-          >
-            <b>Ryan Gorgol</b> <em> portfolio </em>
-          </LoadingTitle>
-        </LoadingTitleWrapper>
-
         <Loading
           initial={{ opacity: 0 }}
           animate={{ opacity: [0,0,1] }}
-          transition={{ duration: 2.5, ease: 'easeInOut' }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
         >
           <S_Box onClick={() => setRipple(!ripple)}>
-            <HomeContent ripple={ripple} />
+            <S_Content>
+              <HomeContent ripple={ripple} />
+            </S_Content>
           </S_Box>
         </Loading >
       </S_Main>
@@ -90,15 +81,6 @@ const S_Box = styled.div`
   overflow: hidden;
 ` 
 
-const LoadingTitleWrapper = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
 const Loading = styled(motion.div)`
   width: 100%;
   height: 100%;
@@ -106,13 +88,6 @@ const Loading = styled(motion.div)`
   justify-content: center;
   align-items: center;
 `
-
-const LoadingTitle = styled(motion.div)`
-  font-size: 2rem;
-  position: absolute;
-  z-index: 1000;
-`
-
 
 const S_Content = styled.div`
   width: 100%;
