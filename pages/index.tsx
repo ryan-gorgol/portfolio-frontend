@@ -69,7 +69,7 @@ const Home = () => {
         <Loading
           initial={{ opacity: 0 }}
           animate={{ opacity: [0,0,1] }}
-          transition={{ duration: 3.5, ease: 'easeInOut' }}
+          transition={{ duration: 2.5, ease: 'easeInOut' }}
         >
           <S_Box onClick={() => setRipple(!ripple)}>
             <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} />
