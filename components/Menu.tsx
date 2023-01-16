@@ -1,4 +1,7 @@
 import styled from "styled-components"
+import { useState } from "react"
+import Link from "next/link"
+
 import { menuItems } from "../data/data"
 
 interface Props {
@@ -8,15 +11,27 @@ interface Props {
 
 const Menu = ({menuItems}: Props) => {
  
+  const [isRedirecting, setIsRedirecting] = useState<boolean>(false)
+
+  const handleClick = (href: string) => {
+    alert(`${href}`)
+    setIsRedirecting(true);
+    setTimeout(() => {
+      window.location.href = `${href}`;
+    }, 600);
+  };
+
   return (
     <S_Menu >
       {
         menuItems !== undefined
-          ? menuItems.map(({title, href, caption}, index) => (
-            <S_MenuItem key={index} href={href}>
+          ? menuItems.map(({ title, href, caption }, index) => (
+            <Link href='' as='' key={index} passHref>
+              <S_MenuItem  onClick={() => handleClick(href)}>
               <S_Title>{title}</S_Title>
               <S_Caption>{caption}</S_Caption>
-            </S_MenuItem>
+              </S_MenuItem>
+            </Link>
             ))
           : <></>
       } 

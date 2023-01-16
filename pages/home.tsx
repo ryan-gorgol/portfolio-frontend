@@ -28,7 +28,7 @@ const Home = () => {
         <Loading
           initial={{ opacity: 0 }}
           animate={{ opacity: [0,0,1] }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          transition={{ duration: .75, ease: 'easeInOut' }}
         >
           <S_Box onClick={() => setRipple(!ripple)}>
             <S_Content>

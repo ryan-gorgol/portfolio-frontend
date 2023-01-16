@@ -1,3 +1,4 @@
+import Link from "next/link"
 import styled from "styled-components"
 
 interface Props {
@@ -13,7 +14,9 @@ function Header({title, subtitle, renderButton}: Props) {
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
       </S_Title>
-      <S_Button href={'/home'} renderButton={renderButton}>&larr;</S_Button>
+      <Link href='/home' passHref>
+        <S_Button  renderButton={renderButton}>&larr;</S_Button>
+      </Link>
     </S_Header>
   )
 }
