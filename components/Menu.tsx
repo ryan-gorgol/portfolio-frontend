@@ -1,21 +1,34 @@
 import styled from "styled-components"
-import { useState } from "react"
+import { motion } from 'framer-motion'
+
 import Link from "next/link"
 
 import { menuItems } from "../data/data"
+import { useState } from "react"
 
 interface Props {
   menuItems?: menuItems 
 }
 
+const variants = {
+  down: {
+    x: [0 , 50 , 0]
+    
+  },
+  up: {
+    x: [0 , 100 , 0]
+  }
+}
 
-const Menu = ({menuItems}: Props) => {
- 
-  const [isRedirecting, setIsRedirecting] = useState<boolean>(false)
 
-  const handleClick = (href: string) => {
-    alert(`${href}`)
-    setIsRedirecting(true);
+const Menu = ({ menuItems }: Props) => {
+  
+  const [isSelected, setIsSelected] = useState<boolean>(false)
+  const [idSelected, setIdSelected] = useState<number>()
+
+  const handleClick = (href: string, index: number) => {
+    setIsSelected(true)
+    setIdSelected(index)
     setTimeout(() => {
       window.location.href = `${href}`;
     }, 600);
@@ -27,9 +40,15 @@ const Menu = ({menuItems}: Props) => {
         menuItems !== undefined
           ? menuItems.map(({ title, href, caption }, index) => (
             <Link href='' as='' key={index} passHref>
-              <S_MenuItem  onClick={() => handleClick(href)}>
-              <S_Title>{title}</S_Title>
-              <S_Caption>{caption}</S_Caption>
+              <S_MenuItem
+                onClick={() => handleClick(href, index)}
+                variants={variants}
+                initial='down'
+                animate={isSelected && index === idSelected ? 'up' : 'down'}
+                transition={{ duration: 1.2 }}
+              >
+                <S_Title>{title}</S_Title>
+                <S_Caption>{caption}</S_Caption>
               </S_MenuItem>
             </Link>
             ))
@@ -50,7 +69,7 @@ const S_Menu = styled.div`
   z-index: 10;
 `
 
-const S_MenuItem = styled.a`
+const S_MenuItem = styled(motion.a)`
   cursor: pointer;
   z-index: 20;
   text-transform: uppercase;
