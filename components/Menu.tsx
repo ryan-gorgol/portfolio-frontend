@@ -11,11 +11,11 @@ interface Props {
 }
 
 const variants = {
-  down: {
+  left: {
     x: [0 , 50 , 0]
     
   },
-  up: {
+  right: {
     x: [0 , 100 , 0]
   }
 }
@@ -43,8 +43,8 @@ const Menu = ({ menuItems }: Props) => {
               <S_MenuItem
                 onClick={() => handleClick(href, index)}
                 variants={variants}
-                initial='down'
-                animate={isSelected && index === idSelected ? 'up' : 'down'}
+                initial='left'
+                animate={isSelected && index === idSelected ? 'right' : 'left'}
                 transition={{ duration: 1.2 }}
               >
                 <S_Title>{title}</S_Title>

@@ -31,22 +31,22 @@ const S_Header = styled.div`
 
 const S_Title = styled.div`
   width: calc(100% - 3rem);
+  height: 6rem;
   position: relative;
   color: var(--white);
   z-index: 100;
-  font-family: 'IBM Plex Sans', sans-serif;
   padding-bottom: max(4rem, 4vmin);
 
   h1 {
     margin: 0;
-    font-size: calc(var(--font_size_header_title) + var(--vw_50));
+    font-size: calc(var(--font_size_header_title) + var(--vw_25));
     font-weight: 200;
     letter-spacing: -1.5px;
-    line-height: 1;
+    /* line-height: 1; */
   }
 
   h3 {
-    font-size: calc(var(--font_size_header_subtitle) + var(--vw_50));
+    font-size: calc(var(--font_size_header_subtitle) + var(--vw_25));
     font-weight: 100;
     margin: 0;
     margin-top: 0.5rem;
