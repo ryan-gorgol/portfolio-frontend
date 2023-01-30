@@ -9,13 +9,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     let vw = document.documentElement.clientWidth * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     document.documentElement.style.setProperty('--vw', `${vw}px`);
-    console.log(vh, 'vh', vw, 'vw')
   }
   
   return (
-    <>
       <Component {...pageProps} />
-    </>
   );
 };
 
