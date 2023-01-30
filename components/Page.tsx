@@ -19,9 +19,8 @@ const S_Page = styled.div`
   min-height: calc(100vh - 2rem);
   display: flex;
   background: #303030;
-  margin: 1rem;
+  margin: var(--page_border_margin);
   color: var(--white);
   background: var(--black);
-  
 `
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 interface Props {
   title: string,
-  subtitle: string,
+  subtitle?: string,
   renderButton: boolean
 }
 
@@ -12,7 +12,7 @@ function Header({title, subtitle, renderButton}: Props) {
     <S_Header>
       <S_Title>
         <h1>{title}</h1>
-        <h3>{subtitle}</h3>
+        {subtitle ? <h2>{subtitle}</h2> : <></>}
       </S_Title>
       <Link href='/home' passHref>
         <S_Button  renderButton={renderButton}>&larr;</S_Button>
@@ -31,13 +31,14 @@ const S_Header = styled.div`
 
 const S_Title = styled.div`
   width: calc(100% - 3rem);
-  height: 6rem;
+  height: fit-content;
   position: relative;
   color: var(--white);
   z-index: 100;
-  padding-bottom: max(4rem, 4vmin);
+  padding-bottom: 1rem;
 
   h1 {
+    height: 100%;
     margin: 0;
     font-size: calc(var(--font_size_header_title) + var(--vw_25));
     font-weight: 200;
@@ -45,7 +46,7 @@ const S_Title = styled.div`
     /* line-height: 1; */
   }
 
-  h3 {
+  h2 {
     font-size: calc(var(--font_size_header_subtitle) + var(--vw_25));
     font-weight: 100;
     margin: 0;

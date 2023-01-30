@@ -31,7 +31,7 @@ const Menu = ({ menuItems }: Props) => {
     setIdSelected(index)
     setTimeout(() => {
       window.location.href = `${href}`;
-    }, 600);
+    }, 250);
   };
 
   return (

@@ -15,7 +15,7 @@ const HomeContent = ({ripple, renderButton}: Props) => {
   return (
     <>
       <S_HeaderContainer>
-        <Header title={'Ryan Gorgol'} subtitle={'full stack portfolio'} renderButton={renderButton} />
+        <Header title={'Ryan Gorgol'} subtitle={'full stack developer'} renderButton={renderButton} />
       </S_HeaderContainer>
       <Circle ripple={ripple} />
       <S_ContentWrap>

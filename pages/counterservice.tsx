@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import styled from 'styled-components'
+import Button from '../components/Button'
 import Header from '../components/Header'
 import ItemContent from '../components/ItemContent'
 
 import Page from '../components/Page'
+
+import { counterServiceContent } from '../data/data'
 
 
 const counterservice = () => {
@@ -11,14 +14,14 @@ const counterservice = () => {
     <Page>
       <S_Container>
         <S_TopWrap>
-          <Header title={'counter service'} subtitle={'webapp'} renderButton/>
-          <ItemContent />
+          <Header title={'counter service'}  renderButton/>
+          <ItemContent content={counterServiceContent} />
         </S_TopWrap>
-        <S_Button>
-          <Link href='' passHref>
+        <Button>
+          <Link href='https://counterservice-grgl.netlify.app' passHref>
             <S_A>visit counterservice</S_A>
           </Link>
-        </S_Button>
+        </Button>
       </S_Container>
     </Page>
   )
@@ -37,17 +40,6 @@ const S_Container = styled.div`
 const S_TopWrap = styled.div`
   width: 100%;
   height: fit-content;
-`
-
-const S_Button = styled.div`
-  width: fit-content;
-  height: 2rem;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--white);
-  border-radius: 0.5rem;
 `
 
 const S_A = styled.a`

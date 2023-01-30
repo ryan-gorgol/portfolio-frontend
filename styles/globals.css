@@ -30,9 +30,11 @@
   --font_size_blog_title: 2.25rem;
   --font_size_blog_subtitle: 1.5rem;
 
-  
 
-  
+  /* SIZES */
+
+  --page_border_margin: 1rem;
+  --page_border_margin_total: calc(2 * var(--page_border_margin));
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
