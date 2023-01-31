@@ -6,20 +6,21 @@ import ItemContent from '../components/ItemContent'
 
 import Page from '../components/Page'
 
-import { counterServiceContent } from '../data/data'
+import { formationContent } from '../data/data'
 
 
-const counterservice = () => {
+const formation = () => {
   return (
     <Page>
+      
       <S_Container>
         <S_TopWrap>
-          <Header title={'counter service'}  renderButton/>
-          <ItemContent content={counterServiceContent} />
+        <Header title={'formation'} renderButton />
+          <ItemContent content={formationContent} />
         </S_TopWrap>
         <Button>
-          <Link href='https://counterservice-grgl.netlify.app' passHref>
-            <S_A>visit counterservice</S_A>
+          <Link href='https://main--formation-ui.netlify.app/?path=/story/advanced-input-timeline--activities' passHref>
+            <S_A>visit Formation</S_A>
           </Link>
         </Button>
       </S_Container>
@@ -27,7 +28,7 @@ const counterservice = () => {
   )
 }
 
-export default counterservice
+export default formation
 
 const S_Container = styled.div`
   width: 100%;

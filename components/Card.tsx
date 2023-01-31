@@ -31,6 +31,7 @@ const S_Card = styled.div`
   max-width: 35rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
+  color: var(--white);
 
   &:hover {
     transition: 0.25s;
@@ -39,7 +40,7 @@ const S_Card = styled.div`
 `
 
 const S_Title = styled.div`
-  font-size: calc(var(--font_size_portfolio_section_title) + (var(--vw_100) * 2));
+  font-size: calc(var(--font_size_portfolio_section_title) + (var(--vw_50) * 2));
   font-weight: 100;
   text-align: right;
   color: inherit;
