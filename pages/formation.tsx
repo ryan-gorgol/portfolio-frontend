@@ -20,7 +20,7 @@ const formation = () => {
         </S_TopWrap>
         <Button>
           <Link href='https://main--formation-ui.netlify.app/?path=/story/advanced-input-timeline--activities' passHref>
-            <S_A>visit Formation</S_A>
+            <S_A>VISIT FORMATION</S_A>
           </Link>
         </Button>
       </S_Container>
@@ -35,7 +35,8 @@ const S_Container = styled.div`
   height: calc(100vh - 2rem);
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const S_TopWrap = styled.div`

@@ -19,7 +19,7 @@ const counterservice = () => {
         </S_TopWrap>
         <Button>
           <Link href='https://counterservice-grgl.netlify.app' passHref>
-            <S_A>visit counterservice</S_A>
+            <S_A>VISIT COUNTERSERVICE</S_A>
           </Link>
         </Button>
       </S_Container>
@@ -34,7 +34,8 @@ const S_Container = styled.div`
   height: calc(100vh - 2rem);
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const S_TopWrap = styled.div`

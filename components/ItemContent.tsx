@@ -11,9 +11,9 @@ const ItemContent = ({content}: Props) => {
       <S.LeadLine>
        {content?.hook}
       </S.LeadLine>
-      <S.Copy>
+      <S.Bait>
         {content?.bait}
-      </S.Copy>
+      </S.Bait>
     </S.Container>
   )
 }
@@ -25,12 +25,14 @@ const S = {
     width: 100%;
   `,
   LeadLine: styled.h2`
-    font-weight: 200;
+    font-weight: 400;
     padding-bottom: 2rem;
     margin: 0;
+    color: var(--white);
   `,
-  Copy: styled.div`
+  Bait: styled.div`
     font-weight: 200;
     letter-spacing: .9px;
+    color: var(--light_gray);
   `
 }
