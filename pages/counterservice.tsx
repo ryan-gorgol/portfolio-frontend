@@ -17,11 +17,13 @@ const counterservice = () => {
           <Header title={'counter service'}  renderButton/>
           <ItemContent content={counterServiceContent} />
         </S_TopWrap>
-        <Button>
-          <Link href='https://counterservice-grgl.netlify.app' passHref>
-            <S_A>VISIT COUNTERSERVICE</S_A>
-          </Link>
-        </Button>
+        <S_BottomWrap>
+          <Button>
+            <Link href='https://counterservice-grgl.netlify.app' passHref>
+              <S_A>VISIT COUNTERSERVICE</S_A>
+            </Link>
+          </Button>
+        </S_BottomWrap>
       </S_Container>
     </Page>
   )
@@ -41,6 +43,14 @@ const S_Container = styled.div`
 const S_TopWrap = styled.div`
   width: 100%;
   height: fit-content;
+`
+
+const S_BottomWrap = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 1rem;
 `
 
 const S_A = styled.a`
