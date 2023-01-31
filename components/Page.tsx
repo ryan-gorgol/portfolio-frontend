@@ -16,7 +16,7 @@ export default Page
 
 const S_Page = styled.div`
   width: var(--page_width);
-  min-height: calc(100vh - 2rem);
+  min-height: var(--page_height);
   display: flex;
   background: #303030;
   margin: var(--page_border_margin);
