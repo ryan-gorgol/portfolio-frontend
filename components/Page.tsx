@@ -15,7 +15,7 @@ const Page = ({children}: Props) => {
 export default Page
 
 const S_Page = styled.div`
-  width: calc(100vw - var(--page_border_margin_total));
+  width: var(--page_width);
   min-height: calc(100vh - 2rem);
   display: flex;
   background: #303030;
