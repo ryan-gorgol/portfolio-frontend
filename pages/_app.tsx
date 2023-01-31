@@ -1,11 +1,8 @@
 import '../styles/globals.css'
 
 import type { AppProps } from 'next/app'
-import { useEffect, useState } from 'react';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-
-  const [clientWindow, set_clientWindow] = useState(typeof window !== 'undefined' ? true : false)
 
   if (typeof window !== 'undefined') {
     console.log('hey window', window)

@@ -21,12 +21,12 @@ const github = () => {
         <S_BottomWrap>
         <Button>
           <Link href='https://github.com/ryan-gorgol' passHref>
-            <S_A>visit GitHub</S_A>
+            <S_A>VISIT GITHUB</S_A>
           </Link>
         </Button>
         <Button>
           <Link href='https://www.linkedin.com/in/ryan-gorgol' passHref>
-            <S_A>visit LinkedIn</S_A>
+            <S_A>VISIT LINKEDIN</S_A>
           </Link>
           </Button>
         </S_BottomWrap>
@@ -42,7 +42,8 @@ const S_Container = styled.div`
   height: calc(100vh - 2rem);
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const S_TopWrap = styled.div`
