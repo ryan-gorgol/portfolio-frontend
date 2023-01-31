@@ -43,7 +43,6 @@ const S_Container = styled.div`
 const S_TopWrap = styled.div`
   width: 100%;
   height: fit-content;
-  background: red;
 `
 
 const S_BottomWrap = styled.div`
@@ -52,7 +51,6 @@ const S_BottomWrap = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 1rem;
-  background: blue;
 `
 
 const S_A = styled.a`
