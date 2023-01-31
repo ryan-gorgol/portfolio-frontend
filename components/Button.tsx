@@ -24,7 +24,6 @@ const S_Button = styled.div`
   border: 1px solid var(--white);
   border-radius: 0.5rem;
   margin-bottom: 1rem;
-  transition: 2.5s;
 
   &:hover {
     border: 1px solid var(--gray);

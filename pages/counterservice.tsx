@@ -33,7 +33,7 @@ export default counterservice
 
 const S_Container = styled.div`
   width: 100%;
-  height: calc(100vh - 2rem);
+  height: var(--page_height);
   position: relative;
   display: flex;
   flex-direction: column;
