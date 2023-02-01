@@ -15,7 +15,7 @@ const formation = () => {
       
       <S_Container>
         <S_TopWrap>
-        <Header title={'formation'} renderButton />
+        {/* <Header title={'formation'} renderButton /> */}
           <ItemContent content={formationContent} />
         </S_TopWrap>
         <Button>

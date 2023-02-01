@@ -14,7 +14,7 @@ const counterservice = () => {
     <Page>
       <S_Container>
         <S_TopWrap>
-          <Header title={'counter service'}  renderButton/>
+          {/* <Header title={'counter service'}  renderButton/> */}
           <ItemContent content={counterServiceContent} />
         </S_TopWrap>
         <S_BottomWrap>

@@ -6,7 +6,7 @@ const dashboard = () => {
   return (
     <Page>
       <>
-        <Header title={'dashboard'} renderButton />
+        {/* <Header title={'dashboard'} renderButton /> */}
         
       </>
     </Page>

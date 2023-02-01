@@ -15,7 +15,7 @@ const github = () => {
     <Page>
       <S_Container>
         <S_TopWrap>
-          <Header title={'Links'}  renderButton/>
+          {/* <Header title={'Links'}  renderButton/> */}
           <ItemContent content={gitHubContent} />
         </S_TopWrap>
         <S_BottomWrap>
