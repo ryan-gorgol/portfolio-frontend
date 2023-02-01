@@ -1,13 +1,12 @@
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-import Link from "next/link"
-
-import { menuItems } from "../data/data"
+import { HeaderContent, MenuItems } from "../data/data"
 import { useState } from "react"
 
 interface Props {
-  menuItems?: menuItems 
+  menuItems?: MenuItems,
+  onChange: (newValue: HeaderContent) => void
 }
 
 const variants = {
@@ -20,37 +19,40 @@ const variants = {
   }
 }
 
-
-const Menu = ({ menuItems }: Props) => {
+const Menu = ({ menuItems, onChange }: Props) => {
   
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const [idSelected, setIdSelected] = useState<number>()
 
-  const handleClick = (href: string, index: number) => {
+  const handleClick = (index: number, title: string) => {
     setIsSelected(true)
     setIdSelected(index)
-    setTimeout(() => {
-      window.location.href = `${href}`;
-    }, 250);
+
+    let newValue: HeaderContent = {
+      title: title,
+      subtitle: '',
+      renderButton: true
+    }
+
+    onChange(newValue)
   };
 
   return (
     <S_Menu >
       {
         menuItems !== undefined
-          ? menuItems.map(({ title, href, caption }, index) => (
-            <Link href='' as='' key={index} passHref>
+          ? menuItems.map(({ title, caption }, index) => (
               <S_MenuItem
-                onClick={() => handleClick(href, index)}
+                key={index}
+                onClick={() => handleClick(index, title)}
                 variants={variants}
                 initial='left'
-                animate={isSelected && index === idSelected ? 'right' : 'left'}
+                animate={index === idSelected && isSelected ? 'right' : 'left'}
                 transition={{ duration: 1.2 }}
               >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
               </S_MenuItem>
-            </Link>
             ))
           : <></>
       } 
@@ -64,7 +66,6 @@ const S_Menu = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
   position: relative;
   z-index: 10;
 `

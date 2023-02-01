@@ -11,12 +11,21 @@ import Circle from '../components/Circle'
 import Menu from '../components/Menu'
 
 // DATA
-import { menuItems } from '../data/data'
+import { HeaderContent, menuItems } from '../data/data'
 
 
 const Home = () => {
 
   const [ripple, setRipple] = useState<boolean>(true);
+  const [headerContent, set_headerContent] = useState<HeaderContent>({
+    title: 'Ryan Gorgol',
+    subtitle: 'full stack developer',
+    renderButton: false
+  })
+
+  const onChange = (newValue: HeaderContent) => {
+   set_headerContent(newValue)
+  }
 
   return (
     <>
@@ -28,7 +37,6 @@ const Home = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-
       <Page>
         <Loading
           initial={{ opacity: 0 }}
@@ -37,13 +45,16 @@ const Home = () => {
         >
           <S_Box onClick={() => setRipple(!ripple)}>
             <S_Content>
-              <S_HeaderContainer>
-                <Header title={'Ryan Gorgol'} subtitle={'full stack developer'} renderButton={false} />
-              </S_HeaderContainer>
+              <Header
+                title={headerContent.title}
+                subtitle={headerContent.subtitle}
+                renderButton={headerContent.renderButton}
+              />
+              <Menu
+                menuItems={menuItems}
+                onChange={(newValue) => onChange(newValue)}
+              />
               <Circle ripple={ripple} />
-              <S_ContentWrap>
-                <Menu menuItems={menuItems} />
-              </S_ContentWrap>
             </S_Content>
           </S_Box>
         </Loading >
@@ -74,19 +85,6 @@ const S_Content = styled.div`
   width: 100%;
   height: 45%;
   z-index: 100;
-`
-
-const S_ContentWrap = styled.div`
-  display: flex;
-
-  @media only screen and (max-width: 750px){
-	  flex-wrap: wrap;
-  }
-`
-
-const S_HeaderContainer = styled.div`
-  width: 100%;
-  padding: 1rem;
 `
 
 
