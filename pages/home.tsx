@@ -5,8 +5,13 @@ import { motion } from 'framer-motion'
 // components
 
 import Head from 'next/head'
-import HomeContent from '../components/HomeContent'
 import Page from '../components/Page'
+import Header from '../components/Header'
+import Circle from '../components/Circle'
+import Menu from '../components/Menu'
+
+// DATA
+import { menuItems } from '../data/data'
 
 
 const Home = () => {
@@ -32,7 +37,13 @@ const Home = () => {
         >
           <S_Box onClick={() => setRipple(!ripple)}>
             <S_Content>
-              <HomeContent ripple={ripple} renderButton={false} />
+              <S_HeaderContainer>
+                <Header title={'Ryan Gorgol'} subtitle={'full stack developer'} renderButton={false} />
+              </S_HeaderContainer>
+              <Circle ripple={ripple} />
+              <S_ContentWrap>
+                <Menu menuItems={menuItems} />
+              </S_ContentWrap>
             </S_Content>
           </S_Box>
         </Loading >
@@ -47,6 +58,7 @@ const S_Box = styled.div`
   width: 100%;
   height: 100%;
   border: 1px solid var(--white);
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
 ` 
@@ -62,6 +74,19 @@ const S_Content = styled.div`
   width: 100%;
   height: 45%;
   z-index: 100;
+`
+
+const S_ContentWrap = styled.div`
+  display: flex;
+
+  @media only screen and (max-width: 750px){
+	  flex-wrap: wrap;
+  }
+`
+
+const S_HeaderContainer = styled.div`
+  width: 100%;
+  padding: 1rem;
 `
 
 

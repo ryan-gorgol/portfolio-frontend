@@ -43,6 +43,7 @@ const S_Container = styled.div`
 const S_TopWrap = styled.div`
   width: 100%;
   height: fit-content;
+  background: blue;
 `
 
 const S_BottomWrap = styled.div`
