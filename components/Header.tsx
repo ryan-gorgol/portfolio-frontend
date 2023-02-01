@@ -1,23 +1,43 @@
-import Link from "next/link"
-import styled from "styled-components"
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
+
+const variants = {
+  start: {
+    opacity: [0, 1]
+    
+  },
+  end: {
+    opacity: [1, 0]
+  }
+}
 
 interface Props {
   title: string,
   subtitle?: string,
-  renderButton: boolean
+  renderButton: boolean,
+  onClick: () => void,
+  isMenuOpen: boolean,
+  ripple: boolean
 }
 
-function Header({title, subtitle, renderButton}: Props) {
+function Header({title, subtitle, renderButton, onClick, isMenuOpen, ripple}: Props) {
   return (
-    <S_Container>
+    <S_Container
+      variants={variants}
+      initial='end'
+      animate={!ripple ? 'start' : 'end'}
+      transition={{ duration: 1 }}
+      isMenuOpen={isMenuOpen}
+    >
       <S_Header renderButton={renderButton}>
         <S_Title renderButton={renderButton}>
             <h1>{title}</h1>
             {subtitle ? <h2>{subtitle}</h2> : <></>}
         </S_Title>
-        <Link href='/home' passHref>
-          <S_Button  renderButton={renderButton}>&larr;</S_Button>
-        </Link>
+        <S_Button
+          renderButton={renderButton}
+          onClick={onClick}
+        >&larr;</S_Button>
       </S_Header>
     </S_Container>
   )
@@ -25,11 +45,13 @@ function Header({title, subtitle, renderButton}: Props) {
 
 export default Header
 
-const S_Container = styled.div<{
-
+const S_Container = styled(motion.div)<{
+  isMenuOpen: boolean
 }>`
   width: 100%;
   padding-bottom: 1.5rem;
+  padding-left: ${props => props.isMenuOpen ? '1rem' : '0'};
+  padding-top: ${props => props.isMenuOpen ? '0.6rem' : '0'};
 
 `
 

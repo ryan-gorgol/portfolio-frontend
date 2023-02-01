@@ -1,33 +1,43 @@
-export type menuItem = {
+/* MENU */
+
+export type MenuItem = {
   title: string,
   caption: string,
-  href: string,
 }
 
-export type menuItems = menuItem[]
+export type MenuItems = MenuItem[]
 
-export const menuItems: menuItems = [
+export const menuItems: MenuItems = [
   {
     title: 'CounterService',
-    caption: 'WebApp',
-    href: '/counterservice'
+    caption: 'WebApp'
   },
   {
     title: 'Formation',
-    caption: 'Open Source',
-    href: '/formation'
+    caption: 'Open Source'
   },
   {
-    title: 'Links',
-    caption: 'ryan-gorgol',
-    href: '/github'
+    title: 'Bio',
+    caption: 'links'
   }
 ]
+
+/* HEADER */
+
+export type HeaderContent = {
+  title: string,
+  subtitle: string | undefined,
+  renderButton: boolean
+}
+
+/* SNACKS */
 
 export type SnackContentType = {
   hook: string,
   bait: string
 }
+
+/* CONTENT */
 
 export const counterServiceContent = {
   hook: 'Stand alone app to compliment companies flagship.',

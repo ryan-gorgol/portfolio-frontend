@@ -1,56 +1,61 @@
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-import Link from "next/link"
-
-import { menuItems } from "../data/data"
+import { HeaderContent, MenuItems } from "../data/data"
 import { useState } from "react"
 
 interface Props {
-  menuItems?: menuItems 
+  menuItems?: MenuItems,
+  onChange: (newValue: HeaderContent) => void,
+  onClick: () => void,
+  isOpen: boolean
 }
 
 const variants = {
-  left: {
-    x: [0 , 50 , 0]
+  start: {
+    x: [0, 0]
     
   },
-  right: {
+  end: {
     x: [0 , 100 , 0]
   }
 }
 
-
-const Menu = ({ menuItems }: Props) => {
+const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
   
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const [idSelected, setIdSelected] = useState<number>()
 
-  const handleClick = (href: string, index: number) => {
+  const handleClick = (index: number, title: string) => {
     setIsSelected(true)
     setIdSelected(index)
-    setTimeout(() => {
-      window.location.href = `${href}`;
-    }, 250);
+
+    let newValue: HeaderContent = {
+      title: title,
+      subtitle: '',
+      renderButton: true
+    }
+
+    onChange(newValue)
+    onClick()
   };
 
   return (
-    <S_Menu >
+    <S_Menu isOpen={isOpen}>
       {
         menuItems !== undefined
-          ? menuItems.map(({ title, href, caption }, index) => (
-            <Link href='' as='' key={index} passHref>
+          ? menuItems.map(({ title, caption }, index) => (
               <S_MenuItem
-                onClick={() => handleClick(href, index)}
+                key={index}
+                onClick={() => handleClick(index, title)}
                 variants={variants}
-                initial='left'
-                animate={isSelected && index === idSelected ? 'right' : 'left'}
+                // initial='start'
+                animate={index === idSelected && isSelected ? 'end' : 'start'}
                 transition={{ duration: 1.2 }}
               >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
               </S_MenuItem>
-            </Link>
             ))
           : <></>
       } 
@@ -60,16 +65,19 @@ const Menu = ({ menuItems }: Props) => {
 
 export default Menu
 
-const S_Menu = styled.div`
-  width: 100%;
-  display: flex;
+const S_Menu = styled.div<{
+  isOpen: boolean
+}>`
+  width: fit-content;
+  display: ${props => props.isOpen ? 'flex' : 'none'};
   flex-direction: column;
-  margin-left: 1rem;
   position: relative;
   z-index: 10;
+  margin-left: 1rem;
 `
 
 const S_MenuItem = styled(motion.a)`
+  width: fit-content;
   cursor: pointer;
   z-index: 20;
   text-transform: uppercase;

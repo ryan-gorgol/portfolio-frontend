@@ -2,24 +2,51 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-import { menuItems } from '../data/data'
-
 // components
 
 import Head from 'next/head'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import Circle from '../components/Circle'
-import HomeContent from '../components/HomeContent'
 import Page from '../components/Page'
+import Header from '../components/Header'
+import Circle from '../components/Circle'
+import Menu from '../components/Menu'
 
+// DATA
+import { HeaderContent, menuItems } from '../data/data'
 
 
 const Home = () => {
 
-  const [ripple, setRipple] = useState<boolean>(true);
+  const [ripple, set_ripple] = useState<boolean>(false);
+  const [isMenuOpen, set_isMenuOpen] = useState<boolean>(true)
+  const [headerContent, set_headerContent] = useState<HeaderContent>({
+    title: 'Ryan Gorgol',
+    subtitle: 'full stack developer',
+    renderButton: false
+  })
 
-  
+  const onChange = (newValue: HeaderContent) => {
+    setTimeout(() => {
+      set_headerContent(newValue)
+    }, 1000)
+  }
+
+  const onMenuClick = () => {
+    set_ripple(true)
+    setTimeout(() => {
+      set_isMenuOpen(false)
+      set_ripple(false)
+    }, 1000)
+    
+  }
+
+  const onBackButtonClick = () => {
+    set_isMenuOpen(true)
+    set_headerContent({
+      title: 'Ryan Gorgol',
+      subtitle: 'full stack developer',
+      renderButton: false
+    })
+  }
 
   return (
     <>
@@ -31,35 +58,37 @@ const Home = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-
       <Page>
-        <>
-          <LoadingTitleWrapper
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
-            transition={{ duration: 2 }}
+        <Loading
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0,0,1] }}
+          transition={{ duration: .75, ease: 'easeInOut' }}
+        >
+          <S_Box
+            isMenuOpen={isMenuOpen}
           >
-            <LoadingTitle
-              initial={{ scale: 1.0 }}
-              animate={{ scale: 0.98 }}
-              transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
-            >
-              <b>Ryan Gorgol</b> <em> portfolio </em>
-            </LoadingTitle>
-          </LoadingTitleWrapper>
-
-          <Loading
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0,0,1] }}
-            transition={{ duration: 2.5, ease: 'easeInOut' }}
-          >
-            <S_Box onClick={() => setRipple(!ripple)}>
-              <S_Content>
-                <HomeContent ripple={ripple} renderButton={false} />
-              </S_Content>
-            </S_Box>
-          </Loading >
-        </>
+            <S_Content>
+              <Header
+                title={headerContent.title}
+                subtitle={headerContent.subtitle}
+                renderButton={headerContent.renderButton}
+                onClick={onBackButtonClick}
+                isMenuOpen={isMenuOpen}
+                ripple={ripple}
+              />
+                <Menu
+                  menuItems={menuItems}
+                  onChange={(newValue) => onChange(newValue)}
+                  onClick={() => onMenuClick()}
+                  isOpen={isMenuOpen}
+                />
+                <Circle
+                  ripple={ripple}
+                  isMenuOpen={isMenuOpen}
+                  />
+            </S_Content>
+          </S_Box>
+        </Loading >
       </Page>
     </>
   )
@@ -67,22 +96,16 @@ const Home = () => {
 
 export default Home
 
-const S_Box = styled.div`
+const S_Box = styled.div<{
+  isMenuOpen: boolean
+}>`
   width: 100%;
   height: 100%;
-  border: 1px solid var(--white);
+  border: ${props => props.isMenuOpen ? '1px solid var(--white)' : 'none'};
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
 ` 
-
-const LoadingTitleWrapper = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 const Loading = styled(motion.div)`
   width: 100%;
@@ -91,14 +114,12 @@ const Loading = styled(motion.div)`
   align-items: center;
 `
 
-const LoadingTitle = styled(motion.div)`
-  font-size: 2rem;
-  position: absolute;
-  z-index: 1000;
-`
-
 const S_Content = styled.div`
   width: 100%;
   height: 45%;
   z-index: 100;
 `
+
+
+
+
