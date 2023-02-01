@@ -6,20 +6,22 @@ import { useState } from "react"
 
 interface Props {
   menuItems?: MenuItems,
-  onChange: (newValue: HeaderContent) => void
+  onChange: (newValue: HeaderContent) => void,
+  onClick: () => void,
+  isOpen: boolean
 }
 
 const variants = {
-  left: {
-    x: [0 , 50 , 0]
+  start: {
+    x: [0, 0]
     
   },
-  right: {
+  end: {
     x: [0 , 100 , 0]
   }
 }
 
-const Menu = ({ menuItems, onChange }: Props) => {
+const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
   
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const [idSelected, setIdSelected] = useState<number>()
@@ -35,10 +37,11 @@ const Menu = ({ menuItems, onChange }: Props) => {
     }
 
     onChange(newValue)
+    onClick()
   };
 
   return (
-    <S_Menu >
+    <S_Menu isOpen={isOpen}>
       {
         menuItems !== undefined
           ? menuItems.map(({ title, caption }, index) => (
@@ -46,8 +49,8 @@ const Menu = ({ menuItems, onChange }: Props) => {
                 key={index}
                 onClick={() => handleClick(index, title)}
                 variants={variants}
-                initial='left'
-                animate={index === idSelected && isSelected ? 'right' : 'left'}
+                // initial='start'
+                animate={index === idSelected && isSelected ? 'end' : 'start'}
                 transition={{ duration: 1.2 }}
               >
                 <S_Title>{title}</S_Title>
@@ -62,15 +65,19 @@ const Menu = ({ menuItems, onChange }: Props) => {
 
 export default Menu
 
-const S_Menu = styled.div`
-  width: 100%;
-  display: flex;
+const S_Menu = styled.div<{
+  isOpen: boolean
+}>`
+  width: fit-content;
+  display: ${props => props.isOpen ? 'flex' : 'none'};
   flex-direction: column;
   position: relative;
   z-index: 10;
+  margin-left: 1rem;
 `
 
 const S_MenuItem = styled(motion.a)`
+  width: fit-content;
   cursor: pointer;
   z-index: 20;
   text-transform: uppercase;
