@@ -76,6 +76,7 @@ const Home = () => {
       subtitle: 'full stack developer',
       renderButton: false
     })
+    set_buttons([])
   }
 
   return (
@@ -106,11 +107,11 @@ const Home = () => {
                 isMenuOpen={isMenuOpen}
                 ripple={ripple}
               />
-                <Menu
-                  menuItems={menuItems}
-                  onChange={(newValue) => onChange(newValue)}
-                  onClick={(key) => onMenuClick(key)}
-                  isOpen={isMenuOpen}
+              <Menu
+                menuItems={menuItems}
+                onChange={(newValue) => onChange(newValue)}
+                onClick={(key) => onMenuClick(key)}
+                isOpen={isMenuOpen}
               />
               {
                 isMenuOpen
@@ -119,14 +120,16 @@ const Home = () => {
                       content={itemContent}
                     />
               }
-              
-               <NavButtons buttons={buttons} />
-              
-                <Circle
-                  ripple={ripple}
-                  isMenuOpen={isMenuOpen}
-                  />
             </S_Content>
+            {
+              isMenuOpen
+                ? <></>
+                : <NavButtons buttons={buttons} />
+            }
+            <Circle
+                ripple={ripple}
+                isMenuOpen={isMenuOpen}
+                />
           </S_Box>
         </Loading >
       </Page>
@@ -145,6 +148,9 @@ const S_Box = styled.div<{
   border-radius: 2px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 ` 
 
 const Loading = styled(motion.div)`
@@ -156,7 +162,8 @@ const Loading = styled(motion.div)`
 
 const S_Content = styled.div`
   width: 100%;
-  height: 45%;
+  height: fit-content;
+  min-height: 50%;
   z-index: 100;
 `
 
