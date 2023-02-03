@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 
 interface Props {
-  children: JSX.Element,
-
+  title: string,
+  href?: string
 }
 
-const Button = ({children}: Props) => {
+const Button = ({title, href}: Props) => {
   return (
-    <S_Button>{children}</S_Button>
+    <S_Button>{title}</S_Button>
   )
 }
 

@@ -11,11 +11,14 @@ import Circle from '../components/Circle'
 import Menu from '../components/Menu'
 
 // DATA
-import { HeaderContent, menuItems } from '../data/data'
+import { HeaderContent, SnackContentType, content, Content, Contents, Buttons } from '../data/data'
+import ItemContent from '../components/ItemContent'
+import NavButtons from '../components/NavButtons'
 
 
 const Home = () => {
 
+  // DATA FOR RENDERING
   const [ripple, set_ripple] = useState<boolean>(false);
   const [isMenuOpen, set_isMenuOpen] = useState<boolean>(true)
   const [headerContent, set_headerContent] = useState<HeaderContent>({
@@ -23,15 +26,42 @@ const Home = () => {
     subtitle: 'full stack developer',
     renderButton: false
   })
+  const [itemContent, set_itemContent] = useState<SnackContentType>({
+    hook: 'This is the hook',
+    bait: 'This is the bait'
+  })
+  const [buttons, set_buttons] = useState<Buttons>([])
 
+  const menuItems = content.map(item => {
+    return {
+      "title": item.title,
+      "caption": item.caption
+    }
+  })
+
+
+  // UI INTERACTION MGMT
   const onChange = (newValue: HeaderContent) => {
     setTimeout(() => {
       set_headerContent(newValue)
     }, 1000)
   }
 
-  const onMenuClick = () => {
+  const onMenuClick = (key: number) => {
+
+    let newButtons = content[key].buttons.map((button) => {
+      return {
+        "title": button.title,
+        "href": button.href
+      }
+    })
+
     set_ripple(true)
+    set_itemContent({
+      hook: content[key].hook,
+      bait: content[key].bait,
+    })
+    set_buttons(newButtons)
     setTimeout(() => {
       set_isMenuOpen(false)
       set_ripple(false)
@@ -79,9 +109,19 @@ const Home = () => {
                 <Menu
                   menuItems={menuItems}
                   onChange={(newValue) => onChange(newValue)}
-                  onClick={() => onMenuClick()}
+                  onClick={(key) => onMenuClick(key)}
                   isOpen={isMenuOpen}
-                />
+              />
+              {
+                isMenuOpen
+                  ? <></>
+                  : <ItemContent
+                      content={itemContent}
+                    />
+              }
+              
+               <NavButtons buttons={buttons} />
+              
                 <Circle
                   ripple={ripple}
                   isMenuOpen={isMenuOpen}

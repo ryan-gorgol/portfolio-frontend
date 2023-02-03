@@ -7,7 +7,7 @@ import { useState } from "react"
 interface Props {
   menuItems?: MenuItems,
   onChange: (newValue: HeaderContent) => void,
-  onClick: () => void,
+  onClick: (key: number) => void,
   isOpen: boolean
 }
 
@@ -37,7 +37,7 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
     }
 
     onChange(newValue)
-    onClick()
+    onClick(index)
   };
 
   return (
