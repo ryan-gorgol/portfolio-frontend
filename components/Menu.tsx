@@ -41,7 +41,10 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
   };
 
   return (
-    <S_Menu isOpen={isOpen}>
+    <S_Menu 
+      isOpen={isOpen}
+      exit={{opacity: 0}}
+    >
       {
         menuItems !== undefined
           ? menuItems.map(({ title, caption }, index) => (
@@ -49,10 +52,9 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
                 key={index}
                 onClick={() => handleClick(index, title)}
                 variants={variants}
-                // initial='start'
                 animate={index === idSelected && isSelected ? 'end' : 'start'}
                 transition={{ duration: 1.2 }}
-              >
+            >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
               </S_MenuItem>
@@ -65,11 +67,11 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
 
 export default Menu
 
-const S_Menu = styled.div<{
+const S_Menu = styled(motion.div)<{
   isOpen: boolean
 }>`
   width: fit-content;
-  display: ${props => props.isOpen ? 'flex' : 'none'};
+  display: flex;
   flex-direction: column;
   position: relative;
   z-index: 10;

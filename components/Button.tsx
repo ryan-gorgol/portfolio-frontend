@@ -30,6 +30,7 @@ const S_Button = styled.div`
   justify-content: center;
   border: 1px solid var(--white);
   border-radius: 0.5rem;
+  text-transform: uppercase;
 
   cursor: pointer;
 

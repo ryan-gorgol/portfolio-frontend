@@ -1,18 +1,36 @@
+import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import { Buttons } from '../data/data'
 
 import Button from './Button'
 
-interface Props {
-  buttons: Buttons
+const variants = {
+  start: {
+    y: [-10, 0],
+    opacity: [0, 1]
+    
+  },
+  end: {
+    y: [0, -10],
+    opacity: [1, 1]
+  }
 }
 
-const NavButtons = ({ buttons }: Props) => {
-  console.log(buttons, 'buttons')
-  
+interface Props {
+  buttons: Buttons,
+  triggerAnimation: boolean
+}
+
+const NavButtons = ({ buttons, triggerAnimation }: Props) => {  
   return (
-    <S.Container>
+    <S.Container
+      variants={variants}
+      initial='start'
+      animate={triggerAnimation ? 'start' : 'end'}
+      transition={{ duration: 1 }}
+      exit={{opacity: 0}}
+    >
       {
         buttons?.map((button, index) => {
           return (
@@ -29,7 +47,7 @@ const NavButtons = ({ buttons }: Props) => {
 export default NavButtons
 
 const S = {
-  Container: styled.div`
+  Container: styled(motion.div)`
     position: relative;
     z-index: 100;
     width: 100%;

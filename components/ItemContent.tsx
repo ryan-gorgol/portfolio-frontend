@@ -1,11 +1,14 @@
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { SnackContentType } from '../data/data'
+
 
 interface Props {
   content: SnackContentType
 }
 
-const ItemContent = ({content}: Props) => {
+const ItemContent = ({ content }: Props) => {
+
   return (
     <S.Container>
       <S.LeadLine>
@@ -18,10 +21,12 @@ const ItemContent = ({content}: Props) => {
   )
 }
 
+
+
 export default ItemContent
 
 const S = {
-  Container: styled.div`
+  Container: styled(motion.div)`
     width: 100%;
   `,
   LeadLine: styled.h2`

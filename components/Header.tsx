@@ -7,7 +7,7 @@ const variants = {
     
   },
   end: {
-    opacity: [1, 0]
+    opacity: [0, 1]
   }
 }
 
@@ -17,27 +17,29 @@ interface Props {
   renderButton: boolean,
   onClick: () => void,
   isMenuOpen: boolean,
-  ripple: boolean
+  triggerAnimation: boolean
 }
 
-function Header({title, subtitle, renderButton, onClick, isMenuOpen, ripple}: Props) {
+function Header({title, subtitle, renderButton, onClick, isMenuOpen, triggerAnimation}: Props) {
   return (
     <S_Container
       variants={variants}
-      initial='end'
-      animate={!ripple ? 'start' : 'end'}
+      initial='start'
+      animate={triggerAnimation ? 'start' : 'end'}
       transition={{ duration: 1 }}
       isMenuOpen={isMenuOpen}
     >
       <S_Header renderButton={renderButton}>
+
         <S_Title renderButton={renderButton}>
             <h1>{title}</h1>
             {subtitle ? <h2>{subtitle}</h2> : <></>}
         </S_Title>
-        <S_Button
-          renderButton={renderButton}
-          onClick={onClick}
-        >&larr;</S_Button>
+
+        <S_Button renderButton={renderButton} onClick={onClick}>
+          &larr;
+        </S_Button>
+
       </S_Header>
     </S_Container>
   )
@@ -107,10 +109,16 @@ const S_Button = styled.a<{
   color: var(--white);
   border-radius: 0.5rem;
   position: relative;
-  transition: 2.5s;
+  transition: .75s;
 
   &:hover {
+    font-size: 1.rem;
     border: 1px solid var(--gray);
     transition: 0.25s;
+  }
+
+  &:active {
+    color: var(--red);
+    border: 2px solid var(--red);
   }
 `

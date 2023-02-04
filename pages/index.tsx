@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // components
 
@@ -19,7 +19,7 @@ import NavButtons from '../components/NavButtons'
 const Home = () => {
 
   // DATA FOR RENDERING
-  const [ripple, set_ripple] = useState<boolean>(false);
+  const [triggerAnimation, set_triggerAnimation] = useState<boolean>(false)
   const [isMenuOpen, set_isMenuOpen] = useState<boolean>(true)
   const [headerContent, set_headerContent] = useState<HeaderContent>({
     title: 'Ryan Gorgol',
@@ -44,39 +44,44 @@ const Home = () => {
   const onChange = (newValue: HeaderContent) => {
     setTimeout(() => {
       set_headerContent(newValue)
-    }, 1000)
+    }, 500)
   }
 
   const onMenuClick = (key: number) => {
-
-    let newButtons = content[key].buttons.map((button) => {
-      return {
-        "title": button.title,
-        "href": button.href
-      }
-    })
-
-    set_ripple(true)
+    set_triggerAnimation(true)
     set_itemContent({
       hook: content[key].hook,
       bait: content[key].bait,
     })
-    set_buttons(newButtons)
+    console.log(itemContent, 'itemContent')
+    
     setTimeout(() => {
+      let newButtons = content[key].buttons.map((button) => {
+        return {
+          "title": button.title,
+          "href": button.href
+        }
+      })
+  
       set_isMenuOpen(false)
-      set_ripple(false)
-    }, 1000)
+      set_triggerAnimation(false)
+      set_buttons(newButtons)
+    }, 500)
     
   }
 
   const onBackButtonClick = () => {
-    set_isMenuOpen(true)
-    set_headerContent({
-      title: 'Ryan Gorgol',
-      subtitle: 'full stack developer',
-      renderButton: false
-    })
+    set_triggerAnimation(true)
     set_buttons([])
+    setTimeout(() => {
+      set_isMenuOpen(true)
+      set_headerContent({
+        title: 'Ryan Gorgol',
+        subtitle: 'full stack developer',
+        renderButton: false
+      })
+      set_triggerAnimation(false)
+    }, 500)
   }
 
   return (
@@ -90,48 +95,79 @@ const Home = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Page>
-        <Loading
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0,0,1] }}
-          transition={{ duration: .75, ease: 'easeInOut' }}
-        >
-          <S_Box
-            isMenuOpen={isMenuOpen}
-          >
-            <S_Content>
-              <Header
-                title={headerContent.title}
-                subtitle={headerContent.subtitle}
-                renderButton={headerContent.renderButton}
-                onClick={onBackButtonClick}
+        <>
+          {isMenuOpen && 
+            <S_HomePage>
+              <S_Box
                 isMenuOpen={isMenuOpen}
-                ripple={ripple}
-              />
-              <Menu
-                menuItems={menuItems}
-                onChange={(newValue) => onChange(newValue)}
-                onClick={(key) => onMenuClick(key)}
-                isOpen={isMenuOpen}
-              />
-              {
-                isMenuOpen
-                  ? <></>
-                  : <ItemContent
-                      content={itemContent}
-                    />
-              }
-            </S_Content>
-            {
-              isMenuOpen
-                ? <></>
-                : <NavButtons buttons={buttons} />
-            }
-            <Circle
-                ripple={ripple}
+              >
+                <S_Content>
+                  <Header
+                    title={headerContent.title}
+                    subtitle={headerContent.subtitle}
+                    renderButton={headerContent.renderButton}
+                    onClick={onBackButtonClick}
+                    isMenuOpen={isMenuOpen}
+                    triggerAnimation={triggerAnimation}
+                  />
+                  <AnimatePresence>
+                  {
+                    isMenuOpen && 
+                      <Menu
+                        menuItems={menuItems}
+                        onChange={(newValue) => onChange(newValue)}
+                        onClick={(key) => onMenuClick(key)}
+                        isOpen={isMenuOpen}
+                      />
+                  }
+                  </AnimatePresence>
+                </S_Content>
+                <AnimatePresence>
+                  {
+                    !isMenuOpen && <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+                <AnimatePresence>
+                  {
+                    isMenuOpen && <Circle triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+              </S_Box>
+            </S_HomePage >
+          }
+
+          {
+            !isMenuOpen &&
+
+            <S_Page>
+              <S_Box
                 isMenuOpen={isMenuOpen}
-                />
-          </S_Box>
-        </Loading >
+              >
+                <S_Content>
+                  <Header
+                    title={headerContent.title}
+                    subtitle={headerContent.subtitle}
+                    renderButton={headerContent.renderButton}
+                    onClick={onBackButtonClick}
+                    isMenuOpen={isMenuOpen}
+                  />
+                  <AnimatePresence>
+                  {
+                      <ItemContent
+                        content={itemContent}
+                      />
+                  }
+                  </AnimatePresence>
+                </S_Content>
+                <AnimatePresence>
+                  {
+                      <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+              </S_Box>
+            </S_Page >
+          }
+        </>
       </Page>
     </>
   )
@@ -139,12 +175,28 @@ const Home = () => {
 
 export default Home
 
+const S_Page = styled(motion.div)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+`
+
+const S_HomePage = styled(motion.div)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--white);
+`
+
 const S_Box = styled.div<{
   isMenuOpen: boolean
 }>`
   width: 100%;
   height: 100%;
-  border: ${props => props.isMenuOpen ? '1px solid var(--white)' : 'none'};
+  box-sizing: border-box;
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -152,13 +204,6 @@ const S_Box = styled.div<{
   flex-direction: column;
   justify-content: space-between;
 ` 
-
-const Loading = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 const S_Content = styled.div`
   width: 100%;
