@@ -116,11 +116,11 @@ const S_Title = styled.div`
   font-weight: 400;
   letter-spacing: 1.75px;
   font-size: calc(1.2rem + var(--vw_50));
+  text-align: left;
 `
 
 const S_Caption = styled.div`
   font-weight: 200;
   text-transform: lowercase;
-
-  
+  text-align: left;
 `
