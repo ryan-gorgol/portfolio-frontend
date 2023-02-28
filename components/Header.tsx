@@ -2,19 +2,13 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const variants = {
-  start: {
+  present: {
     opacity: [0, 1]
-    
   },
   end: {
     opacity: [1, 0]
   }
 }
-
-// variants={variants}
-//           initial='start'
-//           animate={triggerAnimation ? 'end' : 'start'}
-//           transition={{ delay:0.5, duration: 4 }}
 
 interface Props {
   title: string,
@@ -29,16 +23,37 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
     <S_Container >
       <S_Header renderButton={renderButton}>
         <S_TitleContainer renderButton={renderButton}>
-            <h1>{title}</h1>
-            {subtitle ? <h2>{subtitle}</h2> : <></>}
+
+          <S_Title
+            variants={variants}
+            animate={triggerAnimation ? 'end' : 'present'}
+            transition={triggerAnimation ? { duration: .75, delay: 0.25} : {duration: .75}}
+          >
+
+            {title}
+
+          </S_Title>
+
+          {
+            subtitle
+              ? <S_Subtitle
+                  renderButton={renderButton}
+                  variants={variants}
+                  initial='start'
+                  animate={triggerAnimation ? 'end' : 'present'}
+                  transition={{ duration: 1}}
+                >
+                  {subtitle}
+                </S_Subtitle>
+              : <></>}
         </S_TitleContainer>
     {
     renderButton 
       ? <S_ButtonContainer>
           <S_Button
             variants={variants}
-            initial='start'
-            animate={triggerAnimation ? 'end' : 'start'}
+            initial='present'
+            animate={triggerAnimation ? 'end' : 'present'}
             transition={{ duration: 1 }}
             onClick={onClick}
               >
@@ -99,6 +114,25 @@ const S_TitleContainer = styled.div<{
   }
 `
 
+const S_Title = styled(motion.div)`
+  height: 100%;
+  margin: 0;
+  font-size: calc(var(--font_size_header_title) + var(--vw_25));
+  font-weight: 200;
+  letter-spacing: -1.5px;
+`
+
+const S_Subtitle = styled(motion.div) <{
+  renderButton: boolean
+}>`
+  font-size: calc(var(--font_size_header_subtitle) + var(--vw_25));
+  font-weight: 100;
+  margin: 0;
+  margin-top: 0.5rem;
+  padding-left: 2px;
+  padding: ${props => props.renderButton ? '2rem' : '0'};
+`
+
 const S_ButtonContainer = styled.div`
   width: 4rem; 
   color: var(--white);
@@ -125,17 +159,21 @@ const S_Button = styled(motion.a) <{}>`
 
   &:hover {
     transform: scale(1.05);
-    transition: transform 0.2s ease; 
+    transition: transform 0.5s ease; 
+
+    span {
+      transition: 0.5s ease;
+    }
   }
 
   &:active {
     color: var(--red);
-    background: var(--black_minus);
     transition: transform 0.2s ease; 
 
     span {
       transform: scale(.90);
       user-select: none;
+      transistion: 0.5s ease;
     }
   }
 `

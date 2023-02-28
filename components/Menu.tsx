@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { motion } from 'framer-motion'
 
 import { HeaderContent, MenuItems } from "../data/data"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface Props {
   menuItems?: MenuItems,
@@ -12,16 +12,21 @@ interface Props {
 }
 
 const variants = {
-  start: {
-    x: [0, 0]
+  onNotClick: {
+    x: [0, -20],
+    opacity: [.5, 0]
     
   },
-  end: {
-    x: [0 , 100 , 0]
+  onClick: {
+    x: [0, 20, 0],
+    opacity: [1 , 1, 0.25]
+  },
+  start: {
+    opacity: [0,1]
   }
 }
 
-const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
+const Menu = ({ menuItems, onChange, onClick }: Props) => {
   
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const [idSelected, setIdSelected] = useState<number>()
@@ -42,8 +47,6 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
 
   return (
     <S_Menu 
-      isOpen={isOpen}
-      exit={{opacity: 0}}
     >
       {
         menuItems !== undefined
@@ -52,8 +55,21 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
                 key={index}
                 onClick={() => handleClick(index, title)}
                 variants={variants}
-                animate={index === idSelected && isSelected ? 'end' : 'start'}
-                transition={{ duration: 1, ease: 'easeIn' }}
+                initial='start'
+                animate={
+                  index === idSelected && isSelected
+                    ? 'onClick'
+                    : index !== idSelected && isSelected
+                      ? 'onNotClick'
+                      : 'start'
+                }
+              transition={
+                index === idSelected && isSelected
+                  ? { duration: 1, ease: 'easeIn' }
+                  : index !== idSelected && isSelected
+                    ? { duration: .5, ease: 'linear' }
+                    : { duration: 1, ease: 'linear', delay: index * 0.1}
+              }
               >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
@@ -68,7 +84,7 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
 export default Menu
 
 const S_Menu = styled(motion.div)<{
-  isOpen: boolean
+  isOpen?: boolean
 }>`
   width: fit-content;
   display: flex;
@@ -94,10 +110,6 @@ const S_MenuItem = styled(motion.button)`
   &:hover {
     color: var(--red);
   }
-
-  &:focus {
-    color: var(--red_plus);
-  }
 `
 
 const S_Title = styled.div`
@@ -110,4 +122,6 @@ const S_Title = styled.div`
 const S_Caption = styled.div`
   font-weight: 200;
   text-transform: lowercase;
+
+  
 `

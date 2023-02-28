@@ -109,7 +109,7 @@ const Home = () => {
       </Head>
       <Page>
         <>
-          {isMenuOpen && 
+          {/* {isMenuOpen &&  */}
             <S_HomePage>
               <S_Box>
                 <S_Content>
@@ -131,17 +131,26 @@ const Home = () => {
                       />
                   }
                   </AnimatePresence>
+                  <AnimatePresence>
+                  {
+                    !isMenuOpen &&  
+                      <ItemContent
+                        content={itemContent}
+                        triggerAnimation={triggerAnimation}
+                      />
+                  }
+                  </AnimatePresence>
                 </S_Content>
                 <AnimatePresence>
                   {
-                    isMenuOpen && <Circle triggerAnimation={triggerAnimation} />
+                    isMenuOpen && <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
                   }
                 </AnimatePresence>
               </S_Box>
             </S_HomePage >
-          }
+          {/* } */}
 
-          {
+          {/* {
             !isMenuOpen &&
 
             <S_HomePage>
@@ -169,7 +178,7 @@ const Home = () => {
                 </AnimatePresence>
               </S_Box>
             </S_HomePage >
-          }
+          } */}
         </>
       </Page>
     </>
@@ -183,7 +192,7 @@ const S_HomePage = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--white);
+  border: 1px solid var(--white_minus);
   transition: 0.5s;
 `
 

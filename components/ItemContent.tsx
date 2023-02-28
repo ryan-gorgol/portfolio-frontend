@@ -3,14 +3,33 @@ import styled from 'styled-components'
 import { SnackContentType } from '../data/data'
 
 
-interface Props {
-  content: SnackContentType
+const variants = {
+  start: {
+    opacity: [0, 1]
+  },
+  end: {
+    opacity: [1, 0],
+    scale: [1, .98]
+  },
+  onload: {
+    opacity:[0,0]
+  }
 }
 
-const ItemContent = ({ content }: Props) => {
+interface Props {
+  content: SnackContentType,
+  triggerAnimation: boolean
+}
+
+const ItemContent = ({ content, triggerAnimation }: Props) => {
 
   return (
-    <S.Container>
+    <S.Container
+      variants={variants}
+      initial='onload'
+      animate={triggerAnimation ? 'end' : 'start'}
+      transition={{ duration: .75 }}
+    >
       <S.LeadLine>
        {content?.hook}
       </S.LeadLine>
@@ -39,6 +58,6 @@ const S = {
   Bait: styled.div`
     font-weight: 200;
     letter-spacing: .9px;
-    color: var(--light_gray);
+    color: var(--white_minus);
   `
 }
