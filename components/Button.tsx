@@ -1,32 +1,51 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 
 
 interface Props {
-  children: JSX.Element,
-
+  title: string,
+  href?: string
 }
 
-const Button = ({children}: Props) => {
+const Button = ({title, href}: Props) => {
   return (
-    <S_Button>{children}</S_Button>
+    <Link href={href ? href : '/'} passHref>
+      <S_Button>
+        <a>
+          {title}
+        </a>
+      </S_Button>
+    </Link>
   )
 }
 
 export default Button
 
 const S_Button = styled.div`
-  width: calc(100% - var(--page_border_margin_total));
+  min-width: calc(100% - 4rem);
   height: 2rem;
   padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--white);
+  color: var(--white);
+  border: 1px solid var(--white_minus);
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  cursor: pointer;
 
   &:hover {
-    border: 1px solid var(--gray);
-    transition: 0.25s;
+    border: 1px solid var(--red_minus);
+    color: var(--red_plus);
+    transition: 0.2s;
+  }
+
+  &:active {
+
+  }
+
+  a {
+    pointer-events: none;
   }
 `
