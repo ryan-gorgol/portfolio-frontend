@@ -7,13 +7,13 @@ import Button from './Button'
 
 const variants = {
   start: {
-    y: [-10, 0],
-    opacity: [0, 1]
+    y: [0, -8],
+    opacity: 0
     
   },
   end: {
-    y: [0, -10],
-    opacity: [1, 1]
+    y: [-16, 0],
+    opacity: 1
   }
 }
 
@@ -26,10 +26,10 @@ const NavButtons = ({ buttons, triggerAnimation }: Props) => {
   return (
     <S.Container
       variants={variants}
-      initial='start'
+      initial={'start'}
       animate={triggerAnimation ? 'start' : 'end'}
-      transition={{ duration: 1 }}
-      exit={{opacity: 0}}
+      transition={{ duration: 0.5 }}
+      
     >
       {
         buttons?.map((button, index) => {

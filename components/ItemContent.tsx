@@ -5,11 +5,13 @@ import { SnackContentType } from '../data/data'
 
 const variants = {
   start: {
-    opacity: [0, 1]
+    opacity: [0, 1],
+    scale: [0.99, 1],
+    x: [1, 0]
   },
   end: {
     opacity: [1, 0],
-    scale: [1, .98]
+    scale: [1, .98],
   },
   onload: {
     opacity:[0,0]
@@ -28,7 +30,7 @@ const ItemContent = ({ content, triggerAnimation }: Props) => {
       variants={variants}
       initial='onload'
       animate={triggerAnimation ? 'end' : 'start'}
-      transition={{ duration: .75 }}
+      transition={{ duration: .5 }}
     >
       <S.LeadLine>
        {content?.hook}

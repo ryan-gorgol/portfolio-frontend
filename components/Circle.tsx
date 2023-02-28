@@ -3,20 +3,21 @@ import { motion } from 'framer-motion'
 
 const variants = {
   present: {
-    opacity: [1, 1]
+    opacity: [0, 1],
+    scale: [0.75, 1]
   },
   down: {
-    scale: [1, 0.85, 1],
+    scale: [1, 0.75, 1],
     opacity: [1, 0]
   }
 }
 
 interface Props {
   triggerAnimation: boolean,
-  isMenuOpen: boolean
+  isMenuOpen?: boolean
 }
 
-const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
+const Circle = ({triggerAnimation}: Props) => {
   let radialGradients = [
     'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 5%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
     'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
@@ -27,18 +28,18 @@ const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
     <>
       {
         radialGradients.map((gradient, index) => {
-          let delay = index * 0.07
+          let delay = index === 0 ? 0 : index * 0.1
           return (
             <S_Circle
               key={index}
               variants={variants}
-              initial='present'
+              initial={false}
               animate={
                 triggerAnimation
                   ? 'down'
                   : 'present'
               }
-              transition={{ duration: 1, delay: delay}}
+              transition={{ duration: 0.75, delay: delay}}
               gradient={gradient}
             />
           )

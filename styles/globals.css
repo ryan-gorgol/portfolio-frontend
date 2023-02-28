@@ -17,13 +17,11 @@
   --red_plus: #ff8181;
 
   /* FONTS */
-
   --line-height: calc(1.6rem + 0.25vw);
   --font_size: calc(1rem + 0.25vw);
   --vw_25: 0.25vw;
   --vw_50: 0.5vw; 
   --vw_100: 1vw; 
-
   
   --vw: calc(100 * var(--vw));
   --vh: calc(100 * var(--vh));
