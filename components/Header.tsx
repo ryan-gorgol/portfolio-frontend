@@ -39,10 +39,10 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
             variants={variants}
             initial='start'
             animate={triggerAnimation ? 'end' : 'start'}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
             onClick={onClick}
-          >
-            &larr;
+              >
+                <span>&larr;</span>
           </S_Button>
         </S_ButtonContainer>
       : <></>
@@ -55,10 +55,8 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
 export default Header
 
 const S_Container = styled.div<{}>`
-  width: calc(100% - 1rem);
-  padding-bottom: 1.5rem;
-  padding-left: 1rem;
-  padding-top: 0.6rem;
+  width: 100%;
+  padding-bottom: 1rem;
   cursor: default;  
 `
 
@@ -80,6 +78,8 @@ const S_TitleContainer = styled.div<{
   position: relative;
   color: var(--white);
   z-index: 100;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
 
   h1 {
     height: 100%;
@@ -100,19 +100,20 @@ const S_TitleContainer = styled.div<{
 `
 
 const S_ButtonContainer = styled.div`
-  width: 4rem;
-  min-height: 3.75rem;
-  max-height: 7.5rem; 
+  width: 4rem; 
   color: var(--white);
   display: flex;
   align-items: center;
+  justify-content: center;
   z-index: 100;
+
+  
 `
 
 const S_Button = styled(motion.a) <{}>`
   display: flex;
   box-sizing: border-box;
-  width: 3rem;
+  width: 6rem;
   height: 100%;
   font-size: 2rem;
   align-items: center;
@@ -120,7 +121,6 @@ const S_Button = styled(motion.a) <{}>`
   border: none;
   color: var(--white);
   position: relative;
-  
   transition: transform 1s ease; 
 
   &:hover {
@@ -130,6 +130,12 @@ const S_Button = styled(motion.a) <{}>`
 
   &:active {
     color: var(--red);
-    transform: scale(.90);
+    background: var(--black_minus);
+    transition: transform 0.2s ease; 
+
+    span {
+      transform: scale(.90);
+      user-select: none;
+    }
   }
 `

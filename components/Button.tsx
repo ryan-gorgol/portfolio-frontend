@@ -35,8 +35,9 @@ const S_Button = styled.div`
   cursor: pointer;
 
   &:hover {
-    border: 1px solid var(--gray);
-    transition: 0.25s;
+    border: 1px solid var(--red_minus);
+    color: var(--red_plus);
+    transition: 0.2s;
   }
 
   &:active {

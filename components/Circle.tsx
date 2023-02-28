@@ -16,24 +16,42 @@ interface Props {
 }
 
 const Circle = ({triggerAnimation}: Props) => {
+  let radialGradients = [
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 5%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 45%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
+  ]
+
   return (
-    <S_Circle
-      variants={variants}
-      initial='up'
-      animate={triggerAnimation ? 'down' : 'up'}
-      transition={{ duration: 1 }}
-    />
+    <>
+      {
+        radialGradients.map((gradient, index) => {
+          return (
+            <S_Circle
+              key={index}
+              variants={variants}
+              initial='up'
+              animate={triggerAnimation ? 'down' : 'up'}
+              transition={{ duration: 1, delay: 0.1}}
+              gradient={gradient}
+            />
+          )
+        })
+      }
+      
+    </>
   )
 }
 
 export default Circle
 
 const S_Circle = styled(motion.div) <{
+  gradient: string
 }>`
   width: max(100vmin, 50px);
   height: max(100vmin, 50px);
   border-radius: 50%;
-  background: radial-gradient(circle, var(--red), #ec6c6c88, #ec6c6c13);
+  background: ${props => props.gradient};
   position: absolute;
   right: -20vmax;
   bottom: -20vmax;

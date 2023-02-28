@@ -53,7 +53,7 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
                 onClick={() => handleClick(index, title)}
                 variants={variants}
                 animate={index === idSelected && isSelected ? 'end' : 'start'}
-                transition={{ duration: 1, ease: 'circIn' }}
+                transition={{ duration: 1, ease: 'easeIn' }}
               >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
@@ -73,22 +73,30 @@ const S_Menu = styled(motion.div)<{
   width: fit-content;
   display: flex;
   flex-direction: column;
+  align-items: start;
   position: relative;
   z-index: 10;
-  margin-left: 1rem;
+  
 `
 
-const S_MenuItem = styled(motion.a)`
-  width: fit-content;
+const S_MenuItem = styled(motion.button)`
+  min-width: 10rem;
+  background: none;
   cursor: pointer;
   z-index: 20;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  border: none;
+  color: var(--white);
 
   &:hover {
     color: var(--red);
+  }
+
+  &:focus {
+    color: var(--red_plus);
   }
 `
 

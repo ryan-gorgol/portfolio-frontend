@@ -18,19 +18,18 @@ import NavButtons from '../components/NavButtons'
 
 const Home = () => {
 
-  // DATA FOR RENDERING
+  // STATE MGMT
+
+  // bool values for controling animation timing
   const [triggerAnimation, set_triggerAnimation] = useState<boolean>(false)
   const [isMenuOpen, set_isMenuOpen] = useState<boolean>(true)
+
+  // content state for SPA navigation
   const [headerContent, set_headerContent] = useState<HeaderContent>({
     title: 'Ryan Gorgol',
     subtitle: 'full stack developer',
     renderButton: false
   })
-  const [itemContent, set_itemContent] = useState<SnackContentType>({
-    hook: 'This is the hook',
-    bait: 'This is the bait'
-  })
-  const [buttons, set_buttons] = useState<Buttons>([])
 
   const menuItems = content.map(item => {
     return {
@@ -38,15 +37,26 @@ const Home = () => {
       "caption": item.caption
     }
   })
+  
+  const [itemContent, set_itemContent] = useState<SnackContentType>({
+    hook: 'This is the hook',
+    bait: 'This is the bait'
+  })
+  const [buttons, set_buttons] = useState<Buttons>([])
 
 
   // UI INTERACTION MGMT
+
+  // Menu Click triggers two different actions: onChange and onMenuClick
+  // onChange sets the header content, thus triggering a render after a delay
+
   const onChange = (newValue: HeaderContent) => {
     setTimeout(() => {
       set_headerContent(newValue)
-    }, 500)
+    }, 1000)
   }
 
+  // triggers animation state to change then item content to be rendered finishing with another animation state change
   const onMenuClick = (key: number) => {
     set_triggerAnimation(true)
     set_itemContent({
@@ -66,10 +76,13 @@ const Home = () => {
       set_isMenuOpen(false)
       set_triggerAnimation(false)
       set_buttons(newButtons)
-    }, 500)
+    }, 1000)
     
   }
-
+  
+  // Back button triggers an animation reset to homepage
+  // triggers animation state change, clears buttons, opens menu sets header content and changes animation state
+  
   const onBackButtonClick = () => {
     set_triggerAnimation(true)
     set_buttons([])
@@ -81,7 +94,7 @@ const Home = () => {
         renderButton: false
       })
       set_triggerAnimation(false)
-    }, 500)
+    }, 1000)
   }
 
   return (
