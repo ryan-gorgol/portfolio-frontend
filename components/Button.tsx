@@ -28,7 +28,8 @@ const S_Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--white);
+  color: var(--white);
+  border: 1px solid var(--white_minus);
   border-radius: 0.5rem;
   text-transform: uppercase;
 

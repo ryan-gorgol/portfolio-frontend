@@ -145,6 +145,11 @@ const Home = () => {
                   {
                     isMenuOpen && <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
                   }
+              </AnimatePresence>
+              <AnimatePresence>
+                  {
+                    !isMenuOpen && <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
                 </AnimatePresence>
               </S_Box>
             </S_HomePage >

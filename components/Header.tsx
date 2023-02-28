@@ -141,6 +141,10 @@ const S_ButtonContainer = styled.div`
   justify-content: center;
   z-index: 100;
 
+  &:hover {
+    color: var(--red);
+    transform: scale(1.1);
+  }
   
 `
 

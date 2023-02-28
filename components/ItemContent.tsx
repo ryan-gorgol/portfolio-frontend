@@ -50,14 +50,16 @@ const S = {
     padding: 1rem;
   `,
   LeadLine: styled.h2`
-    font-weight: 400;
+    font-weight: 600;
+    letter-spacing: .25px;
     padding-bottom: 2rem;
     margin: 0;
-    color: var(--white);
+    color: var(--white_plus);
   `,
   Bait: styled.div`
     font-weight: 200;
-    letter-spacing: .9px;
-    color: var(--white_minus);
+    letter-spacing: .8px;
+
+    color: var(--white);
   `
 }
