@@ -1,25 +1,101 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-
-import { menuItems } from '../data/data'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // components
 
 import Head from 'next/head'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import Circle from '../components/Circle'
-import HomeContent from '../components/HomeContent'
 import Page from '../components/Page'
+import Header from '../components/Header'
+import Circle from '../components/Circle'
+import Menu from '../components/Menu'
 
+// DATA
+import { HeaderContent, SnackContentType, content, Buttons } from '../data/data'
+import ItemContent from '../components/ItemContent'
+import NavButtons from '../components/NavButtons'
 
 
 const Home = () => {
 
-  const [ripple, setRipple] = useState<boolean>(true);
+  // STATE MGMT
 
+  // bool values for controling animation timing
+  const [triggerAnimation, set_triggerAnimation] = useState<boolean>(false)
+  const [isMenuOpen, set_isMenuOpen] = useState<boolean>(true)
+
+  // content state for SPA navigation
+  const [headerContent, set_headerContent] = useState<HeaderContent>({
+    title: 'Ryan Gorgol',
+    subtitle: 'full stack developer',
+    renderButton: false
+  })
+
+  const menuItems = content.map(item => {
+    return {
+      "title": item.title,
+      "caption": item.caption
+    }
+  })
   
+  const [itemContent, set_itemContent] = useState<SnackContentType>({
+    hook: 'This is the hook',
+    bait: 'This is the bait'
+  })
+  const [buttons, set_buttons] = useState<Buttons>([])
+
+
+  // UI INTERACTION MGMT
+
+  // Menu Click triggers two different actions: onChange and onMenuClick
+  // onChange sets the header content, thus triggering a render after a delay
+
+  const onChange = (newValue: HeaderContent) => {
+    setTimeout(() => {
+      set_headerContent(newValue)
+    }, 1000)
+  }
+
+  // triggers animation state to change then item content to be rendered finishing with another animation state change
+  const onMenuClick = (key: number) => {
+    set_triggerAnimation(true)
+    set_itemContent({
+      hook: content[key].hook,
+      bait: content[key].bait,
+    })
+    console.log(itemContent, 'itemContent')
+    
+    setTimeout(() => {
+      let newButtons = content[key].buttons.map((button) => {
+        return {
+          "title": button.title,
+          "href": button.href
+        }
+      })
+  
+      set_isMenuOpen(false)
+      set_triggerAnimation(false)
+      set_buttons(newButtons)
+    }, 1000)
+    
+  }
+  
+  // Back button triggers an animation reset to homepage
+  // triggers animation state change, clears buttons, opens menu sets header content and changes animation state
+  
+  const onBackButtonClick = () => {
+    set_triggerAnimation(true)
+    set_buttons([])
+    setTimeout(() => {
+      set_isMenuOpen(true)
+      set_headerContent({
+        title: 'Ryan Gorgol',
+        subtitle: 'full stack developer',
+        renderButton: false
+      })
+      set_triggerAnimation(false)
+    }, 1000)
+  }
 
   return (
     <>
@@ -31,34 +107,83 @@ const Home = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-
       <Page>
         <>
-          <LoadingTitleWrapper
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
-            transition={{ duration: 2 }}
-          >
-            <LoadingTitle
-              initial={{ scale: 1.0 }}
-              animate={{ scale: 0.98 }}
-              transition={{ yoyo: 3, duration: 0.45, ease: 'easeInOut' }}
-            >
-              <b>Ryan Gorgol</b> <em> portfolio </em>
-            </LoadingTitle>
-          </LoadingTitleWrapper>
+          {/* {isMenuOpen &&  */}
+            <S_HomePage>
+              <S_Box>
+                <S_Content>
+                  <Header
+                    title={headerContent.title}
+                    subtitle={headerContent.subtitle}
+                    renderButton={headerContent.renderButton}
+                    onClick={onBackButtonClick}
+                    triggerAnimation={triggerAnimation}
+                  />
+                  <AnimatePresence>
+                  {
+                    isMenuOpen && 
+                      <Menu
+                        menuItems={menuItems}
+                        onChange={(newValue) => onChange(newValue)}
+                        onClick={(key) => onMenuClick(key)}
+                        isOpen={isMenuOpen}
+                      />
+                  }
+                  </AnimatePresence>
+                  <AnimatePresence>
+                  {
+                    !isMenuOpen &&  
+                      <ItemContent
+                        content={itemContent}
+                        triggerAnimation={triggerAnimation}
+                      />
+                  }
+                  </AnimatePresence>
+                </S_Content>
+                <AnimatePresence>
+                  {
+                    isMenuOpen && <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
+                  }
+              </AnimatePresence>
+              <AnimatePresence>
+                  {
+                    !isMenuOpen && <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+              </S_Box>
+            </S_HomePage >
+          {/* } */}
 
-          <Loading
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0,0,1] }}
-            transition={{ duration: 2.5, ease: 'easeInOut' }}
-          >
-            <S_Box onClick={() => setRipple(!ripple)}>
-              <S_Content>
-                <HomeContent ripple={ripple} renderButton={false} />
-              </S_Content>
-            </S_Box>
-          </Loading >
+          {/* {
+            !isMenuOpen &&
+
+            <S_HomePage>
+              <S_Box>
+                <S_Content>
+                  <Header
+                    title={headerContent.title}
+                    subtitle={headerContent.subtitle}
+                    renderButton={headerContent.renderButton}
+                    onClick={onBackButtonClick}
+                    triggerAnimation={triggerAnimation}  
+                  />
+                  <AnimatePresence>
+                  {
+                      <ItemContent
+                        content={itemContent}
+                      />
+                  }
+                  </AnimatePresence>
+                </S_Content>
+                <AnimatePresence>
+                  {
+                    <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+              </S_Box>
+            </S_HomePage >
+          } */}
         </>
       </Page>
     </>
@@ -67,38 +192,34 @@ const Home = () => {
 
 export default Home
 
-const S_Box = styled.div`
+const S_HomePage = styled(motion.div)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--white_minus);
+  transition: 0.5s;
+`
+
+const S_Box = styled.div<{}>`
   width: 100%;
   height: 100%;
-  border: 1px solid var(--white);
+  box-sizing: border-box;
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 ` 
-
-const LoadingTitleWrapper = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const Loading = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const LoadingTitle = styled(motion.div)`
-  font-size: 2rem;
-  position: absolute;
-  z-index: 1000;
-`
 
 const S_Content = styled.div`
   width: 100%;
-  height: 45%;
+  height: fit-content;
+  min-height: 50%;
   z-index: 100;
 `
+
+
+
+

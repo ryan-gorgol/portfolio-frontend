@@ -1,56 +1,79 @@
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-import Link from "next/link"
-
-import { menuItems } from "../data/data"
-import { useState } from "react"
+import { HeaderContent, MenuItems } from "../data/data"
+import { useEffect, useState } from "react"
 
 interface Props {
-  menuItems?: menuItems 
+  menuItems?: MenuItems,
+  onChange: (newValue: HeaderContent) => void,
+  onClick: (key: number) => void,
+  isOpen: boolean
 }
 
 const variants = {
-  left: {
-    x: [0 , 50 , 0]
+  onNotClick: {
+    x: [0, -20],
+    opacity: [.5, 0]
     
   },
-  right: {
-    x: [0 , 100 , 0]
+  onClick: {
+    x: [0, 20, 0],
+    opacity: [1 , 1, 0.25]
+  },
+  start: {
+    opacity: [0,1]
   }
 }
 
-
-const Menu = ({ menuItems }: Props) => {
+const Menu = ({ menuItems, onChange, onClick }: Props) => {
   
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const [idSelected, setIdSelected] = useState<number>()
 
-  const handleClick = (href: string, index: number) => {
+  const handleClick = (index: number, title: string) => {
     setIsSelected(true)
     setIdSelected(index)
-    setTimeout(() => {
-      window.location.href = `${href}`;
-    }, 250);
+
+    let newValue: HeaderContent = {
+      title: title,
+      subtitle: '',
+      renderButton: true
+    }
+
+    onChange(newValue)
+    onClick(index)
   };
 
   return (
-    <S_Menu >
+    <S_Menu 
+    >
       {
         menuItems !== undefined
-          ? menuItems.map(({ title, href, caption }, index) => (
-            <Link href='' as='' key={index} passHref>
+          ? menuItems.map(({ title, caption }, index) => (
               <S_MenuItem
-                onClick={() => handleClick(href, index)}
+                key={index}
+                onClick={() => handleClick(index, title)}
                 variants={variants}
-                initial='left'
-                animate={isSelected && index === idSelected ? 'right' : 'left'}
-                transition={{ duration: 1.2 }}
+                initial='start'
+                animate={
+                  index === idSelected && isSelected
+                    ? 'onClick'
+                    : index !== idSelected && isSelected
+                      ? 'onNotClick'
+                      : 'start'
+                }
+              transition={
+                index === idSelected && isSelected
+                  ? { duration: 1, ease: 'easeIn' }
+                  : index !== idSelected && isSelected
+                    ? { duration: .5, ease: 'linear' }
+                    : { duration: 1, ease: 'linear', delay: index * 0.1}
+              }
               >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
               </S_MenuItem>
-            </Link>
             ))
           : <></>
       } 
@@ -60,22 +83,29 @@ const Menu = ({ menuItems }: Props) => {
 
 export default Menu
 
-const S_Menu = styled.div`
-  width: 100%;
+const S_Menu = styled(motion.div)<{
+  isOpen?: boolean
+}>`
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
+  align-items: start;
   position: relative;
   z-index: 10;
+  
 `
 
-const S_MenuItem = styled(motion.a)`
+const S_MenuItem = styled(motion.button)`
+  min-width: 10rem;
+  background: none;
   cursor: pointer;
   z-index: 20;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  border: none;
+  color: var(--white);
 
   &:hover {
     color: var(--red);
@@ -92,4 +122,6 @@ const S_Title = styled.div`
 const S_Caption = styled.div`
   font-weight: 200;
   text-transform: lowercase;
+
+  
 `

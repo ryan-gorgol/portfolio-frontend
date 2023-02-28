@@ -2,42 +2,64 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const variants = {
-  down: {
-    scale: [1, 0.7, 1],
-    x: [0 , 50 , 0]
-    
+  present: {
+    opacity: [1, 1]
   },
-  up: {
-    scale: [ 1, 0.7, 1],
-    x: [0 , 50 , 0]
+  down: {
+    scale: [1, 0.85, 1],
+    opacity: [1, 0]
   }
 }
 
 interface Props {
-  ripple: boolean
+  triggerAnimation: boolean,
+  isMenuOpen: boolean
 }
 
-const Circle = ({ripple}: Props) => {
+const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
+  let radialGradients = [
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 5%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 45%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
+  ]
+
   return (
-      <S_Circle
-        variants={variants}
-        initial='down'
-        animate={ripple ? 'up' : 'down'}
-        transition={{ duration: 1.2 }}
-      />
+    <>
+      {
+        radialGradients.map((gradient, index) => {
+          let delay = index * 0.07
+          return (
+            <S_Circle
+              key={index}
+              variants={variants}
+              initial='present'
+              animate={
+                triggerAnimation
+                  ? 'down'
+                  : 'present'
+              }
+              transition={{ duration: 1, delay: delay}}
+              gradient={gradient}
+            />
+          )
+        })
+      }
+      
+    </>
   )
 }
 
 export default Circle
 
-const S_Circle = styled(motion.div)`
+const S_Circle = styled(motion.div) <{
+  gradient: string
+}>`
   width: max(100vmin, 50px);
   height: max(100vmin, 50px);
   border-radius: 50%;
-  background: radial-gradient(circle, var(--red), #ec6c6c88, #ec6c6c25);
+  background: ${props => props.gradient};
   position: absolute;
   right: -20vmax;
   bottom: -20vmax;
   z-index: 1;
 `
-

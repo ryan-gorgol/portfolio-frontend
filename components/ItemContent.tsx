@@ -1,13 +1,35 @@
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { SnackContentType } from '../data/data'
 
-interface Props {
-  content: SnackContentType
+
+const variants = {
+  start: {
+    opacity: [0, 1]
+  },
+  end: {
+    opacity: [1, 0],
+    scale: [1, .98]
+  },
+  onload: {
+    opacity:[0,0]
+  }
 }
 
-const ItemContent = ({content}: Props) => {
+interface Props {
+  content: SnackContentType,
+  triggerAnimation: boolean
+}
+
+const ItemContent = ({ content, triggerAnimation }: Props) => {
+
   return (
-    <S.Container>
+    <S.Container
+      variants={variants}
+      initial='onload'
+      animate={triggerAnimation ? 'end' : 'start'}
+      transition={{ duration: .75 }}
+    >
       <S.LeadLine>
        {content?.hook}
       </S.LeadLine>
@@ -18,21 +40,26 @@ const ItemContent = ({content}: Props) => {
   )
 }
 
+
+
 export default ItemContent
 
 const S = {
-  Container: styled.div`
-    width: 100%;
+  Container: styled(motion.div)`
+    width: calc(100% - 2rem);
+    padding: 1rem;
   `,
   LeadLine: styled.h2`
-    font-weight: 400;
+    font-weight: 600;
+    letter-spacing: .25px;
     padding-bottom: 2rem;
     margin: 0;
-    color: var(--white);
+    color: var(--white_plus);
   `,
   Bait: styled.div`
     font-weight: 200;
-    letter-spacing: .9px;
-    color: var(--light_gray);
+    letter-spacing: .8px;
+
+    color: var(--white);
   `
 }
