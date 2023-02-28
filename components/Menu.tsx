@@ -113,6 +113,10 @@ const S_MenuItem = styled(motion.button)`
   &:active {
     background: none;
   }
+
+  &:focus {
+    background: red;
+  }
 `
 
 const S_Title = styled.div`
