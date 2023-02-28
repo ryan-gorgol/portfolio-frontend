@@ -28,7 +28,7 @@ const Circle = ({triggerAnimation}: Props) => {
     <>
       {
         radialGradients.map((gradient, index) => {
-          let delay = index === 0 ? 0 : index * 0
+          let delay = index === 0 ? 0 : index * 0.1
           return (
             <S_Circle
               key={index}
@@ -39,7 +39,7 @@ const Circle = ({triggerAnimation}: Props) => {
                   ? 'down'
                   : 'present'
               }
-              transition={{ duration: 1, delay: delay}}
+              transition={{ duration: 0.75, delay: delay}}
               gradient={gradient}
             />
           )

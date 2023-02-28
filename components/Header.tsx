@@ -28,7 +28,7 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
           <S_Title
             variants={variants}
             animate={triggerAnimation ? 'end' : 'present'}
-            transition={triggerAnimation ? { duration: 0.75, delay: 0.25} : {duration: .75}}
+            transition={triggerAnimation ? { duration: 0.25, delay: 0.1} : {duration: .5}}
           >
 
             {title}
@@ -42,7 +42,7 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
                   variants={variants}
                   initial='start'
                   animate={triggerAnimation ? 'end' : 'present'}
-                  transition={{ duration: 1}}
+                  transition={{ duration: 0.75}}
                 >
                   {subtitle}
                 </S_Subtitle>
@@ -55,7 +55,7 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
             variants={variants}
             initial='present'
             animate={triggerAnimation ? 'end' : 'present'}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.75 }}
             onClick={onClick}
               >
                 <span>&larr;</span>

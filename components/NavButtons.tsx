@@ -28,7 +28,7 @@ const NavButtons = ({ buttons, triggerAnimation }: Props) => {
       variants={variants}
       initial={'start'}
       animate={triggerAnimation ? 'start' : 'end'}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       
     >
       {

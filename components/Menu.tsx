@@ -64,10 +64,10 @@ const Menu = ({ menuItems, onChange, onClick }: Props) => {
                 }
               transition={
                 index === idSelected && isSelected
-                  ? { duration: 1, ease: 'easeInOut' }
+                  ? { duration: 0.75, ease: 'easeInOut' }
                   : index !== idSelected && isSelected
-                    ? { duration: .5, ease: 'linear' }
-                    : { duration: 1, ease: 'linear', delay: (index + 1) * 0.25}
+                    ? { duration: .375, ease: 'linear' }
+                    : { duration: 0.375, ease: 'linear', delay: (index + 1) * 0.08}
               }
               >
                 <S_Title>{title}</S_Title>
