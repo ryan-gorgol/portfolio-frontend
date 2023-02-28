@@ -53,8 +53,8 @@ const Menu = ({ menuItems, onChange, onClick, isOpen }: Props) => {
                 onClick={() => handleClick(index, title)}
                 variants={variants}
                 animate={index === idSelected && isSelected ? 'end' : 'start'}
-                transition={{ duration: 1.2 }}
-            >
+                transition={{ duration: 1, ease: 'circIn' }}
+              >
                 <S_Title>{title}</S_Title>
                 <S_Caption>{caption}</S_Caption>
               </S_MenuItem>

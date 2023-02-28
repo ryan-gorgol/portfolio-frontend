@@ -7,39 +7,46 @@ const variants = {
     
   },
   end: {
-    opacity: [0, 1]
+    opacity: [1, 0]
   }
 }
+
+// variants={variants}
+//           initial='start'
+//           animate={triggerAnimation ? 'end' : 'start'}
+//           transition={{ delay:0.5, duration: 4 }}
 
 interface Props {
   title: string,
   subtitle?: string,
   renderButton: boolean,
   onClick: () => void,
-  isMenuOpen: boolean,
   triggerAnimation: boolean
 }
 
-function Header({title, subtitle, renderButton, onClick, isMenuOpen, triggerAnimation}: Props) {
+function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Props) {
   return (
-    <S_Container
-      variants={variants}
-      initial='start'
-      animate={triggerAnimation ? 'start' : 'end'}
-      transition={{ duration: 1 }}
-      isMenuOpen={isMenuOpen}
-    >
+    <S_Container >
       <S_Header renderButton={renderButton}>
-
-        <S_Title renderButton={renderButton}>
+        <S_TitleContainer renderButton={renderButton}>
             <h1>{title}</h1>
             {subtitle ? <h2>{subtitle}</h2> : <></>}
-        </S_Title>
-
-        <S_Button renderButton={renderButton} onClick={onClick}>
-          &larr;
-        </S_Button>
-
+        </S_TitleContainer>
+    {
+    renderButton 
+      ? <S_ButtonContainer>
+          <S_Button
+            variants={variants}
+            initial='start'
+            animate={triggerAnimation ? 'end' : 'start'}
+            transition={{ duration: 0.5 }}
+            onClick={onClick}
+          >
+            &larr;
+          </S_Button>
+        </S_ButtonContainer>
+      : <></>
+    }
       </S_Header>
     </S_Container>
   )
@@ -47,14 +54,12 @@ function Header({title, subtitle, renderButton, onClick, isMenuOpen, triggerAnim
 
 export default Header
 
-const S_Container = styled(motion.div)<{
-  isMenuOpen: boolean
-}>`
-  width: 100%;
+const S_Container = styled.div<{}>`
+  width: calc(100% - 1rem);
   padding-bottom: 1.5rem;
-  padding-left: ${props => props.isMenuOpen ? '1rem' : '0'};
-  padding-top: ${props => props.isMenuOpen ? '0.6rem' : '0'};
-
+  padding-left: 1rem;
+  padding-top: 0.6rem;
+  cursor: default;  
 `
 
 const S_Header = styled.div<{
@@ -63,12 +68,11 @@ const S_Header = styled.div<{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: ${props => props.renderButton ? '1px solid var(--gray)' : ''};
+  align-items: stretch;
   padding-bottom: 1rem;
 `
 
-const S_Title = styled.div<{
+const S_TitleContainer = styled.div<{
   renderButton: boolean
 }>`
   width: calc(100% - 3rem);
@@ -95,30 +99,37 @@ const S_Title = styled.div<{
   }
 `
 
-const S_Button = styled.a<{
-  renderButton?: boolean
-}>`
-  display: ${props => props.renderButton ? 'flex' : 'none'};
+const S_ButtonContainer = styled.div`
+  width: 4rem;
+  min-height: 3.75rem;
+  max-height: 7.5rem; 
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+`
+
+const S_Button = styled(motion.a) <{}>`
+  display: flex;
   box-sizing: border-box;
   width: 3rem;
-  height: 3rem;
+  height: 100%;
+  font-size: 2rem;
   align-items: center;
   justify-content: center;
-  background: none;
-  border: 1px solid var(--white);
+  border: none;
   color: var(--white);
-  border-radius: 0.5rem;
   position: relative;
-  transition: .75s;
+  
+  transition: transform 1s ease; 
 
   &:hover {
-    font-size: 1.rem;
-    border: 1px solid var(--gray);
-    transition: 0.25s;
+    transform: scale(1.05);
+    transition: transform 0.2s ease; 
   }
 
   &:active {
     color: var(--red);
-    border: 2px solid var(--red);
+    transform: scale(.90);
   }
 `

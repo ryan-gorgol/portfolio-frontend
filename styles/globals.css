@@ -6,7 +6,9 @@
   background-color: var(--black);
 
   /* COLORS */
-  --black: #2e2e2e;
+  --black_minus: hsl(0, 0%, 16%);
+  --black: hsl(0, 0%, 18%);
+  --black_plus: hsl(0, 0%, 22%);
   --white: #dddddd;
   --light_gray: #cccccc;
   --gray: #777777;

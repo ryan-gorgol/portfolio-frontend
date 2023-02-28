@@ -2,11 +2,12 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const variants = {
+  up: {
+    opacity: [0, 1]
+  },
   down: {
     scale: [1, 0.85, 1],
-  },
-  up: {
-    scale: [ 1, 0.85, 1],
+    opacity: [1, 0]
   }
 }
 
@@ -18,8 +19,8 @@ const Circle = ({triggerAnimation}: Props) => {
   return (
     <S_Circle
       variants={variants}
-      initial='down'
-      animate={!triggerAnimation ? 'up' : 'down'}
+      initial='up'
+      animate={triggerAnimation ? 'down' : 'up'}
       transition={{ duration: 1 }}
     />
   )

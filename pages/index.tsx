@@ -11,7 +11,7 @@ import Circle from '../components/Circle'
 import Menu from '../components/Menu'
 
 // DATA
-import { HeaderContent, SnackContentType, content, Content, Contents, Buttons } from '../data/data'
+import { HeaderContent, SnackContentType, content, Buttons } from '../data/data'
 import ItemContent from '../components/ItemContent'
 import NavButtons from '../components/NavButtons'
 
@@ -98,16 +98,13 @@ const Home = () => {
         <>
           {isMenuOpen && 
             <S_HomePage>
-              <S_Box
-                isMenuOpen={isMenuOpen}
-              >
+              <S_Box>
                 <S_Content>
                   <Header
                     title={headerContent.title}
                     subtitle={headerContent.subtitle}
                     renderButton={headerContent.renderButton}
                     onClick={onBackButtonClick}
-                    isMenuOpen={isMenuOpen}
                     triggerAnimation={triggerAnimation}
                   />
                   <AnimatePresence>
@@ -124,11 +121,6 @@ const Home = () => {
                 </S_Content>
                 <AnimatePresence>
                   {
-                    !isMenuOpen && <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
-                  }
-                </AnimatePresence>
-                <AnimatePresence>
-                  {
                     isMenuOpen && <Circle triggerAnimation={triggerAnimation} />
                   }
                 </AnimatePresence>
@@ -139,17 +131,15 @@ const Home = () => {
           {
             !isMenuOpen &&
 
-            <S_Page>
-              <S_Box
-                isMenuOpen={isMenuOpen}
-              >
+            <S_HomePage>
+              <S_Box>
                 <S_Content>
                   <Header
                     title={headerContent.title}
                     subtitle={headerContent.subtitle}
                     renderButton={headerContent.renderButton}
                     onClick={onBackButtonClick}
-                    isMenuOpen={isMenuOpen}
+                    triggerAnimation={triggerAnimation}  
                   />
                   <AnimatePresence>
                   {
@@ -161,11 +151,11 @@ const Home = () => {
                 </S_Content>
                 <AnimatePresence>
                   {
-                      <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                    <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
                   }
                 </AnimatePresence>
               </S_Box>
-            </S_Page >
+            </S_HomePage >
           }
         </>
       </Page>
@@ -175,25 +165,16 @@ const Home = () => {
 
 export default Home
 
-const S_Page = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-`
-
 const S_HomePage = styled(motion.div)`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid var(--white);
+  transition: 0.5s;
 `
 
-const S_Box = styled.div<{
-  isMenuOpen: boolean
-}>`
+const S_Box = styled.div<{}>`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
