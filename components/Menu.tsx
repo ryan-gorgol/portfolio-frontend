@@ -13,13 +13,13 @@ interface Props {
 
 const variants = {
   onNotClick: {
-    x: [0, -20],
+    x: [0, -5],
     opacity: [.5, 0]
     
   },
   onClick: {
-    x: [0, 20, 0],
-    opacity: [1 , 1, 0.25]
+    opacity: [1, 1, 0.5, 0],
+    scale: [1, 0.95, 0.95, 0.95]
   },
   start: {
     opacity: [0,1]
@@ -46,8 +46,7 @@ const Menu = ({ menuItems, onChange, onClick }: Props) => {
   };
 
   return (
-    <S_Menu 
-    >
+    <S_Menu>
       {
         menuItems !== undefined
           ? menuItems.map(({ title, caption }, index) => (
@@ -65,10 +64,10 @@ const Menu = ({ menuItems, onChange, onClick }: Props) => {
                 }
               transition={
                 index === idSelected && isSelected
-                  ? { duration: 1, ease: 'easeIn' }
+                  ? { duration: 1, ease: 'easeInOut' }
                   : index !== idSelected && isSelected
                     ? { duration: .5, ease: 'linear' }
-                    : { duration: 1, ease: 'linear', delay: index * 0.1}
+                    : { duration: 1, ease: 'linear', delay: (index + 1) * 0.25}
               }
               >
                 <S_Title>{title}</S_Title>

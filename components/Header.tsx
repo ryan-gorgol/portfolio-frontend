@@ -3,10 +3,11 @@ import { motion } from 'framer-motion'
 
 const variants = {
   present: {
-    opacity: [0, 1]
+    opacity: [0, 1],
+    scale: 1
   },
   end: {
-    opacity: [1, 0]
+    opacity: [1, 0],
   }
 }
 
@@ -27,7 +28,7 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
           <S_Title
             variants={variants}
             animate={triggerAnimation ? 'end' : 'present'}
-            transition={triggerAnimation ? { duration: .75, delay: 0.25} : {duration: .75}}
+            transition={triggerAnimation ? { duration: 0.75, delay: 0.25} : {duration: .75}}
           >
 
             {title}

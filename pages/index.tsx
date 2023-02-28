@@ -63,7 +63,6 @@ const Home = () => {
       hook: content[key].hook,
       bait: content[key].bait,
     })
-    console.log(itemContent, 'itemContent')
     
     setTimeout(() => {
       let newButtons = content[key].buttons.map((button) => {
@@ -74,8 +73,9 @@ const Home = () => {
       })
   
       set_isMenuOpen(false)
-      set_triggerAnimation(false)
       set_buttons(newButtons)
+
+      set_triggerAnimation(false)
     }, 1000)
     
   }
@@ -85,15 +85,16 @@ const Home = () => {
   
   const onBackButtonClick = () => {
     set_triggerAnimation(true)
-    set_buttons([])
+    
     setTimeout(() => {
+      set_buttons([])
+      set_triggerAnimation(false)
       set_isMenuOpen(true)
       set_headerContent({
         title: 'Ryan Gorgol',
         subtitle: 'full stack developer',
         renderButton: false
       })
-      set_triggerAnimation(false)
     }, 1000)
   }
 
@@ -109,81 +110,51 @@ const Home = () => {
       </Head>
       <Page>
         <>
-          {/* {isMenuOpen &&  */}
-            <S_HomePage>
-              <S_Box>
-                <S_Content>
-                  <Header
-                    title={headerContent.title}
-                    subtitle={headerContent.subtitle}
-                    renderButton={headerContent.renderButton}
-                    onClick={onBackButtonClick}
+          <S_HomePage>
+            <S_Box>
+              <S_Content>
+                <Header
+                  title={headerContent.title}
+                  subtitle={headerContent.subtitle}
+                  renderButton={headerContent.renderButton}
+                  onClick={onBackButtonClick}
+                  triggerAnimation={triggerAnimation}
+                />
+                <AnimatePresence>
+                {
+                  isMenuOpen && 
+                    <Menu
+                      menuItems={menuItems}
+                      onChange={(newValue) => onChange(newValue)}
+                      onClick={(key) => onMenuClick(key)}
+                      isOpen={isMenuOpen}
+                    />
+                }
+                </AnimatePresence>
+                <AnimatePresence>
+                {
+                  !isMenuOpen &&  
+                  <ItemContent
+                    content={itemContent}
                     triggerAnimation={triggerAnimation}
                   />
-                  <AnimatePresence>
-                  {
-                    isMenuOpen && 
-                      <Menu
-                        menuItems={menuItems}
-                        onChange={(newValue) => onChange(newValue)}
-                        onClick={(key) => onMenuClick(key)}
-                        isOpen={isMenuOpen}
-                      />
-                  }
-                  </AnimatePresence>
-                  <AnimatePresence>
-                  {
-                    !isMenuOpen &&  
-                      <ItemContent
-                        content={itemContent}
-                        triggerAnimation={triggerAnimation}
-                      />
-                  }
-                  </AnimatePresence>
-                </S_Content>
-                <AnimatePresence>
-                  {
-                    isMenuOpen && <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
-                  }
-              </AnimatePresence>
+                }
+                </AnimatePresence>
+              </S_Content>
               <AnimatePresence>
-                  {
-                    !isMenuOpen && <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
-                  }
-                </AnimatePresence>
-              </S_Box>
-            </S_HomePage >
-          {/* } */}
-
-          {/* {
-            !isMenuOpen &&
-
-            <S_HomePage>
-              <S_Box>
-                <S_Content>
-                  <Header
-                    title={headerContent.title}
-                    subtitle={headerContent.subtitle}
-                    renderButton={headerContent.renderButton}
-                    onClick={onBackButtonClick}
-                    triggerAnimation={triggerAnimation}  
-                  />
-                  <AnimatePresence>
-                  {
-                      <ItemContent
-                        content={itemContent}
-                      />
-                  }
-                  </AnimatePresence>
-                </S_Content>
-                <AnimatePresence>
-                  {
-                    <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
-                  }
-                </AnimatePresence>
-              </S_Box>
-            </S_HomePage >
-          } */}
+                {
+                  isMenuOpen &&
+                  <Circle triggerAnimation={triggerAnimation} />
+                }
+            </AnimatePresence>
+            <AnimatePresence>
+                {
+                  !isMenuOpen &&
+                  <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                }
+              </AnimatePresence>
+            </S_Box>
+          </S_HomePage >
         </>
       </Page>
     </>
