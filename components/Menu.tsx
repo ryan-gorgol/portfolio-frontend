@@ -109,6 +109,10 @@ const S_MenuItem = styled(motion.button)`
   &:hover {
     color: var(--red);
   }
+
+  &:active {
+    background: none;
+  }
 `
 
 const S_Title = styled.div`

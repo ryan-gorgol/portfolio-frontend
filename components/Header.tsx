@@ -146,6 +146,10 @@ const S_ButtonContainer = styled.div`
     color: var(--red);
     transform: scale(1.1);
   }
+
+  &:active {
+    background: none;
+  }
   
 `
 
