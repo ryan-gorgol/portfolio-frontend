@@ -144,7 +144,7 @@ const Home = () => {
               <AnimatePresence>
                 {
                   isMenuOpen &&
-                  <Circle triggerAnimation={triggerAnimation} />
+                  <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
                 }
             </AnimatePresence>
             <AnimatePresence>

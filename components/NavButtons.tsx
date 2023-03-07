@@ -7,12 +7,13 @@ import Button from './Button'
 
 const variants = {
   start: {
-    y: [0, -8],
-    opacity: 0
+    y: [0, -4],
+    opacity: 0,
+    scale: [1, 0.98]
     
   },
   end: {
-    y: [-16, 0],
+    y: [-8, 0],
     opacity: 1
   }
 }
