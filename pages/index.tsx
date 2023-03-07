@@ -53,7 +53,7 @@ const Home = () => {
   const onChange = (newValue: HeaderContent) => {
     setTimeout(() => {
       set_headerContent(newValue)
-    }, 1000)
+    }, 750)
   }
 
   // triggers animation state to change then item content to be rendered finishing with another animation state change
@@ -76,7 +76,7 @@ const Home = () => {
       set_buttons(newButtons)
 
       set_triggerAnimation(false)
-    }, 1000)
+    }, 750)
     
   }
   
@@ -95,7 +95,7 @@ const Home = () => {
         subtitle: 'full stack developer',
         renderButton: false
       })
-    }, 1000)
+    }, 500)
   }
 
   return (
@@ -144,7 +144,7 @@ const Home = () => {
               <AnimatePresence>
                 {
                   isMenuOpen &&
-                  <Circle triggerAnimation={triggerAnimation} />
+                  <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
                 }
             </AnimatePresence>
             <AnimatePresence>

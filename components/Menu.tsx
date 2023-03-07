@@ -64,10 +64,10 @@ const Menu = ({ menuItems, onChange, onClick }: Props) => {
                 }
               transition={
                 index === idSelected && isSelected
-                  ? { duration: 1, ease: 'easeInOut' }
+                  ? { duration: 0.75, ease: 'easeInOut' }
                   : index !== idSelected && isSelected
-                    ? { duration: .5, ease: 'linear' }
-                    : { duration: 1, ease: 'linear', delay: (index + 1) * 0.25}
+                    ? { duration: .375, ease: 'linear' }
+                    : { duration: 0.375, ease: 'linear', delay: (index + 1) * 0.08}
               }
               >
                 <S_Title>{title}</S_Title>
@@ -109,6 +109,10 @@ const S_MenuItem = styled(motion.button)`
   &:hover {
     color: var(--red);
   }
+
+  &:active {
+    background: none;
+  }
 `
 
 const S_Title = styled.div`
@@ -116,11 +120,11 @@ const S_Title = styled.div`
   font-weight: 400;
   letter-spacing: 1.75px;
   font-size: calc(1.2rem + var(--vw_50));
+  text-align: left;
 `
 
 const S_Caption = styled.div`
   font-weight: 200;
   text-transform: lowercase;
-
-  
+  text-align: left;
 `

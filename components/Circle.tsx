@@ -9,6 +9,10 @@ const variants = {
   down: {
     scale: [1, 0.75, 1],
     opacity: [1, 0]
+  },
+  ripple: {
+    scale: [1, 0.98, 0.95, 0.98, 1],
+
   }
 }
 
@@ -17,18 +21,18 @@ interface Props {
   isMenuOpen?: boolean
 }
 
-const Circle = ({triggerAnimation}: Props) => {
+const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
   let radialGradients = [
-    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 5%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 35%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
     'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
-    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 45%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 15%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
   ]
 
   return (
     <>
       {
         radialGradients.map((gradient, index) => {
-          let delay = index === 0 ? 0 : index * 0
+          let delay = index === 0 ? 0 : index * 2
           return (
             <S_Circle
               key={index}
@@ -36,10 +40,26 @@ const Circle = ({triggerAnimation}: Props) => {
               initial={false}
               animate={
                 triggerAnimation
-                  ? 'down'
-                  : 'present'
+                  ? isMenuOpen
+                    ? 'down'
+                    : 'present'
+                  : 'ripple'
               }
-              transition={{ duration: 1, delay: delay}}
+              // animate={
+              //   triggerAnimation
+              //     ? 'down'
+              //     : 'present'
+              // }
+              transition={{
+                duration:
+                  triggerAnimation
+                    ? isMenuOpen
+                      ? 1
+                      : 1
+                    : 6,
+                delay: delay,
+                repeat: Infinity
+              }}
               gradient={gradient}
             />
           )
