@@ -79,7 +79,7 @@ export const content: Contents = [
     bait: 'As part of the RCC team, I interact with our user group to design and build a better webapp. This project emerged from those meetings, as a quick and practical way to help the community we serve. Visit the proof of concept, while the app is rebuilt using .NET',
     buttons: [{
       title: 'visit counterservice',
-      href: 'https://counterservice-grgl.netlify.app'
+      href: 'https://counterservice-client.netlify.app'
     }]
   },
   {
