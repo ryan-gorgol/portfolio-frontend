@@ -17,9 +17,7 @@ import NavButtons from '../components/NavButtons'
 
 
 const Home = () => {
-
   // STATE MGMT
-
   // bool values for controling animation timing
   const [triggerAnimation, set_triggerAnimation] = useState<boolean>(false)
   const [isMenuOpen, set_isMenuOpen] = useState<boolean>(true)
