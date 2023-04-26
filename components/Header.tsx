@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 const variants = {
   present: {
@@ -16,14 +17,17 @@ interface Props {
   subtitle?: string,
   renderButton: boolean,
   onClick: () => void,
-  triggerAnimation: boolean
+  triggerAnimation: boolean,
+  isMenuOpen: boolean
 }
 
-function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Props) {
+function Header({ title, renderButton, onClick, triggerAnimation, isMenuOpen }: Props) {
+  
+
   return (
     <S_Container >
       <S_Header renderButton={renderButton}>
-        <S_TitleContainer renderButton={renderButton}>
+        <S_TitleContainer renderButton={renderButton} isMenuOpen={isMenuOpen}>
 
           <S_Title
             variants={variants}
@@ -34,19 +38,6 @@ function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Prop
             {title}
 
           </S_Title>
-
-          {
-            subtitle
-              ? <S_Subtitle
-                  renderButton={renderButton}
-                  variants={variants}
-                  initial='start'
-                  animate={triggerAnimation ? 'end' : 'present'}
-                  transition={{ duration: 0.5}}
-                >
-                  {subtitle}
-                </S_Subtitle>
-              : <></>}
         </S_TitleContainer>
     {
     renderButton 
@@ -72,70 +63,53 @@ export default Header
 
 const S_Container = styled.div<{}>`
   width: 100%;
-  padding-bottom: 1rem;
-  cursor: default;  
+  height: var(--header_height);
+  cursor: default; 
+  position: sticky; 
 `
 
 const S_Header = styled.div<{
   renderButton: boolean
 }>`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding-bottom: 1rem;
 `
 
 const S_TitleContainer = styled.div<{
-  renderButton: boolean
+  renderButton: boolean,
+  isMenuOpen: boolean
 }>`
-  width: calc(100% - 3rem);
+  width: calc(100% - 2rem);
   height: fit-content;
   position: relative;
   color: var(--white);
   z-index: 100;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
+  padding-left: ${props => props.isMenuOpen ? '1rem' : '0'};
+  padding-top: ${props => props.isMenuOpen ? '0.5rem' : '0'};
 
   h1 {
     height: 100%;
     margin: 0;
-    font-size: calc(var(--font_size_header_title) + var(--vw_25));
+    font-size: calc(var(--font_size_header_title));
     font-weight: 200;
     letter-spacing: -1.5px;
-  }
-
-  h2 {
-    font-size: calc(var(--font_size_header_subtitle) + var(--vw_25));
-    font-weight: 100;
-    margin: 0;
-    margin-top: 0.5rem;
-    padding-left: 2px;
-    padding: ${props => props.renderButton ? '2rem' : '0'};
   }
 `
 
 const S_Title = styled(motion.div)`
   height: 100%;
   margin: 0;
-  font-size: calc(var(--font_size_header_title) + var(--vw_25));
+  font-size: var(--font_size_header_title);
   font-weight: 200;
   letter-spacing: -1.5px;
 `
 
-const S_Subtitle = styled(motion.div) <{
-  renderButton: boolean
-}>`
-  font-size: calc(var(--font_size_header_subtitle) + var(--vw_25));
-  font-weight: 100;
-  margin: 0;
-  margin-top: 0.5rem;
-  padding-left: 2px;
-  padding: ${props => props.renderButton ? '2rem' : '0'};
-`
-
 const S_ButtonContainer = styled.div`
   width: 4rem; 
+  height: 3rem;
   color: var(--white);
   display: flex;
   align-items: center;

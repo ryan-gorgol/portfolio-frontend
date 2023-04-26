@@ -36,7 +36,11 @@ const ItemContent = ({ content, triggerAnimation }: Props) => {
        {content?.hook}
       </S.LeadLine>
       <S.Bait>
-        {content?.bait}
+        {
+          content?.bait?.map((text, index) => {
+            return <p key={index}>{text}</p>
+          })
+        }
       </S.Bait>
     </S.Container>
   )
@@ -48,20 +52,23 @@ export default ItemContent
 
 const S = {
   Container: styled(motion.div)`
-    width: calc(100% - 2rem);
-    padding: 1rem;
+    width: calc(100% - 1rem);
+    /* padding: 1rem; */
   `,
   LeadLine: styled.h2`
-    font-weight: 600;
+    font-weight: 200;
     letter-spacing: .25px;
     padding-bottom: 2rem;
     margin: 0;
-    color: var(--white_plus);
+    color: var(--red);
   `,
-  Bait: styled.div`
-    font-weight: 200;
-    letter-spacing: .8px;
-
+  Bait: styled.p`
+    width: 100%;
+    margin: 0;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    letter-spacing: 0.9px;
     color: var(--white);
   `
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 // components
@@ -38,7 +38,7 @@ const Home = () => {
   
   const [itemContent, set_itemContent] = useState<SnackContentType>({
     hook: 'This is the hook',
-    bait: 'This is the bait'
+    bait: ['This is the bait']
   })
   const [buttons, set_buttons] = useState<Buttons>([])
 
@@ -106,18 +106,19 @@ const Home = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Page>
+      <Page isOpen={isMenuOpen}>
         <>
-          <S_HomePage>
+          <S_HomePage isOpen={isMenuOpen}>
             <S_Box>
+              <Header
+                title={headerContent.title}
+                subtitle={headerContent.subtitle}
+                renderButton={headerContent.renderButton}
+                onClick={onBackButtonClick}
+                triggerAnimation={triggerAnimation}
+                isMenuOpen={isMenuOpen}
+              />
               <S_Content>
-                <Header
-                  title={headerContent.title}
-                  subtitle={headerContent.subtitle}
-                  renderButton={headerContent.renderButton}
-                  onClick={onBackButtonClick}
-                  triggerAnimation={triggerAnimation}
-                />
                 <AnimatePresence>
                 {
                   isMenuOpen && 
@@ -138,19 +139,22 @@ const Home = () => {
                   />
                 }
                 </AnimatePresence>
+                <AnimatePresence>
+                  {
+                    !isMenuOpen &&
+                    <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+                
               </S_Content>
+
               <AnimatePresence>
                 {
                   isMenuOpen &&
                   <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
                 }
-            </AnimatePresence>
-            <AnimatePresence>
-                {
-                  !isMenuOpen &&
-                  <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
-                }
               </AnimatePresence>
+           
             </S_Box>
           </S_HomePage >
         </>
@@ -161,13 +165,14 @@ const Home = () => {
 
 export default Home
 
-const S_HomePage = styled(motion.div)`
+const S_HomePage = styled(motion.div) <{
+  isOpen: boolean
+}>`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--white_minus);
-  transition: 0.5s;
+  box-shadow: ${props => props.isOpen ? 'inset 0px 0px 1px var(--white_minus)' : 'inset 0px 0px 0px var(--white_minus)'};
 `
 
 const S_Box = styled.div<{}>`
@@ -179,14 +184,15 @@ const S_Box = styled.div<{}>`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 ` 
 
 const S_Content = styled.div`
   width: 100%;
-  height: fit-content;
+  height: calc(var(--page_height) - var(--header_height));
+  overflow-x: hidden;
   min-height: 50%;
   z-index: 100;
+  position: relative;
 `
 
 

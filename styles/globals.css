@@ -34,7 +34,7 @@
   --font_size_portfolio_section_title: 2rem;
   --font_size_portfolio_section_subtitle: 0.8rem;
 
-  --font_size_header_title: 3.25rem;
+  --font_size_header_title: 2.5rem;
   --font_size_header_subtitle: 1.25rem;
 
   --font_size_blog_menu: 1.5rem;
@@ -45,10 +45,13 @@
   /* SIZES */
 
   --page_border_margin: 1rem;
+  --page_border_margin_content: 1rem 0rem 1rem 1rem;
   --page_border_margin_total: calc(2 * var(--page_border_margin));
 
   --page_width: calc(var(--vh_full_width) - var(--page_border_margin_total));
   --page_height: calc(var(--vh_full_height) - var(--page_border_margin_total));
+
+  --header_height: 4rem;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -75,6 +78,8 @@
 
 body {
   margin: 0;
+
+  
 }
 
 /**

@@ -49,13 +49,14 @@ const S = {
   Container: styled(motion.div)`
     position: relative;
     z-index: 100;
-    width: calc(100% - 2rem);
-    margin: 0 auto 1rem auto;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   `,
   BtnWrap: styled.div`
     padding-top: 1rem;
+    margin-right: 1rem;
   `
 }

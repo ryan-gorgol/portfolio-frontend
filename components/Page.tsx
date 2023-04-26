@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 interface Props {
-  children: JSX.Element
+  children: JSX.Element,
+  isOpen: boolean
 }
 
-const Page = ({children}: Props) => {
+const Page = ({children, isOpen}: Props) => {
   return (
-    <S_Page>
+    <S_Page isOpen={isOpen}>
       { children }
     </S_Page>
   )
@@ -14,12 +15,14 @@ const Page = ({children}: Props) => {
 
 export default Page
 
-const S_Page = styled.div`
+const S_Page = styled.div<{
+  isOpen: boolean
+}>`
   width: var(--page_width);
   min-height: var(--page_height);
   display: flex;
   background: #303030;
-  margin: var(--page_border_margin);
+  margin: ${props => props.isOpen ? 'var(--page_border_margin)' : 'var(--page_border_margin_content)'};;
   color: var(--white);
   background: var(--black);
 `
