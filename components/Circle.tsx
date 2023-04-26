@@ -12,6 +12,7 @@ const variants = {
   },
   ripple: {
     scale: [1, 0.98, 0.95, 0.98, 1],
+    
 
   }
 }
@@ -25,7 +26,7 @@ const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
   let radialGradients = [
     'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 35%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
     'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
-    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 15%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
+    // 'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 15%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
   ]
 
   return (
@@ -58,7 +59,8 @@ const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
                       : 1
                     : 6,
                 delay: delay,
-                repeat: Infinity
+                repeat: Infinity,
+                type: 'spring', damping: 0
               }}
               gradient={gradient}
             />

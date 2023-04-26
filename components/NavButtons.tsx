@@ -10,7 +10,6 @@ const variants = {
     y: [0, -4],
     opacity: 0,
     scale: [1, 0.98]
-    
   },
   end: {
     y: [-8, 0],
@@ -30,7 +29,6 @@ const NavButtons = ({ buttons, triggerAnimation }: Props) => {
       initial={'start'}
       animate={triggerAnimation ? 'start' : 'end'}
       transition={{ duration: 0.5 }}
-      
     >
       {
         buttons?.map((button, index) => {
