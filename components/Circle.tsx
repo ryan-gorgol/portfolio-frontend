@@ -25,8 +25,7 @@ interface Props {
 const Circle = ({triggerAnimation, isMenuOpen}: Props) => {
   let radialGradients = [
     'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 35%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
-    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)',
-    // 'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 15%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
+    'radial-gradient(circle, var(--red), hsl(0, 77%, 67%, 25%) 0% ,hsl(0, 0%, 0%, 1%) 100%)'
   ]
 
   return (

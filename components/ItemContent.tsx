@@ -49,7 +49,7 @@ export default ItemContent
 const S = {
   Container: styled(motion.div)`
     width: calc(100% - 2rem);
-    padding: 1rem;
+    /* padding: 1rem; */
   `,
   LeadLine: styled.h2`
     font-weight: 600;

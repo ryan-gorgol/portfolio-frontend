@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 const variants = {
   present: {
@@ -16,14 +17,17 @@ interface Props {
   subtitle?: string,
   renderButton: boolean,
   onClick: () => void,
-  triggerAnimation: boolean
+  triggerAnimation: boolean,
+  isMenuOpen: boolean
 }
 
-function Header({title, subtitle, renderButton, onClick, triggerAnimation}: Props) {
+function Header({ title, subtitle, renderButton, onClick, triggerAnimation, isMenuOpen }: Props) {
+  
+
   return (
     <S_Container >
       <S_Header renderButton={renderButton}>
-        <S_TitleContainer renderButton={renderButton}>
+        <S_TitleContainer renderButton={renderButton} isMenuOpen={isMenuOpen}>
 
           <S_Title
             variants={variants}
@@ -87,15 +91,16 @@ const S_Header = styled.div<{
 `
 
 const S_TitleContainer = styled.div<{
-  renderButton: boolean
+  renderButton: boolean,
+  isMenuOpen: boolean
 }>`
   width: calc(100% - 3rem);
   height: fit-content;
   position: relative;
   color: var(--white);
   z-index: 100;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
+  padding-left: ${props => props.isMenuOpen ? '1rem' : '0'};
+  padding-top: ${props => props.isMenuOpen ? '0.5rem' : '0'};
 
   h1 {
     height: 100%;

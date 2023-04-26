@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 // components
@@ -108,7 +108,7 @@ const Home = () => {
       </Head>
       <Page>
         <>
-          <S_HomePage>
+          <S_HomePage isOpen={isMenuOpen}>
             <S_Box>
               <S_Content>
                 <Header
@@ -117,6 +117,7 @@ const Home = () => {
                   renderButton={headerContent.renderButton}
                   onClick={onBackButtonClick}
                   triggerAnimation={triggerAnimation}
+                  isMenuOpen={isMenuOpen}
                 />
                 <AnimatePresence>
                 {
@@ -161,13 +162,14 @@ const Home = () => {
 
 export default Home
 
-const S_HomePage = styled(motion.div)`
+const S_HomePage = styled(motion.div) <{
+  isOpen: boolean
+}>`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--white_minus);
-  transition: 0.5s;
+  box-shadow: ${props => props.isOpen ? 'inset 0px 0px 1px var(--white_minus)' : 'inset 0px 0px 0px var(--white_minus)'};
 `
 
 const S_Box = styled.div<{}>`
