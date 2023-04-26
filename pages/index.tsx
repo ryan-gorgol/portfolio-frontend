@@ -110,15 +110,15 @@ const Home = () => {
         <>
           <S_HomePage isOpen={isMenuOpen}>
             <S_Box>
+              <Header
+                title={headerContent.title}
+                subtitle={headerContent.subtitle}
+                renderButton={headerContent.renderButton}
+                onClick={onBackButtonClick}
+                triggerAnimation={triggerAnimation}
+                isMenuOpen={isMenuOpen}
+              />
               <S_Content>
-                <Header
-                  title={headerContent.title}
-                  subtitle={headerContent.subtitle}
-                  renderButton={headerContent.renderButton}
-                  onClick={onBackButtonClick}
-                  triggerAnimation={triggerAnimation}
-                  isMenuOpen={isMenuOpen}
-                />
                 <AnimatePresence>
                 {
                   isMenuOpen && 
@@ -139,19 +139,22 @@ const Home = () => {
                   />
                 }
                 </AnimatePresence>
+                <AnimatePresence>
+                  {
+                    !isMenuOpen &&
+                    <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
+                  }
+                </AnimatePresence>
+                
               </S_Content>
+
               <AnimatePresence>
                 {
                   isMenuOpen &&
                   <Circle triggerAnimation={triggerAnimation} isMenuOpen={isMenuOpen} />
                 }
-            </AnimatePresence>
-            <AnimatePresence>
-                {
-                  !isMenuOpen &&
-                  <NavButtons buttons={buttons} triggerAnimation={triggerAnimation} />
-                }
               </AnimatePresence>
+           
             </S_Box>
           </S_HomePage >
         </>
@@ -181,14 +184,15 @@ const S_Box = styled.div<{}>`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 ` 
 
 const S_Content = styled.div`
   width: 100%;
-  height: fit-content;
+  height: calc(var(--page_height) - var(--header_height));
+  overflow-x: hidden;
   min-height: 50%;
   z-index: 100;
+  position: relative;
 `
 
 

@@ -52,16 +52,18 @@ const S = {
     /* padding: 1rem; */
   `,
   LeadLine: styled.h2`
-    font-weight: 600;
+    font-weight: 200;
     letter-spacing: .25px;
     padding-bottom: 2rem;
     margin: 0;
-    color: var(--white_plus);
+    color: var(--red);
   `,
-  Bait: styled.div`
-    font-weight: 200;
-    letter-spacing: .8px;
-
+  Bait: styled.p`
+    margin: 0;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    letter-spacing: 0.9px;
     color: var(--white);
   `
 }

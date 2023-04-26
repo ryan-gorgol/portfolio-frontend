@@ -96,7 +96,7 @@ export const content: Contents = [
     title: 'Bio',
     caption: 'links',
     hook: 'I started to teach myself development to get back to building products instead of selling them.',
-    bait: 'I believe collaboration fuels creativity. Count me in for a new project, I look forward to working with new teams in the future.',
+    bait: 'I believe collaboration fuels creativity. Count me in for a new project, I look forward to working with new teams in the future. I believe collaboration fuels creativity. Count me in for a new project, I look forward to working with new teams in the future. I believe collaboration fuels creativity. Count me in for a new project, I look forward to working with new teams in the future. I believe collaboration fuels creativity. Count me in for a new project, I look forward to working with new teams in the future.',
     buttons: [{
       title: 'VISIT GITHUB',
       href: 'https://github.com/ryan-gorgol'
