@@ -36,7 +36,11 @@ const ItemContent = ({ content, triggerAnimation }: Props) => {
        {content?.hook}
       </S.LeadLine>
       <S.Bait>
-        {content?.bait}
+        {
+          content?.bait?.map((text, index) => {
+            return <p key={index}>{text}</p>
+          })
+        }
       </S.Bait>
     </S.Container>
   )

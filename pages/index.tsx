@@ -38,7 +38,7 @@ const Home = () => {
   
   const [itemContent, set_itemContent] = useState<SnackContentType>({
     hook: 'This is the hook',
-    bait: 'This is the bait'
+    bait: ['This is the bait']
   })
   const [buttons, set_buttons] = useState<Buttons>([])
 
