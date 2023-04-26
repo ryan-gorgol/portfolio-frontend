@@ -57,5 +57,6 @@ const S = {
   `,
   BtnWrap: styled.div`
     padding-top: 1rem;
+    margin-right: 1rem;
   `
 }

@@ -48,7 +48,7 @@ export default ItemContent
 
 const S = {
   Container: styled(motion.div)`
-    width: calc(100% - 2rem);
+    width: calc(100% - 1rem);
     /* padding: 1rem; */
   `,
   LeadLine: styled.h2`
@@ -59,6 +59,7 @@ const S = {
     color: var(--red);
   `,
   Bait: styled.p`
+    width: 100%;
     margin: 0;
     font-weight: 300;
     font-size: 1rem;
