@@ -7,14 +7,23 @@ interface Props {
   href?: string
 }
 
-const Button = ({title, href}: Props) => {
+const Button = ({ title, href }: Props) => {
+  
+
   return (
-    
-      <S_Button>
-        <a>
-          {title}
-        </a>
-      </S_Button>
+
+    href 
+      ?
+        <Link href={href} passHref>
+          <S_Button>
+            <a>
+              {title}
+            </a>
+          </S_Button>
+        </Link>
+      
+      :
+        <></>
   )
 }
 
@@ -22,7 +31,7 @@ export default Button
 
 const S_Button = styled.div`
   min-width: calc(100% - 4rem);
-  height: 2rem;
+  height: 3rem;
   padding: 1rem;
   display: flex;
   align-items: center;
