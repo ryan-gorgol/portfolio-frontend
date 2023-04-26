@@ -4,7 +4,7 @@ import Page from '../components/Page'
 
 const dashboard = () => {
   return (
-    <Page>
+    <Page isOpen>
       <>
         {/* <Header title={'dashboard'} renderButton /> */}
         mpfc
