@@ -7,7 +7,7 @@ interface Props {
 
 const Page = ({children, isOpen}: Props) => {
   return (
-    <S_Page isOpen={isOpen}>
+    <S_Page isopen={isOpen}>
       { children }
     </S_Page>
   )
@@ -16,13 +16,13 @@ const Page = ({children, isOpen}: Props) => {
 export default Page
 
 const S_Page = styled.div<{
-  isOpen: boolean
+  isopen: boolean
 }>`
   width: var(--page_width);
   min-height: var(--page_height);
   display: flex;
   background: #303030;
-  margin: ${props => props.isOpen ? 'var(--page_border_margin)' : 'var(--page_border_margin_content)'};;
+  margin: ${props => props.isopen ? 'var(--page_border_margin)' : 'var(--page_border_margin_content)'};;
   color: var(--white);
   background: var(--black);
 `
