@@ -10,7 +10,7 @@ const Dashboard = ({ cubsGames }) => {
   const router = useRouter();
 
   const handleClick = (gameId) => {
-    console.log(gameId, 'gameId')
+    
     router.push(`/cubs/${gameId}`);
   };
 
@@ -27,24 +27,26 @@ const Dashboard = ({ cubsGames }) => {
     <Page isOpen>
       <S.Container>
         {concludedCubsGames.map((game) => {
-          const gameDate = new Date(game.gameDate).toLocaleDateString();
-          const gameTime = new Date(game.gameDate).toLocaleTimeString();
-          const awayScore = game.teams.away.score;
-          const homeScore = game.teams.home.score;
+          const gameDate = new Date(game.gameDate).toLocaleDateString()
+          const gameTime = new Date(game.gameDate).toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+          });
 
           return (
             <S.Game
             key={game.gamePk}
             onClick={() => handleClick(game.gamePk)}
             >
-              <h1>{gameDate}</h1>
+              <h4>{gameDate}</h4>
               <h2>
                 {game.teams.away.team.name} 
               </h2>
               <h2>
                 {game.teams.home.team.name}
               </h2>
-              <p>{gameTime}</p>
+              <h6>{gameTime}</h6>
             </S.Game>
           );
         })}
@@ -95,5 +97,6 @@ const S = {
   `,
   Game: styled.div`
     margin-bottom: 1rem;
+    padding: 1rem;
   `,
 };
