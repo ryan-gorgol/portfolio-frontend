@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const BoxScore = ({ boxScore, lineScore }: any) => {
 
-  console.log(boxScore)
+  console.log(lineScore)
 
   // gather key data
   const homeTeamName = boxScore?.teams?.home?.team?.clubName;
@@ -22,25 +22,22 @@ const BoxScore = ({ boxScore, lineScore }: any) => {
   boxScore?.info.forEach((item: any, index: number, array: any[]) => {
 
     if (index === array.length - 1) {
-      date = item.label;
-      console.log(date, 'date')
+      date = item.label
     }
 
     switch (item.label) {
       case 'Weather':
-        weather = item.value;
-        break;
+        weather = item.value
+        break
       case 'Venue':
-        venue = item.value;
-        break;
+        venue = item.value
+        break
       case 'First pitch':
-        firstPitch = item.value;
-        break;
+        firstPitch = item.value
+        break
       default:
-        break;
+        break
     }
-
-    
   })
 
   // startingPitcher's need a seperate API call
@@ -60,7 +57,7 @@ const BoxScore = ({ boxScore, lineScore }: any) => {
     const offenseScore = (gameOffenseScore.home + gameOffenseScore.away) / 2;
     const defenseScore = (gameDefenseScore.home + gameDefenseScore.away) / 2;
 
-    const excitementScore = competitiveGame + offenseScore + defenseScore;
+    const excitementScore =  (competitiveGame + offenseScore + defenseScore) / 2
     return excitementScore;
   };
 
@@ -71,36 +68,54 @@ const BoxScore = ({ boxScore, lineScore }: any) => {
     const opponentScore = isCubsHome ? awayScore : homeScore;
 
     const calculateLeadChanges = (lineScore) => {
-      let leadChanges = 0
-      let previousLead: 'home' | 'away' | null = null
+      let leadChanges = 0;
+      let previousLead: 'home' | 'away' | 'tied' | null = null;
+      let homeTotalRuns = 0;
+      let awayTotalRuns = 0;
 
       for (const inning of lineScore.innings) {
-        const homeRuns = parseInt(inning.home.runs, 10);
-        const awayRuns = parseInt(inning.away.runs, 10);
+        awayTotalRuns += parseInt(inning.away.runs, 10);
+        const currentLeadAfterTopInning = homeTotalRuns === awayTotalRuns ? 'tied' : (homeTotalRuns > awayTotalRuns ? 'home' : 'away');
 
-        const currentLead = homeRuns > awayRuns ? 'home' : 'away';
-        if (previousLead && previousLead !== currentLead) {
+        if (previousLead !== null && previousLead !== currentLeadAfterTopInning) {
           leadChanges += 1;
         }
-        previousLead = currentLead
+
+        previousLead = currentLeadAfterTopInning;
+
+        if (inning.home.runs !== undefined) {
+          homeTotalRuns += parseInt(inning.home.runs, 10);
+          const currentLeadAfterBottomInning = homeTotalRuns === awayTotalRuns ? 'tied' : (homeTotalRuns > awayTotalRuns ? 'home' : 'away');
+
+          if (previousLead !== null && previousLead !== currentLeadAfterBottomInning) {
+            leadChanges += 1;
+          }
+
+          previousLead = currentLeadAfterBottomInning;
+        }
       }
 
-      return leadChanges
-    }
+      return leadChanges;
+    };
 
     const isPitchingDuel = (boxScore) => {
       const homePitchers = Object.values(boxScore?.teams?.home?.players || {});
       const awayPitchers = Object.values(boxScore?.teams?.away?.players || {});
+
       const allPitchers = [...homePitchers, ...awayPitchers];
 
       const startingPitchers = allPitchers.filter(
-        (player: any) => player.stats.pitching && player.stats.pitching.note === 'W'
+        (player: any) => player.stats.pitching.inningsPitched >= 5
       );
+
+      console.log(startingPitchers, 'SPs')
 
       return startingPitchers.every((pitcher: any) => {
         const inningsPitched = pitcher.stats.pitching.inningsPitched;
         const earnedRuns = pitcher.stats.pitching.earnedRuns;
+
         const ERA = (earnedRuns / inningsPitched) * 9;
+
         return ERA <= 2.5;
       });
     };
@@ -111,51 +126,48 @@ const BoxScore = ({ boxScore, lineScore }: any) => {
     // Scoring margin
     const margin = cubsScore - opponentScore;
     if (margin >= 3) {
-      competitiveness += 2;
+      competitiveness += 35;
     } else if (margin >= 1 && margin <= 2) {
-      competitiveness += 2;
+      competitiveness += 25;
     } else if (margin >= -2 && margin <= -1) {
-      competitiveness += 1;
+      competitiveness += 5;
     } else if (margin >= -5 && margin <= -3) {
-      competitiveness += 0;
+      competitiveness -= 10;
     } else if (margin <= -6) {
-      competitiveness -= 1;
+      competitiveness -= 15;
     }
-
 
     // Overall scoring
     const totalRuns = cubsScore + opponentScore;
     if (totalRuns > 12) {
-      competitiveness += 1.25;
+      competitiveness += 30;
     } else if (totalRuns > 8) {
-      competitiveness += 0.75;
+      competitiveness += 20;
     } else if (totalRuns > 5) {
-      competitiveness += 0.5;
+      competitiveness += 10;
     }
-
 
     // Lead changes
     const leadChanges = calculateLeadChanges(lineScore);
     if (leadChanges >= 7) {
-      competitiveness += 0.75;
+      competitiveness += 75;
     } else if (leadChanges >= 4) {
-      competitiveness += 0.5;
+      competitiveness += 50;
     } else if (leadChanges >= 1) {
-      competitiveness += 0.25;
+      competitiveness += 25;
     }
-
 
     // Pitching duel
     if (isPitchingDuel(boxScore)) {
-      competitiveness += 1;
+      competitiveness += 30;
     }
 
     setCompetitiveGame(competitiveness)
   };
 
-  useEffect(() => {
+useEffect(() => {
     calculateCompetitiveGame()
-  }, [])
+}, [])
 
   const handleToggleGameScoreVisibility = () => {
     if (isGameScoreVisible) {
@@ -167,7 +179,7 @@ const BoxScore = ({ boxScore, lineScore }: any) => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     const fetchPitcherData = async (id: number) => {
     const apiUrl = `https://statsapi.mlb.com/api/v1/people/${id}`;
     try {
@@ -194,14 +206,15 @@ useEffect(() => {
     const awayTeamStats = boxScore?.teams?.away?.teamStats;
 
     const offenseWeights = {
-      homeRuns: 3.3,
-      hits: 0.9,
-      doubles: 2.2,
-      triples: 15,
-      stolenBases: 10,
-      atBats: 0.3,
+      rbi: 3,
+      homeRuns: 3,
+      hits: 1,
+      doubles: 2,
+      triples: 3,
+      stolenBases: 5,
+      atBats: 0.5,
       baseOnBalls: 2,
-      hitByPitch: 10,
+      hitByPitch: 5,
       flyOuts: 1.5,
       groundOuts: 1.5,
       sacBunts: 10,
@@ -211,12 +224,11 @@ useEffect(() => {
     const defenseWeights = {
       assists: 1.8,
       caughtStealing: 8,
-      chances: 0.3,
       errors: 5,
       passedBall: 10,
       groundOuts: 3.5,
       airOuts: 3.5,
-      strikeOuts: 4,
+      strikeOuts: 5,
       completedGames: 10
     };
 
@@ -250,28 +262,29 @@ useEffect(() => {
   return (
     <>
       <S.EventInfo>
-        <span>{date}</span>
-        <span>{venue}</span>
-        <span>{weather}</span>
-        <span>{firstPitch}</span>
+        <S.Date>{date.slice(0, date.length)}</S.Date>
+        <S.Venue>{venue.slice(0, venue.length - 1)}</S.Venue>
+        <S.Weather>{weather.slice(0, weather.length - 1)}</S.Weather>
+        <S.FirstPitch>{firstPitch.slice(0, firstPitch.length - 1)}</S.FirstPitch>
         <S.ExcitementScore>
-          <h4>Excitement Score:</h4>
+          <h2>Action Score</h2>
           <S.Badge>{calculateExcitementScore()}</S.Badge>
         </S.ExcitementScore>
       </S.EventInfo>
+
       <S.Page>
         <S.Team>
           <S.TeamName>{awayTeamName}</S.TeamName>
           <S.Pitcher>SP {awayStartingPitcher}</S.Pitcher>
           <S.Scores>
             <div>
-              <h4>Offense</h4>
+              <h4>Offense Action</h4>
               
               <S.Badge>{gameOffenseScore.away}</S.Badge>
             </div>
             
             <div>
-              <h4>Defense</h4>
+              <h4>Defense Action</h4>
               <S.Badge>{gameDefenseScore.away}</S.Badge>
             </div>
           </S.Scores> 
@@ -290,11 +303,11 @@ useEffect(() => {
           <S.Pitcher>SP {homeStartingPitcher}</S.Pitcher>
           <S.Scores>
             <div>
-              <h4>Offense</h4>
+              <h4>Offense Action</h4>
               <S.Badge>{gameOffenseScore.home}</S.Badge>
             </div>
             <div>
-              <h4>Defense</h4>
+              <h4>Defense Action</h4>
               <S.Badge>{gameDefenseScore.home}</S.Badge>
             </div>
           </S.Scores> 
@@ -351,23 +364,46 @@ const S = {
   EventInfo: styled.div`
     width: 100%;
     height: 100%;
-    background: blue;
+    background: #0E3386;
     color: white;
     display: flex;
     flex-direction: column;
+    padding: 1rem 0.5rem;
+  `,
+  Date: styled.h2`
+    margin: 0;
+    padding: 0 1rem;
+    color: #e5e5e5;
+  `,
+  Venue: styled.div`
+    margin: 0;
+    padding: 1rem 1rem 0.5rem 1rem;
+    color: #e5e5e5;
+    font-weight: 200;
+    font-size: 1rem;
+    text-transform: uppercase;
+  `,
+  Weather: styled.div`
+    margin: 0;
+    padding: 0 1rem;
+    color#e5e5e5;
+    font-weight: 100;
+    font-size: 0.75rem;
 
-    span {
-      padding: 0.5rem;
-      width: 15rem;
-    }
+  `,
+  FirstPitch: styled.div`
+    margin: 0;
+    padding: 0.5rem 1rem;
+    color#e5e5e5;
+    font-weight: 100;
+    font-size: 0.75rem;
   `,
   Page: styled.main`
-    width: 100%;
+    width: var(--vw_full_width);
     height: var(--vh_full_height);
     background: white;
     color: black;
     display: flex;
-    
   `,
   Team: styled.div`
     width: 100%;
@@ -398,7 +434,7 @@ const S = {
     }
   `,
   Badge: styled.div`
-    border: 2px solid blue; 
+    border: 2px solid #0E3386; 
     border-radius: 0.25rem;
     padding: 0.5rem;
     min-width: 2rem;
@@ -415,21 +451,25 @@ const S = {
     padding: 1rem;
     width: calc(100% - 2rem);
     height: 10rem;
-    border: 2px solid blue;
+    border: 2px solid #0E3386;
     border-radius: 0.25rem;
   `,
   ExcitementScore: styled.div`
+    margin-top: 0.5rem;
     padding: 0.5rem;
     width: calc(100% - 2rem);
     height: 5rem;
-    border: 2px solid blue;
-    border-radius: 0.25rem;
     diplay: flex;
     flex-wrap: nowrap;
 
-    h4 {
-      width: 10rem;
+    h2 {
       margin: 0;
+      padding-left: 0.25rem;
+      color: #e5e5e5;
+    }
+
+    div {
+      display: flex;
     }
   `
 }
