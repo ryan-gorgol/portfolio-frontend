@@ -24,7 +24,6 @@ const Dashboard = ({ cubsGames }) => {
     });
 
   return (
-    <Page isOpen>
       <S.Container>
         {concludedCubsGames.map((game) => {
           const gameDate = new Date(game.gameDate).toLocaleDateString()
@@ -51,7 +50,6 @@ const Dashboard = ({ cubsGames }) => {
           );
         })}
       </S.Container>
-    </Page>
   );
 };
 
@@ -92,11 +90,16 @@ export async function getServerSideProps() {
 
 const S = {
   Container: styled.div`
+    padding: 1rem;
     width: 100%;
     height: 100%;
+    background: white;
+    color: #0e3386;
   `,
   Game: styled.div`
     margin-bottom: 1rem;
     padding: 1rem;
+    border: 2px solid #0e3386;
+    border-radius: 0.5rem;
   `,
 };
