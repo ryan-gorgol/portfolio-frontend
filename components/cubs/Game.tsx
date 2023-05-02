@@ -66,7 +66,7 @@ export default function BoxScoreComponent({ boxScore, lineScore }: any) {
     const cubsScore = isCubsHome ? homeScore : awayScore;
     const opponentScore = isCubsHome ? awayScore : homeScore;
 
-    const calculateLeadChanges = (lineScore) => {
+    const calculateLeadChanges = (lineScore: any) => {
       let leadChanges = 0;
       let previousLead: 'home' | 'away' | 'tied' | null = null;
       let homeTotalRuns = 0;
@@ -97,7 +97,7 @@ export default function BoxScoreComponent({ boxScore, lineScore }: any) {
       return leadChanges;
     };
 
-    const isPitchingDuel = (boxScore) => {
+    const isPitchingDuel = (boxScore: any) => {
       const homePitchers = Object.values(boxScore?.teams?.home?.players || {});
       const awayPitchers = Object.values(boxScore?.teams?.away?.players || {});
 
@@ -280,7 +280,6 @@ if (awayStartingPitcherId) {
         gameDefenseScore={gameDefenseScore}
         homeScore={homeScore}
         awayScore={awayScore}
-        isGameScoreVisible={isGameScoreVisible}
       />
     </S.Container>
   );
