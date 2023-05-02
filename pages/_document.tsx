@@ -1,3 +1,4 @@
+import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import styled from 'styled-components'
 
@@ -24,7 +25,6 @@ class MyDocument extends Document {
 export default MyDocument
 
 const S_Body = styled.body`
-  width: 100vw;
   min-height: 100%;
   display: flex;
   justify-content: center;
