@@ -22,6 +22,7 @@ const Matchup = ({date, venue, weather, firstPitch, excitementScore}: Props) => 
       </S.Overview>
 
       <S.Score>
+        <h6>Overall Action</h6>
         <div>{excitementScore}</div>
       </S.Score>
 
@@ -78,18 +79,24 @@ const S = {
     margin-top: 0.5rem;
     padding: 0.5rem;
     width: calc(100% - 2rem);
-    height: 5rem;
+    height: 6rem;
     diplay: flex;
     flex-wrap: nowrap;
 
-  div {
-    box-sizing: border-box;
-    margin-left: 0.5rem;
-    display: flex;
-    border: 1px solid #CC3433;
-    border-radius: 0.25rem;
-    width: fit-content;
-    padding: 0.5rem;
-  }
+    h6 {
+      margin: 0;
+      margin-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    div {
+      box-sizing: border-box;
+      margin-left: 0.5rem;
+      display: flex;
+      border: 1px solid #CC3433;
+      border-radius: 0.25rem;
+      width: fit-content;
+      padding: 0.5rem;
+    }
 `
 }
