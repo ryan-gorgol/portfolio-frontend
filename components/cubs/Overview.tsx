@@ -40,7 +40,7 @@ const S = {
     color: white;
     display: flex;
     flex-direction: column;
-    padding: 1rem 0.5rem;
+    padding: 2rem 0.5rem;
     box-shadow: inset 0px -4px 2px #0b2561,
                 inset 0px -8px 4px #0b256162,
                 inset 0px -12px 6px #0b256162;
@@ -89,9 +89,7 @@ const S = {
     
 
     h6 {
-      margin: 0;
-      margin-left: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin: 1rem 0.5rem;
       font-size: 1rem;
       text-shadow: 0px 1px 3px #0b2561,
                    0px 2px 6px #0b2561,
