@@ -26,6 +26,7 @@ interface StyledProps {
 }
 
 const S = styled.div`
+  border: none;
   border: 2px solid #0e3386;
   border-radius: 0.25rem;
   padding: 0.5rem;
