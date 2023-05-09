@@ -5,8 +5,6 @@ import { useRouter } from 'next/router';
 
 const Dashboard = ({ games }) => {
 
-  useEffect(() => console.log(games, 'games'), [games])
-
   const router = useRouter();
   const todayGameRef = useRef(null);
 
