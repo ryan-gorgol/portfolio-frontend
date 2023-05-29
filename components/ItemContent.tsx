@@ -53,9 +53,13 @@ export default ItemContent
 const S = {
   Container: styled(motion.div)`
     width: calc(100% - 1rem);
-    /* padding: 1rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   `,
   LeadLine: styled.h2`
+    max-width: 500px;
     font-weight: 200;
     letter-spacing: .25px;
     padding-bottom: 2rem;
@@ -64,6 +68,7 @@ const S = {
   `,
   Bait: styled.p`
     width: 100%;
+    max-width: 500px;
     margin: 0;
     font-weight: 300;
     font-size: 1rem;
