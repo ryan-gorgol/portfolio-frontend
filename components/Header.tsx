@@ -89,20 +89,12 @@ const S_TitleContainer = styled.div<{
   z-index: 100;
   padding-left: ${props => props.isMenuOpen ? '1rem' : '0'};
   padding-top: ${props => props.isMenuOpen ? '0.5rem' : '0'};
-
-  h1 {
-    height: 100%;
-    margin: 0;
-    font-size: calc(var(--font_size_header_title));
-    font-weight: 200;
-    letter-spacing: -1.5px;
-  }
 `
 
 const S_Title = styled(motion.div)`
   height: 100%;
   margin: 0;
-  font-size: var(--font_size_header_title);
+  font-size: calc(var(--font_size_header_title) + var(--vw_100));
   font-weight: 200;
   letter-spacing: -1.5px;
 `
