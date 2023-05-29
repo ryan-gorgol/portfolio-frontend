@@ -119,7 +119,7 @@ const S_Title = styled.div`
   line-height: calc(33px + var(--vw_25));
   font-weight: 400;
   letter-spacing: 1.75px;
-  font-size: calc(1.2rem + var(--vw_25));
+  font-size: 1.2rem;
   text-align: left;
 `
 

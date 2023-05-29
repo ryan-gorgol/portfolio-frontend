@@ -62,7 +62,7 @@ const S = {
     max-width: 500px;
     font-weight: 200;
     letter-spacing: .25px;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     margin: 0;
     color: var(--red);
   `,
@@ -70,7 +70,7 @@ const S = {
     width: 100%;
     max-width: 500px;
     margin: 0;
-    font-weight: 300;
+    font-weight: 200;
     font-size: 1rem;
     line-height: 1.75rem;
     letter-spacing: 0.9px;
