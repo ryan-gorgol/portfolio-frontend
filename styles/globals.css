@@ -17,6 +17,7 @@
   --red_plus: #ff8181;
 
   /* FONTS */
+
   --line-height: calc(1.6rem + 0.25vw);
   --font_size: calc(1rem + 0.25vw);
   --vw_25: 0.25vw;
@@ -29,19 +30,6 @@
   --vw_full_width: calc(100 * var(--vw));
   --vh_full_height: calc(100 * var(--vh));
 
-  --font_size_home_section: 1.4rem;
-  --font_size_info_section: 0.8rem;
-  --font_size_portfolio_section_title: 2rem;
-  --font_size_portfolio_section_subtitle: 0.8rem;
-
-  --font_size_header_title: 2.5rem;
-  --font_size_header_subtitle: 1.25rem;
-
-  --font_size_blog_menu: 1.5rem;
-  --font_size_blog_title: 2.25rem;
-  --font_size_blog_subtitle: 1.5rem;
-
-
   /* SIZES */
 
   --page_border_margin: 1rem;
@@ -50,8 +38,6 @@
 
   --page_width: calc(var(--vh_full_width) - var(--page_border_margin_total));
   --page_height: calc(var(--vh_full_height) - var(--page_border_margin_total));
-
-  --header_height: 4rem;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
