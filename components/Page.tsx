@@ -22,7 +22,7 @@ const S_Page = styled.div<{
   min-height: var(--page_height);
   display: flex;
   background: #303030;
-  margin: ${props => props.isopen ? 'var(--page_border_margin)' : 'var(--page_border_margin_content)'};;
+  margin: ${props => props.isopen ? 'var(--page_border_margin)' : 'var(--page_border_margin_content)'};
   color: var(--white);
   background: var(--black);
 `

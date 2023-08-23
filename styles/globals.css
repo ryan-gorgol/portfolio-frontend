@@ -46,6 +46,10 @@
   --header_height: 4rem;
 }
 
+html {
+  overflow-y: hidden;
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
