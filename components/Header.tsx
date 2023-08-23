@@ -17,8 +17,8 @@ interface Props {
   subtitle?: string,
   renderButton: boolean,
   onClick: () => void,
-  triggerAnimation: boolean,
-  isMenuOpen: boolean
+  triggerAnimation?: boolean,
+  isMenuOpen?: boolean
 }
 
 function Header({ title, renderButton, onClick, triggerAnimation, isMenuOpen }: Props) {
@@ -27,7 +27,7 @@ function Header({ title, renderButton, onClick, triggerAnimation, isMenuOpen }: 
   return (
     <S_Container >
       <S_Header renderButton={renderButton}>
-        <S_TitleContainer renderButton={renderButton} isMenuOpen={isMenuOpen}>
+        <S_TitleContainer renderButton={renderButton} isMenuOpen={isMenuOpen != null ? isMenuOpen : true}>
 
           <S_Title
             variants={variants}
@@ -63,7 +63,6 @@ export default Header
 
 const S_Container = styled.div<{}>`
   width: 100%;
-  height: var(--header_height);
   cursor: default; 
   position: sticky; 
 `
@@ -72,7 +71,7 @@ const S_Header = styled.div<{
   renderButton: boolean
 }>`
   width: 100%;
-  height: 100%;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
