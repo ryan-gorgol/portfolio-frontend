@@ -17,8 +17,8 @@ interface Props {
   subtitle?: string,
   renderButton: boolean,
   onClick: () => void,
-  triggerAnimation: boolean,
-  isMenuOpen: boolean
+  triggerAnimation?: boolean,
+  isMenuOpen?: boolean
 }
 
 function Header({ title, renderButton, onClick, triggerAnimation, isMenuOpen }: Props) {
@@ -27,7 +27,7 @@ function Header({ title, renderButton, onClick, triggerAnimation, isMenuOpen }: 
   return (
     <S_Container >
       <S_Header renderButton={renderButton}>
-        <S_TitleContainer renderButton={renderButton} isMenuOpen={isMenuOpen}>
+        <S_TitleContainer renderButton={renderButton} isMenuOpen={isMenuOpen != null ? isMenuOpen : true}>
 
           <S_Title
             variants={variants}
