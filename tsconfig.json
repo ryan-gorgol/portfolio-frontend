@@ -27,7 +27,7 @@
     "components/Circle.tsx",
     "pages/_app.jsx",
     "pages/counterservice.tsx"
-  ],
+, "pages/dashboard.jsx"  ],
   "exclude": [
     "node_modules"
   ]

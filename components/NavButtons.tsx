@@ -50,6 +50,7 @@ const S = {
     position: relative;
     z-index: 100;
     width: 100%;
+    max-width: 500px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;

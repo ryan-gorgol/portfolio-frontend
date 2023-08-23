@@ -193,6 +193,7 @@ const S_Content = styled.div`
   min-height: 50%;
   z-index: 100;
   position: relative;
+  padding: 1rem 0;
 `
 
 
