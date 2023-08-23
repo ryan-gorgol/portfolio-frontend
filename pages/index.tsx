@@ -169,6 +169,7 @@ const S_HomePage = styled(motion.div) <{
   isOpen: boolean
 }>`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,7 +180,7 @@ const S_Box = styled.div<{}>`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 2px;
+  border-radius: 0.125rem;
   position: relative;
   overflow: hidden;
   display: flex;

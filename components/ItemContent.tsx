@@ -59,6 +59,7 @@ const S = {
     align-items: center;
   `,
   LeadLine: styled.h2`
+    display: border-box;
     max-width: 500px;
     font-weight: 200;
     letter-spacing: .25px;

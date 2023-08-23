@@ -63,7 +63,6 @@ export default Header
 
 const S_Container = styled.div<{}>`
   width: 100%;
-  height: var(--header_height);
   cursor: default; 
   position: sticky; 
 `
@@ -72,7 +71,7 @@ const S_Header = styled.div<{
   renderButton: boolean
 }>`
   width: 100%;
-  height: 100%;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: stretch;

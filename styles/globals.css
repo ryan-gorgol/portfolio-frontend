@@ -22,9 +22,6 @@
   --vw_25: 0.25vw;
   --vw_50: 0.5vw; 
   --vw_100: 1vw; 
-  
-  --vw: calc(100 * var(--vw));
-  --vh: calc(100 * var(--vh));
 
   --vw_full_width: calc(100 * var(--vw));
   --vh_full_height: calc(100 * var(--vh));
@@ -40,10 +37,10 @@
   --page_border_margin_content: 1rem 0rem 1rem 1rem;
   --page_border_margin_total: calc(2 * var(--page_border_margin));
 
-  --page_width: calc(var(--vh_full_width) - var(--page_border_margin_total));
+  --page_width: calc(var(--vw_full_width) - var(--page_border_margin_total));
   --page_height: calc(var(--vh_full_height) - var(--page_border_margin_total));
 
-  --header_height: 4rem;
+  --header_height: fit-content;
 }
 
 html {
